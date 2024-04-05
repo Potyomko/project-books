@@ -10,7 +10,7 @@ export const AuthSlice = createSlice({
 
         }, 
         token: null,
-        isLoggedIn: false,
+        isLoggedIn: true,
         isReFreshing: false,
 
     },
