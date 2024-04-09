@@ -4,7 +4,8 @@ import { persistStore, persistReducer, FLUSH, REHYDRATE, PAUSE, PERSIST, PURGE, 
 import storage from 'redux-persist/lib/storage';
 
 import { AuthReducer } from "./auth/slice";
-import { bookReducer, changeFilterReducer } from "./slice";
+import { bookReducer, changeFilterReducer } from "./library/slice";
+import { traningReducer } from "./traning/slice";
 
 const persistConfig = {
     key: 'auth',
@@ -25,6 +26,7 @@ const persistConfig = {
       book: bookReducer,
       filter: changeFilterReducer,
       auth: persistedAuthReducer, 
+      traning: traningReducer
     },
     middleware,
     devTools: process.env.NODE_ENV === 'development',
