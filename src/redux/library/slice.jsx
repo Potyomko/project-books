@@ -15,18 +15,20 @@ const filterBook = createSlice({
 
 const bookSlice = createSlice({
   name: "book", 
-  initialState: {
+  initialState:[ 
+    // приклад об'єкту однієї книги
 
-    id:null,
-    name: null,
-    author: null,
-    year:null,
-    pages: null,
-      status: "planing" || "reading"|| "completed"
-      
-  },
-  reducers: {
-
+  //   {
+  //   id:null,
+  //   name: null,
+  //   author: null,
+  //   year:null,
+  //   pages: null,
+  //     status: "planing" || "reading"|| "completed"
+  // }
+],
+ extraReducers(builder){
+       builder
   },
  
 });
