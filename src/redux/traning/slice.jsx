@@ -12,13 +12,13 @@ const trainingSlice = createSlice({
       ]
       
   },
-  extraReducers(builder){
-    builder
+  // extraReducers(builder){
+  //   builder
 
-  },
+  // },
  
 });
 
 
 // export const {} = trainingSlice.actions;
-export const traningReducer =  bookSlice.reducer;
+export const traningReducer =  trainingSlice.reducer;
