@@ -2,8 +2,17 @@
 // import { selectIsLoggedIn } from "redux/auth/selectors";
 import { Outlet } from "react-router-dom";
 
-export const App = () => {
-  // const isLoggedIn = useSelector(selectIsLoggedIn)
+import axios from 'axios';
+import { useEffect, useState } from "react";
+
+export const App = ()=> {
+  const [books, setBooks] = useState([]);
+
+  useEffect(() => {
+    axios.get('http://localhost:3000/api/books/books')
+      .then(response => setBooks(response.data))
+      .catch(error => console.error('Error fetching books', error));
+  }, []);
   return (
     <>
 {/*     

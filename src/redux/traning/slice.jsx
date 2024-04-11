@@ -1,24 +1,24 @@
-import { createSlice, } from "@reduxjs/toolkit";
+// import { createSlice, } from "@reduxjs/toolkit";
 
 
-const trainingSlice = createSlice({
-  name: "training", 
-  initialState: {
-      startDate: null, 
-      finishDate: null,
-      books: [], 
-      checkout: [
-        // поки не продумала наповнення
-      ]
+// const trainingSlice = createSlice({
+//   name: "training", 
+//   initialState: {
+//       startDate: null, 
+//       finishDate: null,
+//       books: [], 
+//       checkout: [
+//         // поки не продумала наповнення
+//       ]
       
-  },
-  // extraReducers(builder){
-  //   builder
+//   },
+//   // extraReducers(builder){
+//   //   builder
 
-  // },
+//   // },
  
-});
+// });
 
 
-// export const {} = trainingSlice.actions;
-export const traningReducer =  trainingSlice.reducer;
+// // export const {} = trainingSlice.actions;
+// export const traningReducer =  trainingSlice.reducer;
