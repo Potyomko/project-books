@@ -3,7 +3,7 @@ import { configureStore} from "@reduxjs/toolkit";
 import { persistStore, persistReducer, FLUSH, REHYDRATE, PAUSE, PERSIST, PURGE, REGISTER } from 'redux-persist';
 import storage from 'redux-persist/lib/storage';
 
-import { AuthReducer } from "./auth/slice";
+// import { AuthReducer } from "./auth/slice";
 import { bookReducer, changeFilterReducer } from "./library/slice";
 import { traningReducer } from "./traning/slice";
 
@@ -19,14 +19,14 @@ const persistConfig = {
     },
   });
   
-  const persistedAuthReducer = persistReducer(persistConfig, AuthReducer);
+  // const persistedAuthReducer = persistReducer(persistConfig, AuthReducer);
   
   export const store = configureStore({
     reducer: {
-      book: bookReducer,
-      filter: changeFilterReducer,
-      auth: persistedAuthReducer, 
-      traning: traningReducer
+      // book: bookReducer,
+      // filter: changeFilterReducer,
+      // auth: persistedAuthReducer, 
+      // traning: traningReducer
     },
     middleware,
     devTools: process.env.NODE_ENV === 'development',
