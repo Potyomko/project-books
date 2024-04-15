@@ -16,7 +16,7 @@ mongoose.connect(process.env.MONGODB_URI, { useNewUrlParser: true, useUnifiedTop
 app.use(express.json());
 
 // Маршрут для отримання всіх книг
-app.get('/api/books', async(req, res) => {
+app.get('/api/books/books', async(req, res) => {
     try {
         const books = await Book.find();
         res.json(books);
@@ -27,7 +27,7 @@ app.get('/api/books', async(req, res) => {
 });
 
 // Маршрут для створення нової книги
-app.post('/api/books', async(req, res) => {
+app.post('/api/books/books', async(req, res) => {
     try {
         const { title, author, pages } = req.body;
         const book = new Book({ title, author, pages });
