@@ -1,4 +1,5 @@
 import { createSlice, } from "@reduxjs/toolkit";
+import { updateFinishDate, updateStartDate } from "./operation";
 
 
 const trainingSlice = createSlice({
@@ -12,11 +13,15 @@ const trainingSlice = createSlice({
       ]
       
   },
-  // extraReducers(builder){
-  //   builder
-
-  // },
- 
+extraReducers(builder) {
+  builder
+    .addCase(updateStartDate.fulfilled, (state, action) => {
+      state.startDate = action.payload;
+    })
+    .addCase(updateFinishDate.fulfilled, (state, action) => {
+      state.finishDate = action.payload;
+    });
+}
 });
 
 

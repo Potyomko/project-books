@@ -5,6 +5,7 @@ import { Outlet } from "react-router-dom";
 
 import axios from 'axios';
 import { useEffect, useState } from "react";
+import { Training } from "./Training/Training";
 
 export const App = ()=> {
   const [books, setBooks] = useState([]);
@@ -15,7 +16,7 @@ export const App = ()=> {
 {/*     
      {isLoggedIn ? <UserMenu/> :  <AuthMenu/> } */}
     <Outlet/> 
-     {/* <Training/> */}
+     <Training/>
     </>
     
   );

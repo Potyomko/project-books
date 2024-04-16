@@ -26,7 +26,7 @@ const persistConfig = {
       // book: bookReducer,
       // filter: changeFilterReducer,
       // auth: persistedAuthReducer, 
-      // traning: traningReducer
+      traning: traningReducer
     },
     middleware,
     devTools: process.env.NODE_ENV === 'development',
