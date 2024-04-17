@@ -1,5 +1,6 @@
 export const WantToRead = () => {
-    <div>
+    return (
+        <div>
         <h1>Моя мета прочитати</h1>
         <div>
             <h1>0</h1>
@@ -10,4 +11,5 @@ export const WantToRead = () => {
             <h5>Кількість днів</h5>
         </div>
     </div>
+    )
 }
