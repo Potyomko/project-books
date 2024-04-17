@@ -6,6 +6,7 @@ import storage from 'redux-persist/lib/storage';
 // import { AuthReducer } from "./auth/slice";
 import { bookReducer, changeFilterReducer } from "./library/slice";
 import { traningReducer } from "./traning/slice";
+import { AuthReducer } from "./auth/slice";
 
 const persistConfig = {
     key: 'auth',
@@ -25,7 +26,7 @@ const persistConfig = {
     reducer: {
       // book: bookReducer,
       // filter: changeFilterReducer,
-      // auth: persistedAuthReducer, 
+      auth: AuthReducer, 
       // traning: traningReducer
     },
     middleware,

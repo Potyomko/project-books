@@ -11,9 +11,9 @@ import axios from "axios";
 //   };
 
 
-export const register = createAsyncThunk('books/register', async (data, thunkAPI) => {
+export const register = createAsyncThunk('userData/register', async (data, thunkAPI) => {
    try {
-      const res = await axios.post('/api/books', data);
+      const res = await axios.post('localhost:3000/api/books/userData', data);
       return res.data;
    } catch (error) {
       return thunkAPI.rejectWithValue(error.response.data);
