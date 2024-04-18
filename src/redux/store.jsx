@@ -28,6 +28,8 @@ const persistConfig = {
       // filter: changeFilterReducer,
       auth: AuthReducer, 
       // traning: traningReducer
+      // auth: persistedAuthReducer, 
+      traning: traningReducer
     },
     middleware,
     devTools: process.env.NODE_ENV === 'development',

@@ -1,5 +1,11 @@
+import { TimeTofinish } from "./components/finishOfTreaningTimer";
+import { NewYearTimer } from "./components/timerToNewYear";
+
 export const Statistics = ()=>{
     return(
-        <h1>Statistics</h1>
+        <>
+        <TimeTofinish/>
+        <NewYearTimer/>
+        </>
     )
 }
