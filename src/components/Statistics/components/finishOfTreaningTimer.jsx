@@ -1,9 +1,10 @@
 import React from 'react';
 import { useTimer } from 'react-timer-hook';
 import {useSelector} from 'react-redux'
+import { selectFinishDate } from '../../../redux/traning/selectors';
 
 export function TimeTofinish() {
-  const timeOfTheFinish = useSelector(state => state.traning.finishDate)
+  const timeOfTheFinish = useSelector(selectFinishDate)
   const time = new Date(timeOfTheFinish * 1000)
 
   const {
