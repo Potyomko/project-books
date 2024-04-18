@@ -1,17 +1,17 @@
 {
   "files": {
     "main.css": "/project-books/static/css/main.7acaea2f.css",
-    "main.js": "/project-books/static/js/main.8c9fa5e5.js",
+    "main.js": "/project-books/static/js/main.dcae71d4.js",
     "static/media/pic.jpg": "/project-books/static/media/pic.0ed39e956a97d11f7c67.jpg",
     "index.html": "/project-books/index.html",
     "static/media/“.svg": "/project-books/static/media/“.cb00fd15a9c33bd82a6370d3e7f678cc.svg",
     "static/media/Vector.svg": "/project-books/static/media/Vector.d8e7a9a0f08c75160e4bd84887ac7c2b.svg",
     "static/media/Line 1.svg": "/project-books/static/media/Line 1.67b413987e8df21bb6ff367bce4537d6.svg",
     "main.7acaea2f.css.map": "/project-books/static/css/main.7acaea2f.css.map",
-    "main.8c9fa5e5.js.map": "/project-books/static/js/main.8c9fa5e5.js.map"
+    "main.dcae71d4.js.map": "/project-books/static/js/main.dcae71d4.js.map"
   },
   "entrypoints": [
     "static/css/main.7acaea2f.css",
-    "static/js/main.8c9fa5e5.js"
+    "static/js/main.dcae71d4.js"
   ]
 }
