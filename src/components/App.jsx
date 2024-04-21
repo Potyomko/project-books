@@ -6,9 +6,14 @@ import axios from 'axios';
 import { useEffect, useState } from "react";
 import { Register } from "./Authentication/Register";
 import { Training } from "./Training/Training";
+import { useDispatch } from "react-redux";
+import { fetchUsers } from "../redux/auth/operation";
+import { UserMenu } from "./Authentication/UserMenu";
 
 export const App = ()=> {
 
+
+    
 
  
   return (
@@ -16,8 +21,9 @@ export const App = ()=> {
 
 {/*     
      {isLoggedIn ? <UserMenu/> :  <AuthMenu/> } */}
+     <UserMenu/>
     <Outlet/> 
-     <Training/>
+     {/* <Training/> */}
     </>
     
   );

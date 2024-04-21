@@ -5,6 +5,7 @@ import { UserMenu } from "components/Authentication/UserMenu";
 import { Home } from "components/Home/Home";
 import PrivateRoute from "components/PrivateRoute";
 import RestrictedRouter from "components/RestrictedRout";
+
 import { Statistics } from "components/Statistics/Statistics";
 import { Training } from "components/Training/Training";
 import { createBrowserRouter } from "react-router-dom";
@@ -23,11 +24,11 @@ export const router =  createBrowserRouter(
                 },
                 {
                     path: '/login',
-                    element: <Login/>
+                    element: <RestrictedRouter component={Login} redirecTo='/'/>
                 },
                 {
                     path: '/register',
-                    element: <Register/>
+                    element: <RestrictedRouter component={Register} redirecTo='/'/>
                 }
                 ,
                 {
