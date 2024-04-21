@@ -19,8 +19,8 @@ export function Chart() {
 //   export const selectChekout = state => state.traning.checkout;
 // export const selectIsStarted = state => state.traning.isStarted;
 // export const selectPrevChekout = state => state.traning.prevChekout;
-  const isStarted = useSelector(state.traning.isStarted)
-  const checkout = useSelector(isStarted ? state => state.traning.checkout : state.traning.prevChekout)
+  const isStarted = useSelector(state =>state.traning.isStarted)
+  const checkout = useSelector(isStarted ? state => state.traning.checkout : state => state.traning.prevChekout)
   const arrayForSort = [...checkout]
 
   arrayForSort.sort(function(a, b) {
