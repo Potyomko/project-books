@@ -6,10 +6,12 @@ export const TrainingFilter = () => {
 
   const handleStartDateChange = (e) => {
     dispatch(updateStartDate({ startDate: e.target.value }));
+    console.log("start:", e.target.value)
   };
 
   const handleFinishDateChange = (e) => {
     dispatch(updateFinishDate({ finishDate: e.target.value }))
+    console.log("finish:", e.target.value)
   };
 
   return (
