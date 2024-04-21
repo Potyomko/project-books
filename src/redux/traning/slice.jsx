@@ -1,16 +1,18 @@
 import { createSlice, } from "@reduxjs/toolkit";
-import { updateFinishDate, updateStartDate } from "./operation";
+import { updateFinishDate, updateStartDate, addNewChekout } from "./operation";
 
 
 const trainingSlice = createSlice({
   name: "training", 
   initialState: {
-      startDate: null, 
-      finishDate: null,
+      startDate: '2024-04-22', 
+      finishDate: '2024-05-05',
       books: [], 
       checkout: [
         // поки не продумала наповнення
-      ]
+      ],
+      prevChekout: [],
+      isStarted: true
       
   },
 extraReducers(builder) {
@@ -20,6 +22,9 @@ extraReducers(builder) {
     })
     .addCase(updateFinishDate.fulfilled, (state, action) => {
       state.finishDate = action.payload;
+    })
+    .addCase(addNewChekout.fulfilled, (state, action) => {
+      state.checkout.push(action.payload);
     });
 }
 });

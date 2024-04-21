@@ -28,3 +28,15 @@ export const updateFinishDate = createAsyncThunk(
   }
 );
 
+export const addNewChekout = createAsyncThunk(
+  "training/addNewChekout",
+  async (chekoutData) => {
+    try {
+      // const response = await axios.put("/start-date", { startDate });
+      return chekoutData;
+    } catch (error) {
+      return error.response.data;
+    }
+  }
+);
+
