@@ -5,7 +5,7 @@ import storage from 'redux-persist/lib/storage';
 
 // import { AuthReducer } from "./auth/slice";
 import { bookReducer, changeFilterReducer } from "./library/slice";
-import { traningReducer } from "./traning/slice";
+import { traningReducer } from "./training/slice";
 import { AuthReducer } from "./auth/slice";
 
 const persistConfig = {

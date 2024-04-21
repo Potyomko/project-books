@@ -1,15 +1,17 @@
-import { useDispatch } from "react-redux";
-import { updateFinishDate, updateStartDate } from "../../../redux/traning/operation";
+import { useDispatch, useSelector } from "react-redux";
+import { updateFinishDate, updateStartDate } from "../../../redux/training/operation";
+import { selectBooks } from "../../../redux/training/selectors";
 
 export const TrainingFilter = () => {
+const books = useSelector(selectBooks);
   const dispatch = useDispatch();
 
   const handleStartDateChange = (e) => {
-    dispatch(updateStartDate({ startDate: e.target.value }));
+    dispatch(updateStartDate(e.target.value));
   };
 
   const handleFinishDateChange = (e) => {
-    dispatch(updateFinishDate({ finishDate: e.target.value }))
+    dispatch(updateFinishDate(e.target.value));
   };
 
   return (
@@ -27,7 +29,11 @@ export const TrainingFilter = () => {
         />
       </div>
       <div>
-        <select>Обрати книги з бібліотеки</select>
+        <select>
+          {books.map(book => (
+            <option key={book.id} value={book.id}>{book.title}</option>
+          ))}
+        </select>
         <button>Додати</button>
       </div>
     </div>
