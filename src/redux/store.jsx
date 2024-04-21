@@ -5,7 +5,7 @@ import storage from 'redux-persist/lib/storage';
 
 // import { AuthReducer } from "./auth/slice";
 import { bookReducer, changeFilterReducer } from "./library/slice";
-import { traningReducer } from "./training/slice";
+import { trainingReducer, traningReducer } from "./training/slice";
 import { AuthReducer } from "./auth/slice";
 
 const persistConfig = {
@@ -29,7 +29,7 @@ const persistConfig = {
       auth: AuthReducer, 
       // traning: traningReducer
       // auth: persistedAuthReducer, 
-      traning: traningReducer
+      training: trainingReducer
     },
     middleware,
     devTools: process.env.NODE_ENV === 'development',

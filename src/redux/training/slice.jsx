@@ -32,4 +32,4 @@ extraReducers(builder) {
 
 
 // export const {} = trainingSlice.actions;
-export const traningReducer =  trainingSlice.reducer;
+export const trainingReducer =  trainingSlice.reducer;
