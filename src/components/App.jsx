@@ -17,7 +17,7 @@ export const App = ()=> {
 {/*     
      {isLoggedIn ? <UserMenu/> :  <AuthMenu/> } */}
     <Outlet/> 
-     <Training/>
+     {/* <Training/> */}
     </>
     
   );
