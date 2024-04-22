@@ -8,8 +8,8 @@ const RestrictedRouter = ({component: Component, redirecTo }) => {
 
 
  
-const isAuthenticated =  useSelector(selectIsLoggedIn)
+  const localUserId = localStorage.getItem("id");
 
-  return isAuthenticated ? <Navigate to={redirecTo} /> : <Component /> ;
+  return localUserId ? <Navigate to={redirecTo} /> : <Component /> ;
 };
 export default RestrictedRouter
