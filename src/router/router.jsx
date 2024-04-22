@@ -20,7 +20,7 @@ export const router =  createBrowserRouter(
                 
                 {
                     path: '/Home',
-                    element: <Home/>
+                    element: <PrivateRoute component={Home} redirecTo='/register'/>
                 },
                 {
                     path: '/login',
@@ -33,15 +33,15 @@ export const router =  createBrowserRouter(
                 ,
                 {
                     path: '/userMenu',
-                    element:<UserMenu/>
+                    element:<PrivateRoute component={UserMenu} redirecTo='/register'/>
                 },
                 {
                     path: 'training',
-                    element:<Training/>
+                    element:<PrivateRoute component={Training} redirecTo='/register'/>
                 },
                 {
                     path: 'statistics',
-                    element:<Statistics/>
+                    element:<PrivateRoute component={Statistics} redirecTo='/register'/>
                 }
             ]
         }

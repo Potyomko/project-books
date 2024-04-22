@@ -25,6 +25,7 @@ export const Login = () => {
       
       // Перевірка, чи існує користувач з введеним email
       const user = users.find(user => user.email === email);
+      console.log(user);
    
       if (!user) {
          // Якщо користувача з введеним email не знайдено, вивести повідомлення про помилку
@@ -41,6 +42,7 @@ export const Login = () => {
    
       // Якщо користувач і пароль існують, диспачимо вхід
       dispatch(login({
+         id: user.id,
          email: email,
          password: password,
       }))

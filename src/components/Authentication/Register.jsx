@@ -42,7 +42,7 @@ export const Register = () => {
       const generatedToken = nanoid();
 
       dispatch(register({
-         idBooks: id,
+         id: null,
          name: username,
          email: email,
          password: password,
