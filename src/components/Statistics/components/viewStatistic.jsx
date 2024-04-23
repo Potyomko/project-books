@@ -1,8 +1,8 @@
 import {useSelector} from 'react-redux'
-import { selectChekout } from '../../../redux/traning/selectors'
+// import { selectChekout } from '../../../redux/traning/selectors'
 
 export const ViewStatistic = () => {
-    const checkout = useSelector(selectChekout)
+    const checkout = useSelector(state => state.training.checkout)
     const arrayForSort = [...checkout]
 
     arrayForSort.sort(function(a, b) {

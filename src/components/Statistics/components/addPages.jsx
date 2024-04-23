@@ -11,7 +11,7 @@ export const AddPages = () => {
     const [pages, setPages] = useState('')
     const timeOfTheFinish = useSelector(selectFinishDate)
     // export const selectStartDate = state => state.traning.startDate;
-    const timeOfTheStart = useSelector(state => state.traning.startDate)
+    const timeOfTheStart = useSelector(state => state.training.startDate)
     const refactedFinish = Date.parse(timeOfTheFinish)/1000
     const refactedStart = Date.parse(timeOfTheStart)/1000
 

@@ -29,7 +29,7 @@ const persistConfig = {
       auth: AuthReducer, 
       // traning: traningReducer
       // auth: persistedAuthReducer, 
-      traning: traningReducer
+      training: traningReducer
     },
     middleware,
     devTools: process.env.NODE_ENV === 'development',

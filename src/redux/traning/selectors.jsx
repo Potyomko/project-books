@@ -1,1 +1,1 @@
-export const selectFinishDate = state => state.traning.finishDate
+export const selectFinishDate = state => state.training.finishDate

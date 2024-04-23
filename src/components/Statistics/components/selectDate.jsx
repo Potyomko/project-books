@@ -6,7 +6,7 @@ import { selectFinishDate } from '../../../redux/traning/selectors';
 export const SelectDate = () => {
     const [dateValue, setDateValue] = useState('')
     const timeOfTheFinish = useSelector(selectFinishDate)
-    const timeOfTheStart = useSelector(state => state.traning.startDate)
+    const timeOfTheStart = useSelector(state => state.training.startDate)
 
     const handleStartDateChange = (e) => {
       const chosenDate = Date.parse(e.target.value)/1000
