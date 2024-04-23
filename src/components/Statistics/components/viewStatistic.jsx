@@ -1,5 +1,5 @@
 import {useSelector} from 'react-redux'
-import { selectChekout } from '../../../redux/traning/selectors'
+import { selectChekout } from '../../../redux/training/selectors'
 
 export const ViewStatistic = () => {
     const checkout = useSelector(selectChekout)

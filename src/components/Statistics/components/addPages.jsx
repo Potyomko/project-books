@@ -1,9 +1,9 @@
 // import {Select} from '../style/hidenList.styled'
 import {useState} from "react"
-import { selectFinishDate } from '../../../redux/training/selectors';
+import { selectFinishDate, selectStartDate } from '../../../redux/training/selectors';
 import {useSelector, useDispatch} from 'react-redux'
 // selectStartDate
-import { addNewChekout } from "../../../redux/traning/operation";
+import { addNewChekout } from "../../../redux/training/operation";
 
 export const AddPages = () => {
   const dispatch = useDispatch()
@@ -11,13 +11,13 @@ export const AddPages = () => {
     const [pages, setPages] = useState('')
     const timeOfTheFinish = useSelector(selectFinishDate)
     // export const selectStartDate = state => state.traning.startDate;
-    const timeOfTheStart = useSelector(state => state.traning.startDate)
-    const refactedFinish = Date.parse(timeOfTheFinish)/1000
-    const refactedStart = Date.parse(timeOfTheStart)/1000
+    const timeOfTheStart = useSelector(selectStartDate)
+    // const refactedFinish = Date.parse(timeOfTheFinish)/1000
+    // const refactedStart = Date.parse(timeOfTheStart)/1000
 
     const handleStartDateChange = (e) => {
       const chosenDate = Date.parse(e.target.value)/1000
-      if (chosenDate >= refactedStart && chosenDate <= refactedFinish){
+      if (chosenDate >= timeOfTheStart && chosenDate <= timeOfTheFinish){
         setDateValue(e.target.value)
       }
     };

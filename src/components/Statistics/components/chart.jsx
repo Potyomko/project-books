@@ -12,20 +12,20 @@ import {
 import { Line } from 'react-chartjs-2';
 // import faker from 'faker';
 import {useSelector} from 'react-redux'
-// import { selectChekout, selectIsStarted, selectPrevChekout } from '../../../redux/traning/selectors'
+import { selectChekout, selectIsStarted, selectPrevChekout } from '../../../redux/training/selectors'
 
 
 export function Chart() {
-//   export const selectChekout = state => state.traning.checkout;
+//   export const selectChekout = state => state.training.checkout;
 // export const selectIsStarted = state => state.traning.isStarted;
 // export const selectPrevChekout = state => state.traning.prevChekout;
-  const isStarted = useSelector(state =>state.traning.isStarted)
-  const checkout = useSelector(isStarted ? state => state.traning.checkout : state => state.traning.prevChekout)
+  const isStarted = useSelector(selectIsStarted)
+  const checkout = useSelector(isStarted ? selectChekout : selectPrevChekout)
   const arrayForSort = [...checkout]
 
   arrayForSort.sort(function(a, b) {
       // Преобразуем в число для сравнения
-      return Number.parseInt(b.unix) - Number.parseInt(a.unix);
+      return Number.parseInt(a.unix) - Number.parseInt(b.unix);
     });
 
     console.log(checkout)
