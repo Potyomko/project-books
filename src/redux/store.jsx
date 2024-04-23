@@ -1,5 +1,5 @@
 import { configureStore} from "@reduxjs/toolkit";
-
+import { createStore, combineReducers } from 'redux';
 import { persistStore, persistReducer, FLUSH, REHYDRATE, PAUSE, PERSIST, PURGE, REGISTER } from 'redux-persist';
 import storage from 'redux-persist/lib/storage';
 
@@ -19,12 +19,15 @@ const persistConfig = {
       ignoredActions: [FLUSH, REHYDRATE, PAUSE, PERSIST, PURGE, REGISTER],
     },
   });
+
+
+  
   
   // const persistedAuthReducer = persistReducer(persistConfig, AuthReducer);
   
   export const store = configureStore({
     reducer: {
-      // book: bookReducer,
+      book: bookReducer,
       // filter: changeFilterReducer,
       auth: AuthReducer, 
       // traning: traningReducer
@@ -36,3 +39,4 @@ const persistConfig = {
   });
   
   export const persistor = persistStore(store);
+  
