@@ -1,7 +1,7 @@
 import { createAsyncThunk } from "@reduxjs/toolkit";
 import axios from "axios";
 
-axios.defaults.baseURL = 'https://api.example.com'; // Ваша базова URL-адреса API
+axios.defaults.baseURL = 'https://65b92f2bb71048505a8a6162.mockapi.io/';
 
 export const updateStartDate = createAsyncThunk(
   "training/updateStartDate",
@@ -22,6 +22,18 @@ export const updateFinishDate = createAsyncThunk(
         const response = await axios.put("/finish-date", { finishDate });
         console.log(finishDate);
       return response.data;
+    } catch (error) {
+      return error.response.data;
+    }
+  }
+);
+
+export const addNewChekout = createAsyncThunk(
+  "training/addNewChekout",
+  async (chekoutData) => {
+    try {
+      // const response = await axios.put("/start-date", { startDate });
+      return chekoutData;
     } catch (error) {
       return error.response.data;
     }

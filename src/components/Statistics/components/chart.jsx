@@ -11,13 +11,24 @@ import {
 } from 'chart.js';
 import { Line } from 'react-chartjs-2';
 // import faker from 'faker';
-
+import {useSelector} from 'react-redux'
+// import { selectChekout, selectIsStarted, selectPrevChekout } from '../../../redux/traning/selectors'
 
 
 export function Chart() {
-    // const now = new Date();
-    // const revers = new Date(now);
-    // console.log(revers)
+//   export const selectChekout = state => state.traning.checkout;
+// export const selectIsStarted = state => state.traning.isStarted;
+// export const selectPrevChekout = state => state.traning.prevChekout;
+  const isStarted = useSelector(state =>state.traning.isStarted)
+  const checkout = useSelector(isStarted ? state => state.traning.checkout : state => state.traning.prevChekout)
+  const arrayForSort = [...checkout]
+
+  arrayForSort.sort(function(a, b) {
+      // Преобразуем в число для сравнения
+      return Number.parseInt(b.unix) - Number.parseInt(a.unix);
+    });
+
+    console.log(checkout)
     ChartJS.register(
         CategoryScale,
         LinearScale,
@@ -28,11 +39,6 @@ export function Chart() {
         Legend
       );
 
-    //   {
-    //     date: "date",
-    //     time: "time"
-    //     pages: "pages"
-    //   }
       
       const options = {
         responsive: true,
@@ -51,17 +57,17 @@ export function Chart() {
         }}
       
     //   const labels = ['', '', '', '', '', '', ''];
-    const fakeData = [3, 5, 4, 6, 8, 10, 9];
+    // const fakeData = [3, 5, 4, 6, 8, 10, 9];
       
  const data = {
-        labels: fakeData.map(()=> ''),
+        labels: arrayForSort.map(()=> ''),
         datasets: [
           {
             // label: 'Dataset 1',
-            data: fakeData,
+            data: arrayForSort.map((chek)=> chek.pages),
             // .map((num) => num ),
-            borderColor: 'rgb(255, 99, 132)',
-            backgroundColor: 'rgba(255, 99, 132, 0.5)',
+            borderColor: ' #FF6B08',
+            backgroundColor: '#FF6B08',
           },
         ],
       };
