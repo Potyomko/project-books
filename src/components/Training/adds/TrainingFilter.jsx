@@ -1,10 +1,14 @@
+import React, { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
+import { addBook } from "../../../redux/training/slice";
+import { selectBooks, selectSelectedBooks } from "../../../redux/training/selectors";
 import { updateFinishDate, updateStartDate } from "../../../redux/training/operation";
-import { selectBooks } from "../../../redux/training/selectors";
 
 export const TrainingFilter = () => {
-const books = useSelector(selectBooks);
+  const books = useSelector(selectBooks);
+  const selectedBooks = useSelector(selectSelectedBooks);
   const dispatch = useDispatch();
+  const [selectedBookId, setSelectedBookId] = useState("");
 
   const handleStartDateChange = (e) => {
     dispatch(updateStartDate(e.target.value));
@@ -12,6 +16,17 @@ const books = useSelector(selectBooks);
 
   const handleFinishDateChange = (e) => {
     dispatch(updateFinishDate(e.target.value));
+  };
+
+  const handleBookSelect = (e) => {
+    setSelectedBookId(e.target.value);
+  };
+
+  const handleAddBook = () => {
+    if (selectedBookId) {
+      dispatch(addBook(selectedBookId));
+      setSelectedBookId("");
+    }
   };
 
   return (
@@ -29,12 +44,33 @@ const books = useSelector(selectBooks);
         />
       </div>
       <div>
-        <select>
-          {books.map(book => (
-            <option key={book.id} value={book.id}>{book.title}</option>
+        <select onChange={handleBookSelect} value={selectedBookId}>
+          <option value="">Виберіть книгу</option>
+          {books.map((book) => (
+            <option key={book.id} value={book.id}>
+              {book.title}
+            </option>
           ))}
         </select>
-        <button>Додати</button>
+        <button onClick={handleAddBook}>Додати</button>
+      </div>
+      <div>
+        <table>
+          <thead>
+            <tr>
+              <th>ID</th>
+              <th>Назва книги</th>
+            </tr>
+          </thead>
+          <tbody>
+            {selectedBooks.map((book) => (
+              <tr key={book.id}>
+                <td>{book.id}</td>
+                <td>{book.title}</td>
+              </tr>
+            ))}
+          </tbody>
+        </table>
       </div>
     </div>
   );
