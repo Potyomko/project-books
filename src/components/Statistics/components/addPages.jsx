@@ -1,8 +1,8 @@
 // import {Select} from '../style/hidenList.styled'
 import {useState} from "react"
+import { selectFinishDate } from '../../../redux/training/selectors';
 import {useSelector, useDispatch} from 'react-redux'
 // selectStartDate
-import { selectFinishDate } from '../../../redux/traning/selectors';
 import { addNewChekout } from "../../../redux/traning/operation";
 
 export const AddPages = () => {

@@ -2,12 +2,10 @@
 // import { selectIsLoggedIn } from "redux/auth/selectors";
 import { Outlet } from "react-router-dom";
 // import { Training } from "./Training/Training";
-import axios from 'axios';
-import { useEffect, useState } from "react";
-import { Register } from "./Authentication/Register";
+// import { Register } from "./Authentication/Register";
 import { Training } from "./Training/Training";
-import { useDispatch } from "react-redux";
-import { fetchUsers } from "../redux/auth/operation";
+// import { Statistics } from "./Statistics/Statistics";
+// import { Login } from "./Authentication/Login";
 import { UserMenu } from "./Authentication/UserMenu";
 
 export const App = ()=> {
@@ -18,13 +16,14 @@ export const App = ()=> {
  
   return (
     <>
-
-{/*     
-     {isLoggedIn ? <UserMenu/> :  <AuthMenu/> } */}
+      {/* <Register /> */}
+      {/* <Login/> */}
+      {/* {isLoggedIn ? <UserMenu /> : <AuthMenu />} */}
+      <Training />
+      {/* <Statistics /> */}
+      <Outlet/> 
      <UserMenu/>
     <Outlet/> 
-     {/* <Training/> */}
     </>
-    
   );
 };

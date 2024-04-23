@@ -1,7 +1,7 @@
 import {Select} from '../style/hidenList.styled'
 import {useState} from "react"
 import {useSelector} from 'react-redux'
-import { selectFinishDate } from '../../../redux/traning/selectors';
+import { selectFinishDate } from '../../../redux/training/selectors';
 
 export const SelectDate = () => {
     const [dateValue, setDateValue] = useState('')
