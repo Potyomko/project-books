@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { addBook } from "../../../redux/training/slice";
+import { addBook } from "../../../redux/training/operation";
 import { selectBooks, selectSelectedBooks } from "../../../redux/training/selectors";
 import { updateFinishDate, updateStartDate } from "../../../redux/training/operation";
 

@@ -5,3 +5,6 @@ export const selectSelectedBooks = state => state.training.selectedBooks;
 export const selectToken = state => state.auth.token;
 export const selectUser = state => state.auth.user;
 export const selectIsAuthenticated = state => state.auth.isAuthenticated;
+export const selectChekout = state => state.training.checkout;
+export const selectIsStarted = state => state.training.isStarted;
+export const selectPrevChekout = state => state.training.prevChekout;

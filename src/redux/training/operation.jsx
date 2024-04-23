@@ -39,3 +39,15 @@ export const addNewChekout = createAsyncThunk(
     }
   }
 );
+
+export const addBook = createAsyncThunk(
+  "training/addBook",
+  async (bookData) => {
+    try {
+      // const response = await axio
+      return bookData;
+    } catch (error) {
+      return error.response.data;
+    }
+  }
+)
