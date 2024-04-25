@@ -20,6 +20,16 @@ const setAuthHeader = token => {
    }
  });
 
+ export const fetchUser = createAsyncThunk('users/fetchUser', async (_, thunkApi) => {
+  try {
+    const localUserId = localStorage.getItem("id");
+
+    const res = await axios.get(`/users/${localUserId}}`);
+    return res.data;
+  } catch (error) {
+    thunkApi.rejectWithValue('Упс Помилка');
+  }
+});
 
  export const register = createAsyncThunk('auth/signup', async (body, thunkApi)=>{
    try{

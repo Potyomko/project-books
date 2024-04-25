@@ -14,6 +14,7 @@ export const AuthSlice = createSlice({
         isLoggedIn: false,
         isReFreshing: false,
         items: [], // Додаємо масив items для зберігання отриманих користувачів
+        userObj: []
     },
     extraReducers(builder){
         builder
