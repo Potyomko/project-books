@@ -3,7 +3,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { markAsRead } from '../../redux/library/slice';
 
 export const BookList = () => {
-  const books = useSelector(state => state.book);
+  const books = useSelector(state => state.library);
   const dispatch = useDispatch();
 
   const handleMarkAsRead = (bookId) => {
