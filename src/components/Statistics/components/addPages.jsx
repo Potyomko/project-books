@@ -1,13 +1,19 @@
 // import {Select} from '../style/hidenList.styled'
 import {useState} from "react"
-import {useSelector} from 'react-redux'
-import { selectFinishDate } from '../../../redux/traning/selectors';
+import { selectFinishDate, selectStartDate } from '../../../redux/training/selectors';
+import {useSelector, useDispatch} from 'react-redux'
+// selectStartDate
+import { addNewChekout } from "../../../redux/training/operation";
 
 export const AddPages = () => {
+  const dispatch = useDispatch()
     const [dateValue, setDateValue] = useState('')
     const [pages, setPages] = useState('')
     const timeOfTheFinish = useSelector(selectFinishDate)
-    const timeOfTheStart = useSelector(state => state.traning.startDate)
+    // export const selectStartDate = state => state.traning.startDate;
+    const timeOfTheStart = useSelector(selectStartDate)
+    // const refactedFinish = Date.parse(timeOfTheFinish)/1000
+    // const refactedStart = Date.parse(timeOfTheStart)/1000
 
     const handleStartDateChange = (e) => {
       const chosenDate = Date.parse(e.target.value)/1000
@@ -22,7 +28,14 @@ export const AddPages = () => {
     
     const handleFormSubmit = (e) => {
         e.preventDefault();
-         console.log(dateValue, pages)
+        const unixDate = Date.parse(dateValue)/1000
+        const date = new Date();
+        const hours = date.getHours();
+        const minutes = date.getMinutes();
+        const seconds = date.getSeconds();
+        dispatch(addNewChekout({date: dateValue, time: `${hours}:${minutes}:${seconds}`, pages, unix: unixDate}))
+         console.log(`${hours}:${minutes}:${seconds}`)
+         
     }
     return <form onSubmit={handleFormSubmit}>
       <input

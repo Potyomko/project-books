@@ -1,7 +1,7 @@
 import React from 'react';
 import { useTimer } from 'react-timer-hook';
 import {useSelector} from 'react-redux'
-import { selectFinishDate } from '../../../redux/traning/selectors';
+import { selectFinishDate } from '../../../redux/training/selectors';
 
 export function TimeTofinish() {
   const timeOfTheFinish = useSelector(selectFinishDate)

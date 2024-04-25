@@ -28,3 +28,26 @@ export const updateFinishDate = createAsyncThunk(
   }
 );
 
+export const addNewChekout = createAsyncThunk(
+  "training/addNewChekout",
+  async (chekoutData) => {
+    try {
+      // const response = await axios.put("/start-date", { startDate });
+      return chekoutData;
+    } catch (error) {
+      return error.response.data;
+    }
+  }
+);
+
+export const addBook = createAsyncThunk(
+  "training/addBook",
+  async (bookData) => {
+    try {
+      // const response = await axio
+      return bookData;
+    } catch (error) {
+      return error.response.data;
+    }
+  }
+)

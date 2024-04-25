@@ -1,11 +1,8 @@
-import { configureStore} from "@reduxjs/toolkit";
 import { createStore, combineReducers } from 'redux';
 import { persistStore, persistReducer, FLUSH, REHYDRATE, PAUSE, PERSIST, PURGE, REGISTER } from 'redux-persist';
+import { configureStore } from "@reduxjs/toolkit";
 import storage from 'redux-persist/lib/storage';
-
-// import { AuthReducer } from "./auth/slice";
-import { bookReducer, changeFilterReducer } from "./library/slice";
-import { traningReducer } from "./traning/slice";
+import { trainingReducer } from "./training/slice";
 import { AuthReducer } from "./auth/slice";
 
 const persistConfig = {
@@ -20,9 +17,6 @@ const persistConfig = {
     },
   });
 
-
-  
-  
   // const persistedAuthReducer = persistReducer(persistConfig, AuthReducer);
   
   export const store = configureStore({
@@ -40,3 +34,12 @@ const persistConfig = {
   
   export const persistor = persistStore(store);
   
+  key: 'root',
+  storage,
+  whitelist: ['auth']
+};
+
+const rootReducer = combineReducers({
+  training: trainingReducer,
+  auth: AuthReducer
+});
