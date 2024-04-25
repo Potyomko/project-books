@@ -19,7 +19,7 @@ export const App = ()=> {
       {/* <Register /> */}
       {/* <Login/> */}
       {/* {isLoggedIn ? <UserMenu /> : <AuthMenu />} */}
-      <Training />
+      {/* <Training /> */}
       {/* <Statistics /> */}
       <Outlet/> 
      <UserMenu/>

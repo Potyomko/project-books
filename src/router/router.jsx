@@ -20,28 +20,28 @@ export const router =  createBrowserRouter(
                 
                 {
                     path: '/Home',
-                    element: <PrivateRoute component={Home} redirecTo='/register'/>
+                    element: <PrivateRoute component={Home} redirecTo='/'/>
                 },
                 {
                     path: '/login',
-                    element: <RestrictedRouter component={Login} redirecTo='/'/>
+                    element: <RestrictedRouter component={Login} redirecTo='/Home'/>
                 },
                 {
-                    path: '/register',
-                    element: <RestrictedRouter component={Register} redirecTo='/'/>
+                    index: true,
+                    element: <RestrictedRouter component={Register} redirecTo='/Home'/>
                 }
                 ,
                 {
                     path: '/userMenu',
-                    element:<PrivateRoute component={UserMenu} redirecTo='/register'/>
+                    element:<PrivateRoute component={UserMenu} redirecTo='/'/>
                 },
                 {
                     path: 'training',
-                    element:<PrivateRoute component={Training} redirecTo='/register'/>
+                    element:<PrivateRoute component={Training} redirecTo='/'/>
                 },
                 {
                     path: 'statistics',
-                    element:<PrivateRoute component={Statistics} redirecTo='/register'/>
+                    element:<PrivateRoute component={Statistics} redirecTo='/'/>
                 }
             ]
         }
