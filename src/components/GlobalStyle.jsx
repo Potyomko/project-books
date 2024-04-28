@@ -36,6 +36,8 @@ body {
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
     padding: 20px;
+    background: rgba(246, 247, 251, 1);
+
   }
   
   code {

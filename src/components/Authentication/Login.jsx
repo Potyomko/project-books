@@ -43,6 +43,7 @@ export const Login = () => {
       // Якщо користувач і пароль існують, диспачимо вхід
       dispatch(login({
          id: user.id,
+         name: user.name,
          email: email,
          password: password,
       }))
