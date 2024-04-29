@@ -84,7 +84,7 @@ export const Login = () => {
                      <RegisterButton type="submit">Увійти</RegisterButton>
                   </RegisterForm>
                   <FormUl>
-                     <li><NavLink to='/register'>Зареєструватися</NavLink></li>
+                     <li><NavLink to='/'>Зареєструватися</NavLink></li>
                   </FormUl>
                </LoginContainer>
             </BackroundAuth>

@@ -9,6 +9,8 @@ import LogoRegister from './img/Vector.svg'
 import { fetchUsers } from "../../redux/auth/operation";
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
+import { passwordStrength } from 'check-password-strength'
+
 
 export const Register = () => {
    const dispatch = useDispatch();
@@ -35,6 +37,12 @@ export const Register = () => {
       const existingUser = users.find(user => user.email === email);
       if (existingUser) {
          toast.error("Користувач з такою електронною адресою вже існує");
+         return;
+      }
+      const strength = passwordStrength(password).value;
+      console.log(strength);
+      if (strength === "Too weak") {
+         toast.warn("Пароль недостатньо міцний. Будь ласка, використовуйте більш складний пароль.");
          return;
       }
 
