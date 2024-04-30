@@ -1,5 +1,5 @@
 import { createSlice } from "@reduxjs/toolkit";
-import { fetchUsers, login, logout, refreshUser, register } from "./operation";
+import { fetchUser, fetchUsers, login, logout, refreshUser, register } from "./operation";
 
 export const AuthSlice = createSlice({
     name: 'auth',
@@ -14,6 +14,7 @@ export const AuthSlice = createSlice({
         isLoggedIn: false,
         isReFreshing: false,
         items: [], // Додаємо масив items для зберігання отриманих користувачів
+        HeaderUser: null
     },
     extraReducers(builder){
         builder
@@ -22,15 +23,22 @@ export const AuthSlice = createSlice({
                 state.user = action.payload.user;
                 state.token = action.payload.token;
                 state.isLoggedIn = true;
+                window.location.href = '/Home';
+            })
+            .addCase(fetchUser.fulfilled, (state, action)=>{
+
+                state.HeaderUser = action.payload;
+
             })
             .addCase(login.fulfilled, (state, action ) => {
-              
+                window.location.href = '/Home';
                 state.isLoggedIn = true;
             })
             .addCase(logout.fulfilled, (state) => {
                 state.user = null;
                 state.token = null;
                 state.isLoggedIn = false;
+                window.location.href = '/';
             })
             .addCase(refreshUser.pending, (state) => {
                 state.isReFreshing = true;

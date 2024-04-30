@@ -20,6 +20,18 @@ const setAuthHeader = token => {
    }
  });
 
+ 
+ export const fetchUser = createAsyncThunk('users/fetchUser', async (body, thunkApi) => {
+  try {
+    console.log(body);
+    const res = await axios.get(`/users/${body}`);
+    return res.data;
+  } catch (error) {
+    thunkApi.rejectWithValue('Упс Помилка');
+  }
+});
+
+
 
  export const register = createAsyncThunk('auth/signup', async (body, thunkApi)=>{
    try{
@@ -28,10 +40,10 @@ const setAuthHeader = token => {
       
       // Отримати idBooks з відповіді сервера
       const id = res.data.id;
-
+        const userName = res.data.name
       // Записати idBooks в локальне сховище
       localStorage.setItem('id', id);
-
+      localStorage.setItem('userName', userName);
       return res.data;
    } catch(error){
       thunkApi.rejectWithValue(error.messages);
@@ -43,9 +55,10 @@ export const login = createAsyncThunk('auth/login', async (body, thunkApi)=>{
        
       // Отримати idBooks з відповіді сервера
       const id = body.id;
-
+const userName = body.name
       // Записати idBooks в локальне сховище
       localStorage.setItem('id', id); 
+      localStorage.setItem('userName', userName); 
 
      const res =  await axios.put(`/users/${id}`, { IsLoggedIn: true });
      setAuthHeader(res.data.token)
@@ -61,6 +74,7 @@ export const login = createAsyncThunk('auth/login', async (body, thunkApi)=>{
    try {
      // Отримати ідентифікатор користувача з локального сховища
      const userId = localStorage.getItem('id');
+     const userName = localStorage.getItem('userName');
  console.log(userId);
      // Перевірити, чи ідентифікатор користувача не пустий
     
@@ -69,6 +83,7 @@ export const login = createAsyncThunk('auth/login', async (body, thunkApi)=>{
  
        // Видалити ідентифікатор користувача з локального сховища
        localStorage.removeItem('id');
+       localStorage.removeItem('userName');
    
  
      // Очистити токен з заголовка

@@ -43,6 +43,7 @@ export const Login = () => {
       // Якщо користувач і пароль існують, диспачимо вхід
       dispatch(login({
          id: user.id,
+         name: user.name,
          email: email,
          password: password,
       }))
@@ -83,7 +84,7 @@ export const Login = () => {
                      <RegisterButton type="submit">Увійти</RegisterButton>
                   </RegisterForm>
                   <FormUl>
-                     <li><NavLink to='/register'>Зареєструватися</NavLink></li>
+                     <li><NavLink to='/'>Зареєструватися</NavLink></li>
                   </FormUl>
                </LoginContainer>
             </BackroundAuth>
