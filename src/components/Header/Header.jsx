@@ -16,12 +16,6 @@ export const Header = () => {
 
     const userName = localStorage.getItem('userName');
 
-    useEffect(() => {
-        if (userName) {
-            setFirstLetter(user.name.charAt(0));
-        }
-    }, [userName]);
-
     const handleLogOut = () => {
         dispatch(logout())
     }
