@@ -11,11 +11,13 @@ export const TrainingFilter = () => {
   const [selectedBookId, setSelectedBookId] = useState("");
 
   const handleStartDateChange = (e) => {
-    dispatch(updateStartDate(e.target.value));
+    const choosenDate = Date.parse(e.target.value)/1000
+    dispatch(updateStartDate(choosenDate));
   };
 
   const handleFinishDateChange = (e) => {
-    dispatch(updateFinishDate(e.target.value));
+    const choosenDate = Date.parse(e.target.value)/1000
+    dispatch(updateFinishDate(choosenDate));
   };
 
   const handleBookSelect = (e) => {
