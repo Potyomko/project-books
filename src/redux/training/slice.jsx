@@ -14,11 +14,7 @@ const trainingSlice = createSlice({
       { id: 5, title: "The Catcher in the Rye", author: "author", year: 2023, pages: 135, status: 'reading' }
     ],
     selectedBooks: [
-      { id: 1, title: "The Great Gatsby", author: "author", year: 2023, pages: 135, status: 'completed' },
-      { id: 2, title: "To Kill a Mockingbird", author: "author", year: 2023, pages: 135, status: 'completed' },
-      { id: 3, title: "1984", author: "author", year: 2023, pages: 135, status: 'reading'  },
-      { id: 4, title: "Pride and Prejudice", author: "author", year: 2023, pages: 135 , status: 'reading'},
-      { id: 5, title: "The Catcher in the Rye", author: "author", year: 2023, pages: 135, status: 'reading' }
+
     ],
     checkout: [
       // поки не продумала наповнення
@@ -38,11 +34,12 @@ const trainingSlice = createSlice({
         state.checkout.push(action.payload);
       })
       .addCase(addBook.fulfilled, (state, action) => {
-        const bookId = action.payload;
-      const bookToAdd = state.books.find((book) => book.id === bookId);
-      if (bookToAdd) {
-        state.selectedBooks.push(bookToAdd);
-      }
+        const bookId = parseInt(action.payload);
+        const bookToAdd = state.books.find((book) => book.id === bookId);
+        const alreadySelected = state.selectedBooks.find((book) => book.id === bookId);
+        if (bookToAdd && !alreadySelected) {
+          state.selectedBooks.push(bookToAdd);
+        }
       })
     }})
 
