@@ -49,5 +49,16 @@ export const addBook = createAsyncThunk(
     } catch (error) {
       return error.response.data;
     }
-  }
+  })
+
+  export const deleteBook = createAsyncThunk(
+    "training/deleteBook",
+    async (bookData) => {
+      try {
+        // const response = await axio
+        return bookData;
+      } catch (error) {
+        return error.response.data;
+      }
+    }
 )
