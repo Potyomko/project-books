@@ -1,5 +1,5 @@
 import { createSlice } from "@reduxjs/toolkit";
-import { addNewChekout, updateFinishDate, updateStartDate, addBook } from "./operation";
+import { addNewChekout, updateFinishDate, updateStartDate, addBook, deleteBook } from "./operation";
 
 const trainingSlice = createSlice({
   name: "training",
@@ -40,6 +40,10 @@ const trainingSlice = createSlice({
         if (bookToAdd && !alreadySelected) {
           state.selectedBooks.push(bookToAdd);
         }
+      })
+      .addCase(deleteBook.fulfilled, (state, action) => {
+        const bookIdToDelete = parseInt(action.payload);
+        state.selectedBooks = state.selectedBooks.filter(book => book.id !== bookIdToDelete);
       })
     }})
 
