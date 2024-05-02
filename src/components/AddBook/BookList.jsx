@@ -1,3 +1,4 @@
+
 import React from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { markAsRead } from '../../redux/library/slice';
@@ -14,7 +15,7 @@ export const BookList = () => {
     <ul>
       {books.map(book => (
         <li key={book.id}>
-          <span>{book.title} by {book.author}</span>
+           <span>{book.title} автор: {book.author}, рік: {book.year}, сторінки: {book.pages}</span>
           {book.status !== "completed" && <button onClick={() => handleMarkAsRead(book.id)}>Прочитано</button>}
           {book.status === "completed" && <span>Прочитано</span>}
         </li>

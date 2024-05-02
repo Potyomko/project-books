@@ -51,7 +51,6 @@ const filterBook = createSlice({
 const bookSlice = createSlice({
   name: "book", 
   initialState:[ 
-   
     {
       id:null,
       name: null,
