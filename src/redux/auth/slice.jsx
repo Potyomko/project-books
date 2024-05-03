@@ -1,5 +1,6 @@
 import { createSlice } from "@reduxjs/toolkit";
 import { fetchUser, fetchUsers, login, logout, refreshUser, register } from "./operation";
+import { fetchBooks } from "../library/operation";
 
 export const AuthSlice = createSlice({
     name: 'auth',
@@ -14,7 +15,9 @@ export const AuthSlice = createSlice({
         isLoggedIn: false,
         isReFreshing: false,
         items: [], // Додаємо масив items для зберігання отриманих користувачів
-        HeaderUser: null
+        HeaderUser: null,
+        booksBD: [],
+        isLoading: false
     },
     extraReducers(builder){
         builder
@@ -54,7 +57,19 @@ export const AuthSlice = createSlice({
             })
             .addCase(fetchUsers.fulfilled, (state, action) => {
                 state.items = action.payload; // Зберігаємо отриманих користувачів у масиві items
-            });
+            })
+            .addCase(fetchBooks.pending, (state, action) => {
+                state.isLoading = true
+                console.log(state.isLoading);
+                      
+                   })
+                     .addCase(fetchBooks.fulfilled, (state, action) => {
+                         console.log(state.isLoading);
+                       state.isLoading = false
+                       state.booksBD = action.payload;
+                   })
+                    
+       
     }
 });
 

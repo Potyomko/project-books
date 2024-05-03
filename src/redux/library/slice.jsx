@@ -1,88 +1,58 @@
-// import { createSlice, } from "@reduxjs/toolkit";
-
-// const filterBook = createSlice({
-//   name: 'filter',
-//   initialState: '',
-//   reducers: {
-//     changeFilter(state, action) {
-//       return state = action.payload.trim();
-//     }
-//   }
-// });
-
-// const bookSlice = createSlice({
-//   name: "book", 
-//   initialState:[ 
-//     // приклад об'єкту однієї книги
-
-//   //   {
-//   //   id:null,
-//   //   name: null,
-//   //   author: null,
-//   //   year:null,
-//   //   pages: null,
-//   //     status: "planing" || "reading"|| "completed"
-//   // }
-// ],
-// //  extraReducers(builder){
-// //        builder
-// //   },
- 
-// });
 
 
-// export const {changeFilter} = filterBook.actions;
-// export const bookReducer =  bookSlice.reducer;
-// export const changeFilterReducer = filterBook.reducer;
 
 
-import { createSlice, configureStore } from "@reduxjs/toolkit";
+import { createSlice } from "@reduxjs/toolkit";
+import { addBook, deleteBook, fetchBooks } from "./operation";
 
-const filterBook = createSlice({
-  name: 'filter',
-  initialState: '',
-  reducers: {
-    changeFilter(state, action) {
-      return state = action.payload.trim();
-    }
-  }
-});
+
+
 
 const bookSlice = createSlice({
-  name: "book", 
-  initialState:[ 
-    {
+  name: "books", 
+  initialState:{
+    book:{
       id:null,
       name: null,
       author: null,
       year:null,
       pages: null,
       status: "planning" || "reading"|| "completed"
-    }
-  ],
-  reducers: {
-    addBook(state, action) {
-      state.push(action.payload);
     },
-    markAsRead(state, action) {
-      const bookId = action.payload;
-      const book = state.find(book => book.id === bookId);
-      if (book) {
-        book.status = "completed";
-      }
-    }
+    booksBD: [],
+    isLoading: false
   }
+
+
+
+  ,
+  extraReducers(builder){
+    builder
+        .addCase(addBook.fulfilled, (state, action) => {
+
+          state.booksBD.push(action.payload)
+        })
+        .addCase(fetchBooks.pending, (state, action) => {
+   state.isLoading = true
+   console.log(state.isLoading);
+         
+      })
+        .addCase(fetchBooks.fulfilled, (state, action) => {
+            console.log(state.isLoading);
+          state.isLoading = false
+          state.booksBD = action.payload;
+      })
+      .addCase(deleteBook.fulfilled, (state, action) => {
+        state.booksBD = state.booksBD.filter(book => book.id !== action.payload);
+  })
+
+    
+       
+}
 });
 
-export const { changeFilter } = filterBook.actions;
-export const { addBook, markAsRead } = bookSlice.actions;
 
-export const bookReducer = bookSlice.reducer;
-export const changeFilterReducer = filterBook.reducer;
 
-// export default configureStore({
-//   reducer: {
-//     book: bookReducer,
-//     filter: changeFilterReducer
-//   }
-// });
+export const BookReducer = bookSlice.reducer;
+
+

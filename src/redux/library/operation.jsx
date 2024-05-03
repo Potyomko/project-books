@@ -1,5 +1,6 @@
 import { createAsyncThunk } from "@reduxjs/toolkit";
 import axios from "../auth/axiosConfig";
+import { useSelector } from "react-redux";
 
 export const addBook = createAsyncThunk('book/addBook', async (bookData, thunkApi) => {
     try {
@@ -21,14 +22,34 @@ export const addBook = createAsyncThunk('book/addBook', async (bookData, thunkAp
     thunkApi.rejectWithValue(error.message);
     }});
 
-  export const fetchBooks = createAsyncThunk('books/fetchBooks', async (_, thunkApi) => {
-try {
-const userId = localStorage.getItem('id');
-const res = await axios.get(`/users/${userId}/Books`);
-console.log(res.data);
-return res.data;
-} catch (error) {
-// Важливо повертати дані навіть у випадку помилки, щоб `rejectWithValue` мав, що повертати
-return thunkApi.rejectWithValue('Упс, помилка');
-}
-});
+    export const fetchBooks = createAsyncThunk('books/fetchBooks', async (_, thunkApi) => {
+      try {
+        const userId = localStorage.getItem('id');
+        const res = await axios.get(`/users/${userId}`);
+        console.log(res.data.Books);
+        
+        // Змінено: Повертаємо всі об'єкти з масиву Books
+        return res.data.Books;
+      } catch (error) {
+        // Важливо повертати дані навіть у випадку помилки, щоб `rejectWithValue` мав, що повертати
+        return thunkApi.rejectWithValue('Упс, помилка');
+      }
+    });
+
+    export const deleteBook = createAsyncThunk('books/deleteBook', async (body, thunkApi) => {
+      try {
+          const userId = localStorage.getItem('id');
+          console.log(body);
+          const books =  thunkApi.getState().books.booksBD;
+          console.log(books);
+          // Видаляємо книгу з масиву за допомогою методу filter
+         const deletingBooks =books.filter(book => book.id !== body);
+          console.log(deletingBooks);
+          await axios.put(`/users/${userId}`, {Books: deletingBooks} );
+          
+          // Повертаємо id видаленої книги
+          return body;
+      } catch (error) {
+          return thunkApi.rejectWithValue('Упс, помилка');
+      }
+  });

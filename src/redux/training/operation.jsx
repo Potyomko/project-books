@@ -62,3 +62,17 @@ export const addBook = createAsyncThunk(
       }
     }
 )
+
+export const fetchBooks = createAsyncThunk('books/fetchBooks', async (_, thunkApi) => {
+  try {
+    const userId = localStorage.getItem('id');
+    const res = await axios.get(`/users/${userId}`);
+    console.log(res.data.Books);
+    
+    // Змінено: Повертаємо всі об'єкти з масиву Books
+    return res.data.Books;
+  } catch (error) {
+    // Важливо повертати дані навіть у випадку помилки, щоб `rejectWithValue` мав, що повертати
+    return thunkApi.rejectWithValue('Упс, помилка');
+  }
+});
