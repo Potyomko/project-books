@@ -3,21 +3,31 @@ import { Header } from "../Header/Header"
 import { BookList } from "components/AddBook/BookList"
 import { useEffect } from "react"
 import { fetchBooks } from "../../redux/library/operation"
-import { useDispatch } from "react-redux"
+import { useDispatch, useSelector } from "react-redux"
 
 
-export const Home = ()=>{
-
-    const dispatch = useDispatch()
-
+export const Home = () => {
+    const dispatch = useDispatch();
+    
+  
     useEffect(() => {
-        dispatch(fetchBooks());
-        }, [dispatch]);
-    return(
-        <>
-         <BookForm/>
-         <BookList/>  
-        </>
-        
-    )
-}
+      dispatch(fetchBooks());
+    }, [dispatch]);
+
+    const isLoadings = useSelector(state => state.books.isLoading);
+  console.log(isLoadings);
+    return (
+      <>
+
+        {isLoadings ? (
+            
+          <p>Loading...</p>
+        ) : (
+          <>
+            <BookForm />
+            <BookList />
+          </>
+        )}
+      </>
+    );
+  };
