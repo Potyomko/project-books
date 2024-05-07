@@ -34,11 +34,11 @@ const bookSlice = createSlice({
         })
         .addCase(fetchBooks.pending, (state, action) => {
    state.isLoading = true
-   console.log(state.isLoading);
+ 
          
       })
         .addCase(fetchBooks.fulfilled, (state, action) => {
-            console.log(state.isLoading);
+
           state.isLoading = false
           state.booksBD = action.payload;
       })

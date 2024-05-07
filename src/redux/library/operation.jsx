@@ -26,7 +26,7 @@ export const addBook = createAsyncThunk('book/addBook', async (bookData, thunkAp
       try {
         const userId = localStorage.getItem('id');
         const res = await axios.get(`/users/${userId}`);
-        console.log(res.data.Books);
+
         
         // Змінено: Повертаємо всі об'єкти з масиву Books
         return res.data.Books;
@@ -44,7 +44,7 @@ export const addBook = createAsyncThunk('book/addBook', async (bookData, thunkAp
           console.log(books);
           // Видаляємо книгу з масиву за допомогою методу filter
          const deletingBooks =books.filter(book => book.id !== body);
-          console.log(deletingBooks);
+         
           await axios.put(`/users/${userId}`, {Books: deletingBooks} );
           
           // Повертаємо id видаленої книги
