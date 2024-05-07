@@ -41,6 +41,7 @@ export const TrainingFilter = () => {
   };
 
   const handleDeleteBook = (bookId) => {
+    console.log(bookId);
     dispatch(deleteBook(bookId));
   }
 
@@ -91,7 +92,9 @@ export const TrainingFilter = () => {
                 <td>{book.year}</td>
                 <td>{book.pages}</td>
                 <td>{book.status}</td>
-                <img onClick={() => handleDeleteBook(book.id)} src={logoDelete} alt="" />
+                <td> 
+              <img onClick={() => handleDeleteBook(book.id)} src={logoDelete} alt="" />
+            </td>
               </tr>
             ))}
           </tbody>

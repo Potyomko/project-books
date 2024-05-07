@@ -32,30 +32,35 @@ const trainingSlice = createSlice({
       .addCase(addNewChekout.fulfilled, (state, action) => {
         state.checkout.push(action.payload);
       })
+      .addCase(fetchBooks.pending, (state, action) => {
+        state.isLoading = true
+
+              
+           })
+             .addCase(fetchBooks.fulfilled, (state, action) => {
+
+               state.isLoading = false
+               state.books = action.payload;
+               console.log(state.books);
+           })
+
       .addCase(addBook.fulfilled, (state, action) => {
-        const bookId = parseInt(action.payload);
-        const books = useSelector(state => state.books.booksBD);
+        const bookId = action.payload;
+        console.log(bookId);
+        const books = state.books
+        console.log(books);
         const bookToAdd = books.find((book) => book.id === bookId);
         const alreadySelected = state.selectedBooks.find((book) => book.id === bookId);
+        console.log(alreadySelected);
         if (bookToAdd && !alreadySelected) {
           state.selectedBooks.push(bookToAdd);
         }
       })
       .addCase(deleteBook.fulfilled, (state, action) => {
-        const bookIdToDelete = parseInt(action.payload);
+        const bookIdToDelete = action.payload;
         state.selectedBooks = state.selectedBooks.filter(book => book.id !== bookIdToDelete);
       })
-      .addCase(fetchBooks.pending, (state, action) => {
-        state.isLoading = true
-        console.log(state.isLoading);
-              
-           })
-             .addCase(fetchBooks.fulfilled, (state, action) => {
-                 console.log(state.isLoading);
-               state.isLoading = false
-               state.books = action.payload;
-           })
-
+      
     }})
 
 // export const { addBook } = trainingSlice.actions;
