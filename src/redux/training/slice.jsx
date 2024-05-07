@@ -1,5 +1,5 @@
 import { createSlice } from "@reduxjs/toolkit";
-import { addNewChekout, updateFinishDate, updateStartDate, addBook, deleteBook } from "./operation";
+import { addNewChekout, updateFinishDate, updateStartDate, addBook, deleteBook, fetchBooksSelected } from "./operation";
 import { fetchBooks } from "./operation";
 import { useSelector } from "react-redux";
 
@@ -19,7 +19,8 @@ const trainingSlice = createSlice({
     ],
     prevChekout: [],
     isStarted: true,
-    isLoading: false
+    isLoading: false,
+    trainingBD: []
   }, 
   extraReducers(builder) {
     builder
@@ -44,17 +45,22 @@ const trainingSlice = createSlice({
                console.log(state.books);
            })
 
-      .addCase(addBook.fulfilled, (state, action) => {
-        const bookId = action.payload;
-        console.log(bookId);
-        const books = state.books
-        console.log(books);
-        const bookToAdd = books.find((book) => book.id === bookId);
-        const alreadySelected = state.selectedBooks.find((book) => book.id === bookId);
-        console.log(alreadySelected);
-        if (bookToAdd && !alreadySelected) {
-          state.selectedBooks.push(bookToAdd);
-        }
+      .addCase(fetchBooksSelected.fulfilled, (state, action) => {
+        // const bookId = action.payload;
+        // console.log(bookId);
+        // const books = state.books
+        // console.log(books);
+        // const bookToAdd = books.find((book) => book.id === bookId);
+        // const alreadySelected = state.selectedBooks.find((book) => book.id === bookId);
+        // console.log(alreadySelected);
+        // if (bookToAdd && !alreadySelected) {
+        //   state.selectedBooks.push(bookToAdd);
+
+
+        // }
+        console.log(action.payload);
+
+        state.selectedBooks = action.payload
       })
       .addCase(deleteBook.fulfilled, (state, action) => {
         const bookIdToDelete = action.payload;
