@@ -8,9 +8,9 @@ export const BooksList = () => {
     const trId = useSelector(selectTrainingId);
     const dispatch = useDispatch()
     
-    const handleChekboxChange = (id) => {
-      dispatch(markAsCompleted(id, trId))
-      dispatch(markAsRead(id))
+    const handleChekboxChange = (bookId) => {
+      dispatch(markAsCompleted({bookId, trId}))
+      dispatch(markAsRead(bookId))
     }
 
 

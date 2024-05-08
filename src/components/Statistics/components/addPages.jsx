@@ -33,7 +33,7 @@ export const AddPages = () => {
         const minutes = date.getMinutes();
         const seconds = date.getSeconds();
         const checkoutData = {date: dateValue, time: `${hours}:${minutes}:${seconds}`, pages, unix: unixDate}
-        dispatch(addNewChekout(checkoutData, trId))
+        dispatch(addNewChekout({checkoutData, trId}))
          console.log(`${hours}:${minutes}:${seconds}`)
          
     }

@@ -30,15 +30,15 @@ export const updateFinishDate = createAsyncThunk(
 
 export const addNewChekout = createAsyncThunk(
   "training/addNewChekout",
-  async (chekoutData, trId) => {
+  async ({checkoutData, trId}) => {
     try {
       console.log(trId);
       const getting = await axios.get(`/training/${trId}`);
       const checkout = getting.data.checkout
       
-      checkout.push(chekoutData)  
+      checkout.push(checkoutData)  
         await axios.put(`/training/${trId}`, {checkout});
-      return chekoutData;
+      return checkoutData;
     } catch (error) {
       return error.response.data;
     }
@@ -59,8 +59,9 @@ export const addBook = createAsyncThunk(
 
 export const markAsCompleted = createAsyncThunk(
   "training/markAsCompleted",
-  async (bookId, trId) => {
+  async ({bookId, trId}) => {
     try {
+
     
       const getting = await axios.get(`/training/${trId}`);
     const books = getting.data.selectedBooks
@@ -94,6 +95,22 @@ export const getTreaningData = createAsyncThunk(
       console.log(response.data)
       return neededData
 
+    } catch (error) {
+      return error.response.data;
+    }
+  }
+);
+
+export const andOfTraining = createAsyncThunk(
+  "training/andOfTraining",
+  async (trId) => {
+    try {
+      console.log(trId);
+      const getting = await axios.get(`/training/${trId}`);
+      const checkout = getting.data.checkout
+  
+        await axios.put(`/training/${trId}`, {prevChekout: checkout, checkout: [], isStarted: false});
+      return checkout;
     } catch (error) {
       return error.response.data;
     }

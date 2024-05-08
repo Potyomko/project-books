@@ -1,5 +1,5 @@
 import { createSlice } from "@reduxjs/toolkit";
-import { addNewChekout, updateFinishDate, updateStartDate, addBook, markAsCompleted, getTreaningData } from "./operation";
+import { addNewChekout, updateFinishDate, updateStartDate, addBook, markAsCompleted, getTreaningData, andOfTraining } from "./operation";
 
 const trainingSlice = createSlice({
   name: "training",
@@ -75,6 +75,12 @@ const trainingSlice = createSlice({
             book.status = "reading"
           }
         });
+      })
+      .addCase(andOfTraining.fulfilled, (state, action)=> {
+        state.prevChekout = action.payload;
+        state.checkout = [];
+        state.isStarted = false
+        // prevChekout: checkout, checkout: [], isStarted: false
       })
     }})
 
