@@ -8,6 +8,7 @@ import lineHeader from './Icon/Line 4.svg'
 import { NavLink } from "react-router-dom";
 import { ButtonLogo, HeaderElement, HeaderNav, Logo, NavItem, UserContainer, UserName } from "./Header.styled";
 import headerLogo from './Icon/BR.svg'
+import { fetchBooksSelected, fetchTrainingOBJ } from "../../redux/training/operation";
 export const Header = () => {
     const dispatch = useDispatch();
     const userId = localStorage.getItem('id');
@@ -20,6 +21,7 @@ export const Header = () => {
         dispatch(logout())
     }
 
+    
     return (
         <HeaderElement>
             <Logo src={headerLogo} alt="" />

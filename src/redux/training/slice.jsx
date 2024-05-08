@@ -1,5 +1,8 @@
 import { createSlice } from "@reduxjs/toolkit";
-import { addNewChekout, updateFinishDate, updateStartDate, addBook, markAsCompleted, getTreaningData, andOfTraining } from "./operation";
+import { addNewChekout, updateFinishDate, updateStartDate, addBook, deleteBook, fetchBooksSelected, StartingTraining, fetchTrainingOBJ, markAsCompleted, getTreaningData, andOfTraining } from "./operation";
+import { fetchBooks } from "./operation";
+import { useSelector } from "react-redux";
+
 
 const trainingSlice = createSlice({
   name: "training",
@@ -8,18 +11,10 @@ const trainingSlice = createSlice({
     startDate:  1714587761, 
     finishDate: 1717093361,
     books: [
-      { id: 1, title: "The Great Gatsby", author: "author", year: 2023, pages: 135, status: 'completed' },
-      { id: 2, title: "To Kill a Mockingbird", author: "author", year: 2023, pages: 135, status: 'completed' },
-      { id: 3, title: "1984", author: "author", year: 2023, pages: 135, status: 'reading'  },
-      { id: 4, title: "Pride and Prejudice", author: "author", year: 2023, pages: 135 , status: 'reading'},
-      { id: 5, title: "The Catcher in the Rye", author: "author", year: 2023, pages: 135, status: 'reading' }
+     
     ],
     selectedBooks: [
-      { id: 1, title: "The Great Gatsby", author: "author", year: 2023, pages: 135, status: 'completed' },
-      { id: 2, title: "To Kill a Mockingbird", author: "author", year: 2023, pages: 135, status: 'completed' },
-      { id: 3, title: "1984", author: "author", year: 2023, pages: 135, status: 'reading'  },
-      { id: 4, title: "Pride and Prejudice", author: "author", year: 2023, pages: 135 , status: 'reading'},
-      { id: 5, title: "The Catcher in the Rye", author: "author", year: 2023, pages: 135, status: 'reading' }
+
     ],
     checkout: [
       // поки не продумала наповнення
@@ -28,6 +23,7 @@ const trainingSlice = createSlice({
     isStarted: true,
     isLoading: false,
     userId: null
+    trainingBD: []
   }, 
   extraReducers(builder) {
     builder
@@ -59,12 +55,46 @@ const trainingSlice = createSlice({
       .addCase(addNewChekout.fulfilled, (state, action) => {
         state.checkout.push(action.payload);
       })
-      .addCase(addBook.fulfilled, (state, action) => {
-        const bookId = action.payload;
-      const bookToAdd = state.books.find((book) => book.id === bookId);
-      if (bookToAdd) {
-        state.selectedBooks.push(bookToAdd);
-      }
+      .addCase(fetchBooks.pending, (state, action) => {
+        state.isLoading = true
+
+              
+           })
+             .addCase(fetchBooks.fulfilled, (state, action) => {
+
+               state.isLoading = false
+               state.books = action.payload;
+               console.log(state.books);
+           })
+
+      .addCase(fetchBooksSelected.fulfilled, (state, action) => {
+        // const bookId = action.payload;
+        // console.log(bookId);
+        // const books = state.books
+        // console.log(books);
+        // const bookToAdd = books.find((book) => book.id === bookId);
+        // const alreadySelected = state.selectedBooks.find((book) => book.id === bookId);
+        // console.log(alreadySelected);
+        // if (bookToAdd && !alreadySelected) {
+        //   state.selectedBooks.push(bookToAdd);
+
+
+        // }
+        console.log(action.payload);
+
+        state.selectedBooks = action.payload
+        console.log();
+      })
+      .addCase(deleteBook.fulfilled, (state, action) => {
+        const bookIdToDelete = action.payload;
+        state.selectedBooks = state.selectedBooks.filter(book => book.id !== bookIdToDelete);
+      })
+      .addCase(StartingTraining.fulfilled, (state, action) => {
+        window.location.href = '/statistics';
+      })
+
+      .addCase(fetchTrainingOBJ.fulfilled, (state, action) => {
+     state.trainingBD = action.payload
       })
       .addCase(markAsCompleted.fulfilled, (state, action)=> {
         // const bookId = action.payload;
@@ -82,7 +112,7 @@ const trainingSlice = createSlice({
         state.isStarted = false
         // prevChekout: checkout, checkout: [], isStarted: false
       })
-    }})
+    })
 
 // export const { addBook } = trainingSlice.actions;
 export const trainingReducer = trainingSlice.reducer;

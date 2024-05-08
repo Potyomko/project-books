@@ -9,9 +9,18 @@ import {BookList} from './AddBook/BookList'
 // import { Login } from "./Authentication/Login";
 import { UserMenu } from "./Authentication/UserMenu";
 import { Header } from "./Header/Header";
+import { fetchBooksSelected } from "../redux/training/operation";
+import { useDispatch } from "react-redux";
+import { useEffect } from "react";
+
+
 
 export const App = ()=> {
+  
+  const dispatch = useDispatch();
   const userId = localStorage.getItem('id');
+ 
+
   return (
     <>
        {userId ? ( <Header/>) : null}

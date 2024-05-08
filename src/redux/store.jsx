@@ -4,8 +4,8 @@ import storage from 'redux-persist/lib/storage';
 import { combineReducers } from 'redux';
 import { trainingReducer } from "./training/slice";
 import { AuthReducer } from "./auth/slice";
-import { bookReducer } from "./library/slice";
-import { changeFilterReducer } from "./library/slice";
+
+import { BookReducer, changeFilterReducer } from "./library/slice";
 
 const persistConfig = {
 key: 'root',
@@ -14,10 +14,11 @@ whitelist: ['auth']
 };
 
 const rootReducer = combineReducers({
+books: BookReducer,
 training: trainingReducer,
 auth: AuthReducer,
-library: bookReducer,
-filter: changeFilterReducer
+
+
 });
 
 const persistedReducer = persistReducer(persistConfig, rootReducer);
