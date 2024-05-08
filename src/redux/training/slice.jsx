@@ -1,5 +1,5 @@
 import { createSlice } from "@reduxjs/toolkit";
-import { addNewChekout, updateFinishDate, updateStartDate, addBook, deleteBook, fetchBooksSelected } from "./operation";
+import { addNewChekout, updateFinishDate, updateStartDate, addBook, deleteBook, fetchBooksSelected, StartingTraining, fetchTrainingOBJ } from "./operation";
 import { fetchBooks } from "./operation";
 import { useSelector } from "react-redux";
 
@@ -61,10 +61,18 @@ const trainingSlice = createSlice({
         console.log(action.payload);
 
         state.selectedBooks = action.payload
+        console.log();
       })
       .addCase(deleteBook.fulfilled, (state, action) => {
         const bookIdToDelete = action.payload;
         state.selectedBooks = state.selectedBooks.filter(book => book.id !== bookIdToDelete);
+      })
+      .addCase(StartingTraining.fulfilled, (state, action) => {
+        window.location.href = '/statistics';
+      })
+
+      .addCase(fetchTrainingOBJ.fulfilled, (state, action) => {
+     state.trainingBD = action.payload
       })
       
     }})

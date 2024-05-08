@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { addBook, deleteBook, updateFinishDate, updateStartDate } from "../../../redux/training/operation";
+import { addBook, deleteBook, fetchBooksSelected, updateFinishDate, updateStartDate } from "../../../redux/training/operation";
 import { selectBooks, selectSelectedBooks } from "../../../redux/training/selectors";
 import { ToastContainer, toast } from "react-toastify";
 import logoDelete from '../icons/delete.svg'
@@ -43,14 +43,18 @@ export const TrainingFilter = () => {
   const handleAddBook = () => {
     const selectedBook = books.find(book => book.id === selectedBookId);
     if (selectedBook) {
-      dispatch(addBook(selectedBook));
+      dispatch(addBook(selectedBook)).then(() => {
+        dispatch(fetchBooksSelected()); // Оновлення списку вибраних книг після успішного додавання
+      });
     } else {
       toast.error("Книгу не знайдено!");
     }
   };
-
+  
   const handleDeleteBook = (bookId) => {
-    dispatch(deleteBook(bookId));
+    dispatch(deleteBook(bookId)).then(() => {
+      dispatch(fetchBooksSelected()); // Оновлення списку вибраних книг після успішного видалення
+    });
   };
 
   return (

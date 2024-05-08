@@ -10,6 +10,7 @@ export const fetchBooksSelected = createAsyncThunk('tarining/fetchBooksSelected'
     
     // Змінено: Повертаємо всі об'єкти з масиву Books
     console.log(res.data);
+
     return res.data.selectedBooks;
   } catch (error) {
     // Важливо повертати дані навіть у випадку помилки, щоб `rejectWithValue` мав, що повертати
@@ -31,7 +32,8 @@ export const updateStartDate = createAsyncThunk("training/updateStartDate", asyn
     }
 
     console.log(response.data);
-    return response.data;
+  
+    return response.data.startDate;
   } catch (error) {
     return thunkApi.rejectWithValue('Упс, помилка');
   }
@@ -92,6 +94,34 @@ export const fetchBooks = createAsyncThunk('books/fetchBooks', async (_, thunkAp
     
     // Змінено: Повертаємо всі об'єкти з масиву Books
     return res.data.Books;
+  } catch (error) {
+    // Важливо повертати дані навіть у випадку помилки, щоб `rejectWithValue` мав, що повертати
+    return thunkApi.rejectWithValue('Упс, помилка');
+  }
+});
+
+export const StartingTraining = createAsyncThunk("training/StartingTraining",async (body, thunkApi) => {
+  try {
+    const idTraining = localStorage.getItem('idTraining');
+      const response = await axios.put(`/training/${idTraining}`, {isStarted: true });
+
+    return response.data;
+  } catch (error) {
+    return error.response.data;
+  }
+}
+);
+
+export const fetchTrainingOBJ = createAsyncThunk('training/fetchBooksSelected', async (_, thunkApi) => {
+  try {
+    const idTraining = localStorage.getItem('idTraining');
+    const res = await axios.get(`/training/${idTraining}`);
+
+    
+    // Змінено: Повертаємо всі об'єкти з масиву Books
+    console.log(res.data);
+
+    return res.data;
   } catch (error) {
     // Важливо повертати дані навіть у випадку помилки, щоб `rejectWithValue` мав, що повертати
     return thunkApi.rejectWithValue('Упс, помилка');

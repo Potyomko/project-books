@@ -8,6 +8,7 @@ import RestrictedRouter from "components/RestrictedRout";
 
 import { Statistics } from "components/Statistics/Statistics";
 import { Training } from "components/Training/Training";
+import TrainingRouter from "components/TrainingRouter";
 import { createBrowserRouter } from "react-router-dom";
 
 export const router =  createBrowserRouter(
@@ -34,7 +35,7 @@ export const router =  createBrowserRouter(
                
                 {
                     path: '/training',
-                    element:<PrivateRoute component={Training} redirecTo='/'/>
+                    element:<TrainingRouter component={Training} redirecTo='/statistics'/>
                 },
                 {
                     path: '/statistics',
