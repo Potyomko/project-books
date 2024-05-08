@@ -1,3 +1,4 @@
+import moment from "moment";
 import { selectSelectedBooks, selectIsStarted, selectFinishDate, selectStartDate  } from "../../../redux/training/selectors";
 import {useSelector } from "react-redux";
 
@@ -14,16 +15,12 @@ import {useSelector } from "react-redux";
     })
 
     if (timeOfTheFinish && timeOfTheStart && isStarted){
-        const oneDay = 1000*60*60*24
         const now = new Date();
-        const unix = Date.parse(now)/1000
-        const res = timeOfTheFinish - unix 
-        // const res = timeOfTheFinish - unix
-        // console.log(timeOfTheFinish);
-        daysLeft = Math.round(res/oneDay)
+        const start = Date.parse(now)/1000
+        daysLeft =  moment.unix(timeOfTheFinish).diff(moment.unix(start), 'days')
+        // console.log(daysLeft)
     } else if (timeOfTheFinish && timeOfTheStart){
-        const calc = timeOfTheFinish - timeOfTheStart
-        daysLeft = Math.round(calc/60000)
+        daysLeft =  moment.unix(timeOfTheFinish).diff(moment.unix(timeOfTheStart), 'days')
     }
 
     return <div>

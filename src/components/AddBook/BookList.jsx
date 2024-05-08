@@ -1,6 +1,6 @@
 import React from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { markAsRead } from '../../redux/library/slice';
+import { markAsRead } from '../../redux/library/operation';
 
 export const BookList = () => {
   const books = useSelector(state => state.library);

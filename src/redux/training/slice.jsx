@@ -1,11 +1,12 @@
 import { createSlice } from "@reduxjs/toolkit";
-import { addNewChekout, updateFinishDate, updateStartDate, addBook } from "./operation";
+import { addNewChekout, updateFinishDate, updateStartDate, addBook, markAsCompleted, getTreaningData } from "./operation";
 
 const trainingSlice = createSlice({
   name: "training",
   initialState: {
-    startDate: 1713890684, 
-    finishDate: 1714495484,
+    id: null,
+    startDate:  1714587761, 
+    finishDate: 1717093361,
     books: [
       { id: 1, title: "The Great Gatsby", author: "author", year: 2023, pages: 135, status: 'completed' },
       { id: 2, title: "To Kill a Mockingbird", author: "author", year: 2023, pages: 135, status: 'completed' },
@@ -25,14 +26,35 @@ const trainingSlice = createSlice({
     ],
     prevChekout: [],
     isStarted: true,
+    isLoading: false,
+    userId: null
   }, 
   extraReducers(builder) {
     builder
+    .addCase(getTreaningData.pending, (state, action)=> {
+      state.isLoading = true
+      })
+      .addCase(getTreaningData.fulfilled, (state, action)=> {
+        console.log(action.payload)
+      state.id = action.payload.id;
+      state.startDate = action.payload.startDate;
+      state.finishDate = action.payload.finishDate;
+      state.selectedBooks = action.payload.selectedBooks;
+      state.checkout = action.payload.checkout;
+      state.prevChekout = action.payload.prevChekout;
+      // state.isStarted = action.payload.isStarted;
+      state.userId = action.payload.userId;
+      state.isLoading = false;
+      state.isStarted = true
+      // console.log(state)
+      // state.isLoading = false
+      })
       .addCase(updateStartDate.fulfilled, (state, action) => {
         state.startDate = action.payload;
       })
       .addCase(updateFinishDate.fulfilled, (state, action) => {
         state.finishDate = action.payload;
+        console.log(state.isLoading)
       })
       .addCase(addNewChekout.fulfilled, (state, action) => {
         state.checkout.push(action.payload);
@@ -43,6 +65,16 @@ const trainingSlice = createSlice({
       if (bookToAdd) {
         state.selectedBooks.push(bookToAdd);
       }
+      })
+      .addCase(markAsCompleted.fulfilled, (state, action)=> {
+        // const bookId = action.payload;
+        state.selectedBooks.forEach(book => {
+          if (book.id  === action.payload && book.status === "reading"){
+            book.status = "completed"
+          } else  if (book.id  === action.payload && book.status === "completed"){
+            book.status = "reading"
+          }
+        });
       })
     }})
 
