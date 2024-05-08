@@ -18,4 +18,12 @@ export const selectUserName = (state) => {
   
   export const selectIsLoggedIn = (state) => state.auth.isLoggedIn;
   
-  export const selectIsReFreshing = (state) => state.auth.isReFreshing
+  export const selectIsReFreshing = (state) => state.auth.isReFreshing;
+
+  export const selectUserId = (state) => {
+    if (state.auth.user && state.auth.user.id !== null) {
+      return state.auth.user.id;
+    } else {
+      return null; // Повертаємо null у випадку, якщо email або user є null
+    }
+  }

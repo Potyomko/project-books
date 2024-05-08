@@ -1,13 +1,15 @@
 import { createSlice } from "@reduxjs/toolkit";
-import { addNewChekout, updateFinishDate, updateStartDate, addBook, deleteBook, fetchBooksSelected, StartingTraining, fetchTrainingOBJ } from "./operation";
+import { addNewChekout, updateFinishDate, updateStartDate, addBook, deleteBook, fetchBooksSelected, StartingTraining, fetchTrainingOBJ, markAsCompleted, getTreaningData, andOfTraining } from "./operation";
 import { fetchBooks } from "./operation";
 import { useSelector } from "react-redux";
+
 
 const trainingSlice = createSlice({
   name: "training",
   initialState: {
-    startDate: 1713890684, 
-    finishDate: 1714495484,
+    id: null,
+    startDate:  1714587761, 
+    finishDate: 1717093361,
     books: [
      
     ],
@@ -20,15 +22,35 @@ const trainingSlice = createSlice({
     prevChekout: [],
     isStarted: true,
     isLoading: false,
+    userId: null
     trainingBD: []
   }, 
   extraReducers(builder) {
     builder
+    .addCase(getTreaningData.pending, (state, action)=> {
+      state.isLoading = true
+      })
+      .addCase(getTreaningData.fulfilled, (state, action)=> {
+        console.log(action.payload)
+      state.id = action.payload.id;
+      state.startDate = action.payload.startDate;
+      state.finishDate = action.payload.finishDate;
+      state.selectedBooks = action.payload.selectedBooks;
+      state.checkout = action.payload.checkout;
+      state.prevChekout = action.payload.prevChekout;
+      // state.isStarted = action.payload.isStarted;
+      state.userId = action.payload.userId;
+      state.isLoading = false;
+      state.isStarted = true
+      // console.log(state)
+      // state.isLoading = false
+      })
       .addCase(updateStartDate.fulfilled, (state, action) => {
         state.startDate = action.payload;
       })
       .addCase(updateFinishDate.fulfilled, (state, action) => {
         state.finishDate = action.payload;
+        console.log(state.isLoading)
       })
       .addCase(addNewChekout.fulfilled, (state, action) => {
         state.checkout.push(action.payload);
@@ -74,8 +96,23 @@ const trainingSlice = createSlice({
       .addCase(fetchTrainingOBJ.fulfilled, (state, action) => {
      state.trainingBD = action.payload
       })
-      
-    }})
+      .addCase(markAsCompleted.fulfilled, (state, action)=> {
+        // const bookId = action.payload;
+        state.selectedBooks.forEach(book => {
+          if (book.id  === action.payload && book.status === "reading"){
+            book.status = "completed"
+          } else  if (book.id  === action.payload && book.status === "completed"){
+            book.status = "reading"
+          }
+        });
+      })
+      .addCase(andOfTraining.fulfilled, (state, action)=> {
+        state.prevChekout = action.payload;
+        state.checkout = [];
+        state.isStarted = false
+        // prevChekout: checkout, checkout: [], isStarted: false
+      })
+    })
 
 // export const { addBook } = trainingSlice.actions;
 export const trainingReducer = trainingSlice.reducer;

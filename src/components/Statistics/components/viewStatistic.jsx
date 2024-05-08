@@ -15,7 +15,7 @@ export const ViewStatistic = () => {
     <h5>Statistic</h5>
     <ul>
         {arrayForSort.map((chek)=>{
-            return <li>
+            return <li key={chek.date}>
                 <p>{chek.date}</p>
                 <p>{chek.time}</p>
                 <p>{chek.pages} pages</p>

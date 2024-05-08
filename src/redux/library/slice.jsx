@@ -1,12 +1,5 @@
-
-
-
-
 import { createSlice } from "@reduxjs/toolkit";
 import { addBook, deleteBook, fetchBooks } from "./operation";
-
-
-
 
 const bookSlice = createSlice({
   name: "books", 
@@ -21,11 +14,7 @@ const bookSlice = createSlice({
     },
     booksBD: [],
     isLoading: false
-  }
-
-
-
-  ,
+  },
   extraReducers(builder){
     builder
         .addCase(addBook.fulfilled, (state, action) => {

@@ -11,19 +11,13 @@ import { Theme } from './components/Theme';
 
 ReactDOM.createRoot(document.getElementById('root')).render( <
     React.StrictMode >
-    <
-    Provider store = { store } >
-    <
-    RouterProvider router = { router } >
-    <
-    ThemeProvider theme = { Theme } >
-    <
-    App / >
-    <
-    /ThemeProvider>
+    < Provider store = { store } >
+    <RouterProvider router = { router } >
+    <ThemeProvider theme = { Theme } >
+    <App/ >
+    </ThemeProvider>
 
-    <
-    /RouterProvider> <
-    /Provider> <
-    /React.StrictMode>
+    </RouterProvider>  
+    </Provider>
+     </React.StrictMode>
 );

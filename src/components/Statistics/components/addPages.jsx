@@ -1,11 +1,10 @@
-// import {Select} from '../style/hidenList.styled'
-import {useState} from "react"
-import { selectFinishDate, selectStartDate } from '../../../redux/training/selectors';
-import {useSelector, useDispatch} from 'react-redux'
-// selectStartDate
+import { selectFinishDate, selectStartDate, selectTrainingId } from '../../../redux/training/selectors';
+import {useDispatch, useSelector } from "react-redux";
+import { useState } from 'react';
 import { addNewChekout } from "../../../redux/training/operation";
 
 export const AddPages = () => {
+  const trId = useSelector(selectTrainingId);
   const dispatch = useDispatch()
     const [dateValue, setDateValue] = useState('')
     const [pages, setPages] = useState('')
@@ -17,9 +16,9 @@ export const AddPages = () => {
 
     const handleStartDateChange = (e) => {
       const chosenDate = Date.parse(e.target.value)/1000
-      if (chosenDate >= timeOfTheStart && chosenDate <= timeOfTheFinish){
+      // if (chosenDate >= timeOfTheStart && chosenDate <= timeOfTheFinish){
         setDateValue(e.target.value)
-      }
+      // }
     };
 
     const handleInputChange = (e) => {
@@ -33,7 +32,8 @@ export const AddPages = () => {
         const hours = date.getHours();
         const minutes = date.getMinutes();
         const seconds = date.getSeconds();
-        dispatch(addNewChekout({date: dateValue, time: `${hours}:${minutes}:${seconds}`, pages, unix: unixDate}))
+        const checkoutData = {date: dateValue, time: `${hours}:${minutes}:${seconds}`, pages, unix: unixDate}
+        dispatch(addNewChekout({checkoutData, trId}))
          console.log(`${hours}:${minutes}:${seconds}`)
          
     }
