@@ -1,14 +1,16 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { addBook, deleteBook } from "../../../redux/training/operation";
+import { addBook, deleteBook, fetchBooksSelected, updateFinishDate, updateStartDate } from "../../../redux/training/operation";
 import { selectBooks, selectSelectedBooks } from "../../../redux/training/selectors";
-import { updateFinishDate, updateStartDate } from "../../../redux/training/operation";
 import { ToastContainer, toast } from "react-toastify";
 import logoDelete from '../icons/delete.svg'
+
 export const TrainingFilter = () => {
+  const dispatch = useDispatch();
   const books = useSelector(selectBooks);
   const selectedBooks = useSelector(selectSelectedBooks);
-  const dispatch = useDispatch();
+  const userId = localStorage.getItem('id');
+
   const [selectedBookId, setSelectedBookId] = useState("");
   const [startDate, setStartDate] = useState("");
   const [finishDate, setFinishDate] = useState("");
@@ -16,7 +18,16 @@ export const TrainingFilter = () => {
   const handleStartDateChange = (e) => {
     const choosenDate = Date.parse(e.target.value) / 1000;
     setStartDate(choosenDate);
-    dispatch(updateStartDate(choosenDate));
+    dispatch(updateStartDate({
+      startDate: choosenDate,
+      finishDate: null,
+      selectedBooks: [],
+      checkout: [],
+      prevChekout: [], 
+      userId,
+      isStarted: false,
+      id: null,
+    }));
   };
 
   const handleFinishDateChange = (e) => {
@@ -30,20 +41,21 @@ export const TrainingFilter = () => {
   };
 
   const handleAddBook = () => {
-    if (selectedBookId && startDate && finishDate) {
-      dispatch(addBook(selectedBookId));
-      setSelectedBookId("");
-      setStartDate("");
-      setFinishDate("");
+    const selectedBook = books.find(book => book.id === selectedBookId);
+    if (selectedBook) {
+      dispatch(addBook(selectedBook)).then(() => {
+        dispatch(fetchBooksSelected()); // Оновлення списку вибраних книг після успішного додавання
+      });
     } else {
-      toast.error("Будь ласка, заповніть всі поля перед додаванням книги.");
+      toast.error("Книгу не знайдено!");
     }
   };
-
+  
   const handleDeleteBook = (bookId) => {
-    console.log(bookId);
-    dispatch(deleteBook(bookId));
-  }
+    dispatch(deleteBook(bookId)).then(() => {
+      dispatch(fetchBooksSelected()); // Оновлення списку вибраних книг після успішного видалення
+    });
+  };
 
   return (
     <div>
@@ -80,7 +92,6 @@ export const TrainingFilter = () => {
               <th>Рік</th>
               <th>Кількість сторінок</th>
               <th>Статус</th>
-
             </tr>
           </thead>
           <tbody>
@@ -93,25 +104,25 @@ export const TrainingFilter = () => {
                 <td>{book.pages}</td>
                 <td>{book.status}</td>
                 <td> 
-              <img onClick={() => handleDeleteBook(book.id)} src={logoDelete} alt="" />
-            </td>
+                  <img onClick={() => handleDeleteBook(book.id)} src={logoDelete} alt="" />
+                </td>
               </tr>
             ))}
           </tbody>
         </table>
       </div>
       <ToastContainer
-            position="top-right"
-            autoClose={5000}
-            hideProgressBar={false}
-            newestOnTop={false}
-            closeOnClick
-            rtl={false}
-            pauseOnFocusLoss
-            draggable
-            pauseOnHover
-            theme="light"
-         />
+        position="top-right"
+        autoClose={5000}
+        hideProgressBar={false}
+        newestOnTop={false}
+        closeOnClick
+        rtl={false}
+        pauseOnFocusLoss
+        draggable
+        pauseOnHover
+        theme="light"
+      />
     </div>
   );
 };
