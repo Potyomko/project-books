@@ -22,7 +22,7 @@ const trainingSlice = createSlice({
     prevChekout: [],
     isStarted: true,
     isLoading: false,
-    userId: null
+    userId: null,
     trainingBD: []
   }, 
   extraReducers(builder) {
@@ -111,8 +111,9 @@ const trainingSlice = createSlice({
         state.checkout = [];
         state.isStarted = false
         // prevChekout: checkout, checkout: [], isStarted: false
-      })
-    })
+      });
+    }})
+  
 
 // export const { addBook } = trainingSlice.actions;
 export const trainingReducer = trainingSlice.reducer;

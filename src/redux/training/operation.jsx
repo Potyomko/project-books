@@ -131,7 +131,7 @@ export const fetchTrainingOBJ = createAsyncThunk('training/fetchBooksSelected', 
   } catch (error) {
     // Важливо повертати дані навіть у випадку помилки, щоб `rejectWithValue` мав, що повертати
     return thunkApi.rejectWithValue('Упс, помилка');
-  }
+  }}
 )
 
 export const markAsCompleted = createAsyncThunk(
@@ -166,7 +166,7 @@ export const getTreaningData = createAsyncThunk(
       const response = await axios.get("/training");
       const current = localStorage.getItem('id');
       let neededData = ''
-      response.data.forEach(train => { console.log(train);if(train.userId === `userId ${current}`){
+      response.data.forEach(train => { console.log(train);if(train.userId ===  current){
         neededData = train
       }});
       console.log(response.data)
