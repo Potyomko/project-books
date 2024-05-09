@@ -30,13 +30,14 @@ export const GlobalStyle = createGlobalStyle`
 body {
     margin: 0;
     font-family: 'Roboto', 'Montserrat', 'Abril Fatface';
-      font-weights: 500;
+      font-weight: 500;
       font-style: normal;
       line-height: normal;
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
     padding: 20px;
-    background: rgba(246, 247, 251, 1);
+    background: #F6F7FB;
+
 
   }
   

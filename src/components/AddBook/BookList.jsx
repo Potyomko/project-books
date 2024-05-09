@@ -3,7 +3,10 @@ import React from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import logoDelete from '../Training/icons/delete.svg'
 import { deleteBook } from '../../redux/library/operation';
+import { ContainerFirs, ContainerFirst, ContainerH2, ContainerTitle, ItemH2, ItemTextLi, ListText } from './Styled/StyledList.styled';
+import BookListIcon from '../Header/Icon/icon library.svg'
 
+import Vector from './Icons/Vector (4).svg'
 export const BookList = () => {
   const books = useSelector(state => state.books.booksBD);
   const dispatch = useDispatch();
@@ -31,20 +34,27 @@ export const BookList = () => {
   // Перевірте, чи є книги для відображення
   if (!books || books.length === 0) {
     return (
-      <div>
+      <ContainerFirst>
         <ul>
           <li>
-            <h1>Крок 1.</h1>
+            <ContainerTitle>Крок 1.</ContainerTitle>
           </li>
-          <li>Створіть особисту бібліотеку</li>
-          <li>Додайте до неї книжки, які маєте намір прочитати.</li>
+          
+          <li><img src={BookListIcon} alt="" /></li>
+          <ItemH2> <ContainerH2>Створіть особисту бібліотеку</ContainerH2></ItemH2>
+         
+         <li><ItemTextLi>
+      <li><img src={Vector} alt="" /></li>
+          <ItemTextLi> <ListText>Додайте до неї книжки, які маєте намір прочитати.</ListText></ItemTextLi>
+          </ItemTextLi></li>
+         
         </ul>
         <ul>
           <li>Крок 2.</li>
           <li>Сформуйте своє перше тренування</li>
           <li>Визначте ціль, оберіть період, розпочинайте тренування.</li>
         </ul>
-      </div>
+      </ContainerFirst>
     );
   }
 
