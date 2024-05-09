@@ -1,7 +1,6 @@
 import { selectSelectedBooks, selectTrainingId} from "../../../redux/training/selectors";
 import {useDispatch, useSelector } from "react-redux";
 import { markAsCompleted } from "../../../redux/training/operation";
-import { markAsRead } from "../../../redux/library/operation";
 
 export const BooksList = () => {
     const selectedBooks = useSelector(selectSelectedBooks);
@@ -10,7 +9,6 @@ export const BooksList = () => {
     
     const handleChekboxChange = (bookId) => {
       dispatch(markAsCompleted({bookId, trId}))
-      dispatch(markAsRead(bookId))
     }
 
 
