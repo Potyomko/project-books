@@ -1,10 +1,12 @@
 import { Container } from "components/GlobalStyle"
-import { WantToRead } from "./adds/WantToRead"
 import { TrainingFilter } from "./adds/TrainingFilter"
 import { useDispatch, useSelector } from "react-redux";
 import { useEffect } from "react";
 import { fetchBooks } from "../../redux/library/operation";
 import { StartingTraining, fetchBooksSelected, fetchTrainingOBJ } from "../../redux/training/operation";
+import { MyGoal } from "components/Statistics/components/myGoal";
+import { Chart } from "chart.js";
+import { BtnTrain, MyTrainingDiv, MyTrainingText } from "./styles/Trainingstyle.styled";
 
 
 export const Training = ()=>{
@@ -26,9 +28,10 @@ export const Training = ()=>{
     
     return (
         <Container>
-            <div>
-                <h1>Моє Тренування</h1>
-                
+        <div>
+          <MyTrainingDiv>
+            <MyTrainingText>Моє Тренування</MyTrainingText>
+          </MyTrainingDiv>
         {isLoadings ? (
             
             <p>Loading...</p>
@@ -38,10 +41,13 @@ export const Training = ()=>{
             </>
           )}
                
-                <button onClick={handleStartingTraining}>Почати тренування</button>
-            </div>
+                <BtnTrain onClick={handleStartingTraining}>Почати тренування</BtnTrain>
+        </div>
+        <div>
+          {/* <Chart/> */}
+        </div>
             <div>
-                <WantToRead/>
+                <MyGoal/>
             </div>
         </Container>
     )

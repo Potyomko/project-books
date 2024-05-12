@@ -3,7 +3,10 @@ import { useDispatch, useSelector } from "react-redux";
 import { addBook, deleteBook, fetchBooksSelected, updateFinishDate, updateStartDate } from "../../../redux/training/operation";
 import { selectBooks, selectSelectedBooks } from "../../../redux/training/selectors";
 import { ToastContainer, toast } from "react-toastify";
-import logoDelete from '../icons/delete.svg'
+import logoDelete from '../icons/delete.svg';
+import bookTraining from '../icons/openBook.svg';
+import { AddButton, Img, InputFinishDate, InputStartDate, MdMenuBooks, OptionBook, SelectBook, SelectDiv, Table, Td, Th, Thead, Tr } from '../styles/Trainingstyle.styled';
+import { MdMenuBook } from "react-icons/md";
 
 export const TrainingFilter = () => {
   const dispatch = useDispatch();
@@ -14,6 +17,8 @@ export const TrainingFilter = () => {
   const [selectedBookId, setSelectedBookId] = useState("");
   const [startDate, setStartDate] = useState("");
   const [finishDate, setFinishDate] = useState("");
+  const [inputValue, setInputValue] = useState('');
+  const [selectValue, setSelectValue] = useState('');
 
   const handleStartDateChange = (e) => {
     const choosenDate = Date.parse(e.target.value) / 1000;
@@ -60,56 +65,57 @@ export const TrainingFilter = () => {
   return (
     <div>
       <div>
-        <input
+        <InputStartDate
           type="date"
           placeholder="Початок"
           onChange={handleStartDateChange}
         />
-        <input
+        <InputFinishDate
           type="date"
           placeholder="Закінчення"
           onChange={handleFinishDateChange}
         />
       </div>
-      <div>
-        <select onChange={handleBookSelect} value={selectedBookId}>
+      <SelectDiv>
+        <SelectBook onChange={handleBookSelect} value={selectedBookId}>
           <option value="">Виберіть книгу</option>
           {books.map((book) => (
-            <option key={book.id} value={book.id}>
+            <OptionBook key={book.id} value={book.id}>
               {book.title}
-            </option>
+            </OptionBook>
           ))}
-        </select>
-        <button onClick={handleAddBook}>Додати</button>
-      </div>
+        </SelectBook>
+        <AddButton onClick={handleAddBook}>Додати</AddButton>
+      </SelectDiv>
       <div>
-        <table>
-          <thead>
+        <Table>
+          <Thead>
             <tr>
-              <th>ID</th>
-              <th>Назва книги</th>
-              <th>Автор</th>
-              <th>Рік</th>
-              <th>Кількість сторінок</th>
-              <th>Статус</th>
+              <Th>Назва книги</Th>
+              <Th>Автор</Th>
+              <Th>Рік</Th>
+              <Th>Стор.</Th>
+              <Th></Th>
             </tr>
-          </thead>
+          </Thead>
           <tbody>
             {selectedBooks.map((book) => (
-              <tr key={book.id}>
-                <td>{book.id}</td>
-                <td>{book.title}</td>
+              <Tr key={book.id}> 
+                <td><Img src={bookTraining} alt=""/> {book.title}</td>
                 <td>{book.author}</td>
                 <td>{book.year}</td>
                 <td>{book.pages}</td>
-                <td>{book.status}</td>
                 <td> 
                   <img onClick={() => handleDeleteBook(book.id)} src={logoDelete} alt="" />
                 </td>
-              </tr>
+              </Tr>
+              
             ))}
+              <Tr>
+                <td colSpan="3"><Img src={bookTraining} alt=""/>...</td>
+              </Tr>
           </tbody>
-        </table>
+        </Table>
       </div>
       <ToastContainer
         position="top-right"
