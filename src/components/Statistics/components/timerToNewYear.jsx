@@ -1,6 +1,7 @@
 import React from 'react';
 import { useTimer } from 'react-timer-hook';
-// import {useSelector} from 'react-redux'
+import { TimerBox, TimerTitle, Numbers, SubTitles, TimerList, TimerItem, Container } from '../style/timer.styled';
+
 
 export function NewYearTimer() {
     const currentYear = new Date().getFullYear();
@@ -15,14 +16,16 @@ export function NewYearTimer() {
 
 
   return (
-    <div style={{textAlign: 'center'}}>
-      <p>До закінчення року залишилосьo</p>
-      <div style={{fontSize: '50px'}}>
-        <span>{days < 10 ? 0 : ''}{days}</span>
-        :<span>{hours < 10 ? 0 : ''}{hours}</span>
-        :<span>{minutes < 10 ? 0 : ''}{minutes}</span>
-        :<span>{seconds < 10 ? 0 : ''}{seconds}</span>
-      </div>
-    </div>
+    <Container>
+      <TimerTitle>До закінчення року залишилосьo</TimerTitle>
+      <TimerBox>
+      <TimerList>
+          <TimerItem> <Numbers>{days < 10 ? 0 : ''}{days}</Numbers> <SubTitles>ДН</SubTitles></TimerItem>
+          <TimerItem><Numbers>{hours < 10 ? 0 : ''}{hours}</Numbers><SubTitles>ГОД</SubTitles></TimerItem>
+          <TimerItem> <Numbers>{minutes < 10 ? 0 : ''}{minutes}</Numbers><SubTitles>ХВ</SubTitles></TimerItem>
+          <TimerItem> <Numbers>{seconds < 10 ? 0 : ''}{seconds}</Numbers><SubTitles>СЕК</SubTitles></TimerItem>
+        </TimerList> 
+      </TimerBox>
+    </Container>
   );
 }

@@ -1,5 +1,12 @@
 import styled from 'styled-components'
 
+export const Container = styled.div`
+display: flex;
+flex-direction: column;
+align-items: center;
+justify-content: center;
+`
+
 export const TimerTitle = styled.p`
 color: #898F9F;
 
@@ -15,6 +22,7 @@ align-items: center;
 justify-content: center;
 background: #FFF;
 box-shadow: 4px 4px 8px 0px rgba(36, 42, 55, 0.15);
+width: 290px;
 `
 
 export const Numbers = styled.span`
@@ -37,10 +45,12 @@ line-height: 380%;`
 export const TimerList = styled.ul`
 list-style: none;
 display: flex;
-align-items: center;`
+align-items: center;
+justify-content: center;
+gap: 5%;
+padding: 0px;
+margin: 3px`
 
 export const TimerItem = styled.li`
 display: flex;
-flex-direction: column
-align-items: center;
 justify-content: center;`

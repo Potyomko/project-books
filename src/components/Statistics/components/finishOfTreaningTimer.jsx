@@ -4,7 +4,7 @@ import {useSelector} from 'react-redux'
 import { selectFinishDate } from '../../../redux/training/selectors';
 import { useState } from 'react';
 import { Modal } from './modal';
-import { TimerBox, TimerTitle } from '../style/timer.styled';
+import { TimerBox, TimerTitle, Numbers, SubTitles, TimerList, TimerItem, Container } from '../style/timer.styled';
 
 export function TimeTofinish() {
   const timeOfTheFinish = useSelector(selectFinishDate)
@@ -17,25 +17,25 @@ export function TimeTofinish() {
     hours,
     days,
   } = useTimer({ expiryTimestamp: time, onExpire: () =>{ 
-    //  setModalTreaker(true) 
+     setModalTreaker(true) 
     }});
 
 
   return (
     <>
      {modalTreaker && <Modal/>}
-    <div >
+    <Container >
       <TimerTitle>До досягнення мети залишилось</TimerTitle>
       <TimerBox>
 
-        <ul>
-          <li> <span>{days < 10 ? 0 : ''}{days}</span> <p>ДН</p></li>
-          <li><span>: {hours < 10 ? 0 : ''}{hours}</span><p>ГОД</p></li>
-          <li> <span>: {minutes < 10 ? 0 : ''}{minutes}</span><p>ХВ</p></li>
-          <li> <span>: {seconds < 10 ? 0 : ''}{seconds}</span><p>СЕК</p></li>
-        </ul>     
+        <TimerList>
+          <TimerItem> <Numbers>{days < 10 ? 0 : ''}{days}</Numbers> <SubTitles>ДН</SubTitles></TimerItem>
+          <TimerItem><Numbers>{hours < 10 ? 0 : ''}{hours}</Numbers><SubTitles>ГОД</SubTitles></TimerItem>
+          <TimerItem> <Numbers>{minutes < 10 ? 0 : ''}{minutes}</Numbers><SubTitles>ХВ</SubTitles></TimerItem>
+          <TimerItem> <Numbers>{seconds < 10 ? 0 : ''}{seconds}</Numbers><SubTitles>СЕК</SubTitles></TimerItem>
+        </TimerList>     
       </TimerBox>
-    </div>
+    </Container>
     </>
   );
 }
