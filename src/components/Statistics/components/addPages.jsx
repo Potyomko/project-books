@@ -2,6 +2,7 @@ import { selectFinishDate, selectStartDate, selectTrainingId } from '../../../re
 import {useDispatch, useSelector } from "react-redux";
 import { useState } from 'react';
 import { addNewChekout } from "../../../redux/training/operation";
+import { Input, Label, StatBox, Title, StatForm, StatBtn } from '../style/addPages.styled';
 
 export const AddPages = () => {
   const trId = useSelector(selectTrainingId);
@@ -9,16 +10,12 @@ export const AddPages = () => {
     const [dateValue, setDateValue] = useState('')
     const [pages, setPages] = useState('')
     const timeOfTheFinish = useSelector(selectFinishDate)
-    // export const selectStartDate = state => state.traning.startDate;
     const timeOfTheStart = useSelector(selectStartDate)
-    // const refactedFinish = Date.parse(timeOfTheFinish)/1000
-    // const refactedStart = Date.parse(timeOfTheStart)/1000
-
     const handleStartDateChange = (e) => {
       const chosenDate = Date.parse(e.target.value)/1000
-      // if (chosenDate >= timeOfTheStart && chosenDate <= timeOfTheFinish){
+      if (chosenDate >= timeOfTheStart && chosenDate <= timeOfTheFinish){
         setDateValue(e.target.value)
-      // }
+      }
     };
 
     const handleInputChange = (e) => {
@@ -32,25 +29,35 @@ export const AddPages = () => {
         const hours = date.getHours();
         const minutes = date.getMinutes();
         const seconds = date.getSeconds();
-        const checkoutData = {date: dateValue, time: `${hours}:${minutes}:${seconds}`, pages, unix: unixDate}
+        const checkoutData = {date: dateValue, time: `${hours < 10 ? `0${hours}` : hours}:${minutes < 10 ? `0${minutes}` : minutes}:${seconds < 10 ? `0${seconds}` : seconds}`, pages, unix: unixDate}
         dispatch(addNewChekout({checkoutData, trId}))
          console.log(`${hours}:${minutes}:${seconds}`)
          
     }
-    return <form onSubmit={handleFormSubmit}>
-      <input
+    return <StatBox>
+      <Title>Результати</Title>
+    <StatForm onSubmit={handleFormSubmit}>
+    <Label>
+      Дата
+      <Input
           value={dateValue}
           type="date"
           placeholder="Початок"
           onChange={handleStartDateChange}
         />
-        <input 
+        </Label>
+         <Label>
+          Кількість сторінок
+        <Input 
         value={pages}
         type="number"
         // placeholder="Початок"
         onChange={handleInputChange}
         />
-        <button type="submit">Submit</button>
+        </Label>
+        <StatBtn type="submit">Submit</StatBtn>
+        
     
-  </form>
+  </StatForm>
+  </StatBox>
 }

@@ -1,5 +1,6 @@
 import {useSelector} from 'react-redux'
 import { selectChekout } from '../../../redux/training/selectors'
+import { Title, StatisticList, Date, Time, PageNumber, Pages, StatisticItem,StatBox   } from '../style/addPages.styled'
 
 export const ViewStatistic = () => {
     const checkout = useSelector(selectChekout)
@@ -11,16 +12,19 @@ export const ViewStatistic = () => {
       });
 
       console.log(arrayForSort)
-    return <>
-    <h5>Statistic</h5>
-    <ul>
+
+    //   overflow: scroll;
+    // overflow-x: hidden;
+    return <StatBox>
+    <Title>Статистика</Title>
+    <StatisticList>
         {arrayForSort.map((chek)=>{
-            return <li key={chek.date}>
-                <p>{chek.date}</p>
-                <p>{chek.time}</p>
-                <p>{chek.pages} pages</p>
-            </li>
+            return <StatisticItem key={chek.date}>
+                <Date>{chek.date}</Date>
+                <Time>{chek.time}</Time>
+                <Pages><PageNumber>{chek.pages}</PageNumber> pages</Pages>
+            </StatisticItem>
         })}
-    </ul>
-    </>
+    </StatisticList>
+    </StatBox>
 }

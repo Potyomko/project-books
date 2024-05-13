@@ -109,7 +109,11 @@ export const fetchBooks = createAsyncThunk('books/fetchBooks', async (_, thunkAp
 export const StartingTraining = createAsyncThunk("training/StartingTraining",async (body, thunkApi) => {
   try {
     const idTraining = localStorage.getItem('idTraining');
-      const response = await axios.put(`/training/${idTraining}`, {isStarted: true });
+    const getting = await axios.get(`/training/${idTraining}`);
+    const books = getting.data.selectedBooks
+    books.forEach(book => book.status = "reading")
+    
+      const response = await axios.put(`/training/${idTraining}`, {isStarted: true, selectedBooks: books });
 
     return response.data;
   } catch (error) {
@@ -138,8 +142,6 @@ export const markAsCompleted = createAsyncThunk(
   "training/markAsCompleted",
   async ({bookId, trId}) => {
     try {
-
-    
       const getting = await axios.get(`/training/${trId}`);
     const books = getting.data.selectedBooks
       
@@ -150,7 +152,20 @@ export const markAsCompleted = createAsyncThunk(
           book.status = "reading"
         }
       })
-      
+
+      const userId = localStorage.getItem('id');
+
+    const { data: userData } = await axios.get(`/users/${userId}`);
+    
+    userData.Books.forEach(book => {
+        if (book.id  === bookId && book.status === "reading"){
+          book.status = "completed"
+        } else  if (book.id  === bookId && book.status === "completed"){
+          book.status = "reading"
+        }
+      });
+
+      await axios.put(`/users/${userId}`, userData);
       await axios.put(`/training/${trId}`, {selectedBooks: books});
       return bookId;
     } catch (error) {

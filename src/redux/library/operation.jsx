@@ -1,6 +1,5 @@
 import { createAsyncThunk } from "@reduxjs/toolkit";
 import axios from "../auth/axiosConfig";
-import { useSelector } from "react-redux";
 
 export const addBook = createAsyncThunk('book/addBook', async (bookData, thunkApi) => {
     try {
