@@ -4,6 +4,7 @@ export const MyTrainingDiv = styled.div`
     width: 886px;
     height: 60px;
     background: #B1B5C2;
+    margin: 50px 41px 25px 39px;
 `;
 export const MyTrainingText = styled.h1`
     width: 176px;
@@ -140,4 +141,75 @@ export const BtnTrain = styled.button`
     margin: 0px 698px 40px 382px;
     color: white;
     border: 1px solid #FF6B08;
+`;
+export const DivTrainingDivs = styled.div`
+    display: flex;
+    flex-direction: row;
+    background: #F6F7FB;
+    align-items: flex-start;
+    justify-content: center;
+`;
+export const DivWhatToRead = styled.div`
+    display: flex;
+    align-items: center;
+`;
+
+//myGoal
+
+export const MyGoalContainer = styled.div`
+    display: flex;
+    flex-direction: column;
+    width: 275px;
+    height: 318px;
+`;
+export const GoalList = styled.ul`
+    list-style: none;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+`;
+export const GoalTextDiv = styled.div`
+    width: 275px;
+    height: 60px;
+    background: #B1B5C2;
+    margin: 50px 39px 0px 41px;
+`;
+export const GoalText = styled.h3`
+    font-family: Montserrat;
+    font-size: 20px;
+    font-weight: 600;
+    line-height: 38px;
+    text-align: justify;
+    color: #FFFFFF;
+    display: flex;
+    justify-content: center;
+    white-space: nowrap;
+    margin: 11px 27px 11px 28px;
+`;
+export const GoalP = styled.p`
+    font-family: Open Sans;
+    font-size: 45px;
+    font-weight: 700;
+    line-height: 38px;
+    text-align: center;
+    color: #091E3F;
+    padding: 31px;
+`;
+export const GoalTextPDiv = styled.div`
+    width: 100px;
+    height: 100px;
+    background: #F5F7FA;
+    margin: 55px 20px 14px 28px;
+`;
+export const GoalTextP = styled.p`
+    font-family: Montserrat;
+    font-size: 14px;
+    font-weight: 500;
+    line-height: 17.07px;
+    text-align: center;
+    color: #898F9F;
+    padding: 14px 37px 55px 45px;
+`;
+export const MyGoalColor = styled.div`
+    background: white;
 `;

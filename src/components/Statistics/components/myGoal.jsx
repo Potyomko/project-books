@@ -1,6 +1,7 @@
 import moment from "moment";
 import { selectSelectedBooks, selectIsStarted, selectFinishDate, selectStartDate  } from "../../../redux/training/selectors";
 import {useSelector } from "react-redux";
+import { ContainerMyGoal } from "../style/myGoal.styled";
 
    export const MyGoal = () => {
     const isStarted = useSelector(selectIsStarted)
@@ -23,7 +24,7 @@ import {useSelector } from "react-redux";
         daysLeft =  moment.unix(timeOfTheFinish).diff(moment.unix(timeOfTheStart), 'days')
     }
 
-    return <div>
+    return <ContainerMyGoal>
         <h3>Моя мета прочитати</h3>
         <ul>
             <li>
@@ -40,5 +41,5 @@ import {useSelector } from "react-redux";
             </li>}
            
         </ul>
-    </div>
+    </ContainerMyGoal>
 }
