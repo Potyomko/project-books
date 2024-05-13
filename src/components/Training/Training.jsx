@@ -4,9 +4,9 @@ import { useDispatch, useSelector } from "react-redux";
 import { useEffect } from "react";
 import { fetchBooks } from "../../redux/library/operation";
 import { StartingTraining, fetchBooksSelected, fetchTrainingOBJ } from "../../redux/training/operation";
-import { MyGoal } from "components/Statistics/components/myGoal";
 import { Chart } from "chart.js";
-import { BtnTrain, MyTrainingDiv, MyTrainingText } from "./styles/Trainingstyle.styled";
+import { BtnTrain, DivTrainingDivs, DivWhatToRead, MyTrainingDiv, MyTrainingText } from "./styles/Trainingstyle.styled";
+import { GoalTraining } from "./adds/myGoalTraining";
 
 
 export const Training = ()=>{
@@ -27,7 +27,8 @@ export const Training = ()=>{
     const isLoadings = useSelector(state => state.books.isLoading);
     
     return (
-        <Container>
+      <Container>
+        <DivTrainingDivs>
         <div>
           <MyTrainingDiv>
             <MyTrainingText>Моє Тренування</MyTrainingText>
@@ -43,12 +44,13 @@ export const Training = ()=>{
                
                 <BtnTrain onClick={handleStartingTraining}>Почати тренування</BtnTrain>
         </div>
+            <DivWhatToRead>
+                <GoalTraining/>
+          </DivWhatToRead>
+        </DivTrainingDivs>
         <div>
           {/* <Chart/> */}
         </div>
-            <div>
-                <MyGoal/>
-            </div>
         </Container>
     )
 }
