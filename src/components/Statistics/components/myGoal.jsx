@@ -2,6 +2,7 @@ import moment from "moment";
 import { selectSelectedBooks, selectIsStarted, selectFinishDate, selectStartDate  } from "../../../redux/training/selectors";
 import {useSelector } from "react-redux";
 import { ContainerMyGoal } from "../style/myGoal.styled";
+import { GoalList,GoalItem, GoalP, GoalText, GoalTextDiv, GoalTextP, GoalTextPDiv, MyGoalColor, MyGoalContainer } from "../style/myGoal.styled";
 
    export const MyGoal = () => {
     const isStarted = useSelector(selectIsStarted)
@@ -24,22 +25,31 @@ import { ContainerMyGoal } from "../style/myGoal.styled";
         daysLeft =  moment.unix(timeOfTheFinish).diff(moment.unix(timeOfTheStart), 'days')
     }
 
-    return <ContainerMyGoal>
-        <h3>Моя мета прочитати</h3>
-        <ul>
-            <li>
-                <p>{selectedBooks.length}</p>
-                <p>Кількість книжок</p>
-            </li>
-            <li>
-                 <p>{daysLeft}</p>
-                <p>Кількість днів</p>
-            </li>
-            {isStarted &&  <li>
-                <p>{booksLeft.length}</p>
-                <p>Залишилось книжок</p>
-            </li>}
-           
-        </ul>
-    </ContainerMyGoal>
+    return <MyGoalContainer>
+           <GoalTextDiv>
+              <GoalText>Моя мета прочитати</GoalText> 
+           </GoalTextDiv>
+           <MyGoalColor>
+        <GoalList>
+               <GoalItem>
+                  <GoalTextPDiv>
+                       <GoalP>{selectedBooks.length}</GoalP>
+                       </GoalTextPDiv>
+                <GoalTextP>Кількість книжок</GoalTextP>
+            </GoalItem>
+               <GoalItem>
+                   <GoalTextPDiv>
+                       <GoalP>{daysLeft}</GoalP>
+                       </GoalTextPDiv>
+                <GoalTextP>Кількість днів</GoalTextP>
+            </GoalItem>
+            <GoalItem>
+            <GoalTextPDiv>
+                <GoalP>{booksLeft.length}</GoalP>
+                </GoalTextPDiv>
+                <GoalTextP>Залишилось книжок</GoalTextP>
+            </GoalItem>
+               </GoalList>
+               </MyGoalColor>
+    </MyGoalContainer>
 }

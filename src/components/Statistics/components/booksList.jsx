@@ -1,7 +1,7 @@
 import { selectSelectedBooks, selectTrainingId} from "../../../redux/training/selectors";
 import {useDispatch, useSelector } from "react-redux";
 import { markAsCompleted } from "../../../redux/training/operation";
-import {Thead, Tbody, Td, Th, Tr, Table} from '../style/booksList.styled'
+import {Thead,Container, Th, Tr, Table, Tbody} from '../style/booksList.styled'
 
 export const BooksList = () => {
     const selectedBooks = useSelector(selectSelectedBooks);
@@ -13,24 +13,25 @@ export const BooksList = () => {
     }
 
 
-    return  <div>
-      <Thead>
-        <Tr>
-          <Th>Назва книги</Th>
-          <Th>Автор</Th>
-          <Th>Рік</Th>
-          <Th>Стор.</Th>
-        </Tr>
-      </Thead>
+    return <Container> <Table>
+        <Thead>
+            <tr>
+              <Th>Назва книги</Th>
+              <Th>Автор</Th>
+              <Th>Рік</Th>
+              <Th>Стор.</Th>
+            </tr>
+          </Thead>
       <Tbody>
         {selectedBooks.map((book) => (
-          <Tr key={book.id}>
-            <Td><input type="checkbox" name={book.title} id={book.id} checked={book.status === 'completed'} onChange={()=>handleChekboxChange(book.id)}/> {book.title}</Td>
-            <Td>{book.author}</Td>
-            <Td>{book.year}</Td>
-            <Td>{book.pages}</Td>
+          <Tr key={book.id}> 
+            <td><input type="checkbox" name={book.title} id={book.id} checked={book.status === 'completed'} onChange={()=>handleChekboxChange(book.id)}/> {book.title}</td>
+            <td>{book.author}</td>
+            <td>{book.year}</td>
+            <td>{book.pages}</td>
           </Tr>
         ))}
       </Tbody>
-    </div>
+    </Table>
+    </Container>
 }

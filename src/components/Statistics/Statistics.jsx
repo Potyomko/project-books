@@ -7,7 +7,7 @@ import { ViewStatistic } from "./components/viewStatistic"
 import { MyGoal } from "./components/myGoal";
 import { BooksList } from "./components/booksList";
 import { useDispatch, useSelector } from "react-redux";
-import { BigContainer, SmallContainer, TimersContainer, MegaContainer, MediumContainer } from "./style/statistic.styled";
+import { BigContainer, SmallContainer, TimersContainer, MegaContainer, MediumContainer, GoalContainer } from "./style/statistic.styled";
 import { useEffect } from "react";
 import { getTreaningData } from "../../redux/training/operation";
 import { selectIsLoading } from "../../redux/training/selectors";
@@ -33,7 +33,9 @@ export const Statistics = ()=>{
         </TimersContainer> 
         <BooksList/>
         </MediumContainer>
+        <GoalContainer>
         <MyGoal/>
+        </GoalContainer>
         </BigContainer>
       
         <BigContainer>

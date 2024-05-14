@@ -2,46 +2,49 @@ import styled from 'styled-components'
 
 export const Thead = styled.thead`
 
-display: block;
-border-top: 1px solid #E0E5EB; 
-border-bottom: 1px solid #E0E5EB;
+color: #898F9F;
 `
 
 export const Tbody = styled.tbody`
-
-display: block;
-max-height: 170px;
-overflow: auto;
-border-bottom: 1px solid #E0E5EB;
+max-height: 200px;
+overflow: scroll;
+overflow-x: hidden;
 `
 
 export const Td = styled.td`
-padding: 5px;
-color: #242A37;
-font-family: Montserrat;
-font-size: 14px;
-font-style: normal;
-font-weight: 500;
-line-height: normal;`
+`
 
 export const Th = styled.th`
-width: 25%;
-padding: 5px;
-color: #898F9F;
+border-bottom: 1px solid #E0E5EB;`
+
+export const Tr = styled.tr`
 font-family: Montserrat;
 font-size: 14px;
-font-style: normal;
 font-weight: 500;
-line-height: 38px;`
-
-export const Tr = styled.div`
-width: 100%;
+line-height: 38px;
+text-align: left;
+color: #242A37;
 `
 
 export const Table = styled.table`
-width: 100%;
-table-layout: auto;
-border-collapse: collapse;
-text-align: left;
-vertical-align: middle;
+border: 1px solid #E0E5EB;
+    border-left: none;
+    border-right: none;
+    width: 886px;
+    height: 233px;
+    top: 329px;
+    left: 39px;
+    font-family: Montserrat;
+    font-size: 14px;
+    font-weight: 500;
+    line-height: 38px;
+    text-align: left;
+    padding: 0px 10px 10px 10px;
+    margin: 25px 0px 40px 5px;
+    width: 100%;
 `
+
+export const Container = styled.div`
+display: flex;
+align-items: center;
+justify-content: center;`
