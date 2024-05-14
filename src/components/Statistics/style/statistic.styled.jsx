@@ -4,7 +4,6 @@ export const BigContainer = styled.div`
 width: 100%;
 display: flex;
 gap: 40px;
-margin-top: 15px
 align-items: center;
 justify-content: center;`
 
@@ -14,7 +13,17 @@ display: flex;
 flex-direction: column;
 gap: 25px;
 background-color: #FFF;
-box-shadow: 0px 2px 3px 0px rgba(9, 30, 63, 0.25); 
+box-shadow: 0px 2px 3px 0px rgba(9, 30, 63, 0.25);
+padding: 12px;
+`
+
+export const GoalContainer = styled.div`
+width: 23%;
+height: 100%;
+display: flex;
+background-color: #FFF;
+box-shadow: 0px 2px 3px 0px rgba(9, 30, 63, 0.25);
+
 `
 
 export const MediumContainer = styled.div`
@@ -42,6 +51,7 @@ margin: 0px 40px;
 margin-bottom: 40px;`
 
 export const ChartContainer = styled.div`
+width: 68%;
 background-color: #FFF;
 box-shadow: 0px 2px 3px 0px rgba(9, 30, 63, 0.25); 
 min-height: 300px;
