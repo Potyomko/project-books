@@ -43,10 +43,10 @@ export const BookList = () => {
           <li><img src={BookListIcon} alt="" /></li>
           <ItemH2> <ContainerH2>Створіть особисту бібліотеку</ContainerH2></ItemH2>
          
-         <li><ItemTextLi>
+         <ItemTextLi><ul>
       <li><img src={Vector} alt="" /></li>
           <ItemTextLi> <ListText>Додайте до неї книжки, які маєте намір прочитати.</ListText></ItemTextLi>
-          </ItemTextLi></li>
+          </ul></ItemTextLi>
          
         </ul>
         <ul>
