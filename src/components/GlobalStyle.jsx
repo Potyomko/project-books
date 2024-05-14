@@ -36,7 +36,7 @@ body {
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
     padding: 20px;
-    background: #F6F7FB;
+    background-color: #F6F7FB;
 
 
   }

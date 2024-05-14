@@ -3,10 +3,12 @@ import React from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import logoDelete from '../Training/icons/delete.svg'
 import { deleteBook } from '../../redux/library/operation';
-import { ContainerFirs, ContainerFirst, ContainerH2, ContainerTitle, ItemH2, ItemTextLi, ListText } from './Styled/StyledList.styled';
+import {BookFirst,  BookFirst2,  ContainerFirs, ContainerFirst, ContainerH2, ContainerH2Second, ContainerTextSecond, ContainerTitle, ItemH2, ItemTextLi, ListText, VectorBook,} from './Styled/StyledList.styled';
 import BookListIcon from '../Header/Icon/icon library.svg'
 
 import Vector from './Icons/Vector (4).svg'
+
+import Flag from './Icons/flag.svg'
 export const BookList = () => {
   const books = useSelector(state => state.books.booksBD);
   const dispatch = useDispatch();
@@ -35,25 +37,36 @@ export const BookList = () => {
   if (!books || books.length === 0) {
     return (
       <ContainerFirst>
-        <ul>
-          <li>
+     
             <ContainerTitle>Крок 1.</ContainerTitle>
-          </li>
+        
           
-          <li><img src={BookListIcon} alt="" /></li>
-          <ItemH2> <ContainerH2>Створіть особисту бібліотеку</ContainerH2></ItemH2>
+         <BookFirst src={BookListIcon} alt="" />
+          <ContainerH2>Створіть особисту бібліотеку</ContainerH2>
          
-         <ItemTextLi><ul>
-      <li><img src={Vector} alt="" /></li>
-          <ItemTextLi> <ListText>Додайте до неї книжки, які маєте намір прочитати.</ListText></ItemTextLi>
-          </ul></ItemTextLi>
+      
+      <VectorBook src={Vector} alt="" />
+         <ListText>Додайте до неї книжки, які маєте намір прочитати.</ListText>
+
          
-        </ul>
-        <ul>
-          <li>Крок 2.</li>
-          <li>Сформуйте своє перше тренування</li>
-          <li>Визначте ціль, оберіть період, розпочинайте тренування.</li>
-        </ul>
+      <ContainerTextSecond>
+      <ContainerTitle> Крок 2.</ContainerTitle>
+        
+          
+        <BookFirst2 src={Flag} alt="" />
+         <ContainerH2Second> Сформуйте своє перше тренування</ContainerH2Second>
+        
+     
+     <VectorBook src={Vector} alt="" />
+        <ListText>
+        Визначте ціль, оберіть період, розпочинайте тренування
+        </ListText>
+      </ContainerTextSecond>
+        
+         {/* Крок 2.
+         Сформуйте своє перше тренування
+          Визначте ціль, оберіть період, розпочинайте тренування. */}
+    
       </ContainerFirst>
     );
   }
