@@ -4,9 +4,10 @@ import { useDispatch, useSelector } from "react-redux";
 import { useEffect } from "react";
 import { fetchBooks } from "../../redux/library/operation";
 import { StartingTraining, fetchBooksSelected, fetchTrainingOBJ } from "../../redux/training/operation";
-import { Chart } from "chart.js";
-import { BtnTrain, DivTrainingDivs, DivWhatToRead, MyTrainingDiv, MyTrainingText } from "./styles/Trainingstyle.styled";
+// import { Chart } from "chart.js";
+import { BtnTrain, BigContainer, DivTrainingDivs, DivWhatToRead,MegaContainer, GoalContainer, MediumContainer, MyTrainingDiv, MyTrainingText, MainCountainer } from "./styles/Trainingstyle.styled";
 import { GoalTraining } from "./adds/myGoalTraining";
+import { Chart } from "../Statistics/components/chart";
 
 
 export const Training = ()=>{
@@ -27,9 +28,9 @@ export const Training = ()=>{
     const isLoadings = useSelector(state => state.books.isLoading);
     
     return (
-      <Container>
-        <DivTrainingDivs>
-        <div>
+ <MegaContainer>
+  
+        <MainCountainer>
           <MyTrainingDiv>
             <MyTrainingText>Моє Тренування</MyTrainingText>
           </MyTrainingDiv>
@@ -43,14 +44,18 @@ export const Training = ()=>{
           )}
                
                 <BtnTrain onClick={handleStartingTraining}>Почати тренування</BtnTrain>
-        </div>
-            <DivWhatToRead>
+        </MainCountainer>
+          
+              <GoalContainer>
                 <GoalTraining/>
-          </DivWhatToRead>
-        </DivTrainingDivs>
-        <div>
-          {/* <Chart/> */}
-        </div>
-        </Container>
+                </GoalContainer>
+       
+        
+        <BigContainer>
+          <Chart/>
+        </BigContainer>
+        
+        </MegaContainer>
+       
     )
 }

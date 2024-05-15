@@ -1,14 +1,23 @@
 import moment from "moment";
 import { selectSelectedBooks, selectIsStarted, selectFinishDate, selectStartDate  } from "../../../redux/training/selectors";
-import {useSelector } from "react-redux";
-import { ContainerMyGoal } from "../style/myGoal.styled";
+import {useSelector, useDispatch } from "react-redux";
+import { ContainerMyGoal, ExitBtn } from "../style/myGoal.styled";
 import { GoalList,GoalItem, GoalP, GoalText, GoalTextDiv, GoalTextP, GoalTextPDiv, MyGoalColor, MyGoalContainer } from "../style/myGoal.styled";
+import { andOfTraining } from "../../../redux/training/operation"
+import { selectTrainingId } from "../../../redux/training/selectors"
 
    export const MyGoal = () => {
     const isStarted = useSelector(selectIsStarted)
     const selectedBooks = useSelector(selectSelectedBooks);
     const timeOfTheFinish = useSelector(selectFinishDate)
     const timeOfTheStart = useSelector(selectStartDate)
+
+    const dispatch = useDispatch()
+    const trId = useSelector(selectTrainingId);
+
+    const handlerOnClick = () => {
+        dispatch(andOfTraining(trId))
+    }
 
     let daysLeft = 0
 
@@ -29,7 +38,7 @@ import { GoalList,GoalItem, GoalP, GoalText, GoalTextDiv, GoalTextP, GoalTextPDi
            <GoalTextDiv>
               <GoalText>Моя мета прочитати</GoalText> 
            </GoalTextDiv>
-           <MyGoalColor>
+         
         <GoalList>
                <GoalItem>
                   <GoalTextPDiv>
@@ -50,6 +59,8 @@ import { GoalList,GoalItem, GoalP, GoalText, GoalTextDiv, GoalTextP, GoalTextPDi
                 <GoalTextP>Залишилось книжок</GoalTextP>
             </GoalItem>
                </GoalList>
-               </MyGoalColor>
+
+               <ExitBtn  to='/training' onClick={handlerOnClick}>Завчасно закінчити тренування</ExitBtn>
+              
     </MyGoalContainer>
 }

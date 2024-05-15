@@ -144,15 +144,63 @@ export const BtnTrain = styled.button`
 `;
 export const DivTrainingDivs = styled.div`
     display: flex;
-    flex-direction: row;
+    gap: 40px;
+    width: 100%;
     background: #F6F7FB;
-    align-items: flex-start;
-    justify-content: center;
+    align-items: center;
+    
 `;
+
+export const GoalContainer = styled.div`
+width: 23%;
+height: 100%;
+display: flex;
+background-color: #FFF;
+box-shadow: 0px 2px 3px 0px rgba(9, 30, 63, 0.25);
+align-items: center;
+flex-direction: column;
+
+
+`
+
+export const BigContainer = styled.div`
+width: 100%;
+display: flex;
+gap: 40px;
+align-items: center;
+justify-content: center;`
+
+export const MegaContainer = styled.div`
+max-width: 100%;
+max-height: 100%;
+display: flex;
+flex-wrap: wrap;
+gap: 40px;
+align-items: center;
+justify-content: center;
+margin: 0px 40px;
+margin-bottom: 40px;`
+
+export const MediumContainer = styled.div`
+width: 70%;
+display: flex;
+flex-direction: column;
+gap: 45px;
+margin-top: 50px
+`
+
 export const DivWhatToRead = styled.div`
     display: flex;
     align-items: center;
 `;
+
+export const MainCountainer = styled.div`
+display: flex;
+flex-direction: column;
+align-items: center;
+    justify-content: center;
+    width: 70%;
+`
 
 //myGoal
 
