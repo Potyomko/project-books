@@ -115,13 +115,16 @@ top: -10px;
 
 
 
+
+
 export const InputBook = styled.input`
   width: 346px;
   height: 42px;
   background: #f6f7fb;
   border: 1px solid #a6abb9;
   box-shadow: 0px 1px 2px 0px #1d1d1b26 inset;
-  margin-right: 30px; /* Додали відстань між полями */
+  margin-top: 8px; /* Додаємо відступ між лейблом та інпутом */
+  display: block; /* Забезпечуємо блоковий контекст для розміщення лейбла над інпутом */
 `;
 
 export const InputBookSecond = styled.input`
@@ -129,7 +132,8 @@ export const InputBookSecond = styled.input`
   height: 42px;
   background: #f6f7fb;
   border: 1px solid #a6abb9;
-  margin-right: 30px; /* Додали відстань між полями */
+  margin-top: 8px; /* Додаємо відступ між лейблом та інпутом */
+  display: block; /* Забезпечуємо блоковий контекст для розміщення лейбла над інпутом */
 `;
 
 export const InputBookThirth = styled.input`
@@ -137,17 +141,20 @@ export const InputBookThirth = styled.input`
   height: 42px;
   background: #f6f7fb;
   border: 1px solid #a6abb9;
+  margin-top: 8px; /* Додаємо відступ між лейблом та інпутом */
+  display: block; /* Забезпечуємо блоковий контекст для розміщення лейбла над інпутом */
   margin-bottom: 30px; /* Додали відстань між рядками */
 `;
 
-export const InputBookThirth2= styled.input`
+export const InputBookThirth2 = styled.input`
   width: 130px;
   height: 42px;
   background: #f6f7fb;
   border: 1px solid #a6abb9;
+  margin-top: 8px; /* Додаємо відступ між лейблом та інпутом */
+  display: block; /* Забезпечуємо блоковий контекст для розміщення лейбла над інпутом */
   margin-bottom: 30px; /* Додали відстань між рядками */
   margin-right: 30px;
-  
 `;
 
 export const BookButton = styled.button`
@@ -162,37 +169,61 @@ export const BookButton = styled.button`
   color: #000000;
   background: #f6f7fb;
   text-align: center;
-  margin-left: 50px;
+  margin-top: 50px; /* Додаємо відступ зверху для кнопки */
+  margin-left: 40px;
 `;
 
 export const FormContainer2 = styled.form`
-margin-left: 160px;
-margin-top: 30px;
+  margin-left: 160px;
+  margin-top: 30px;
+  display: flex;
 
-
+  gap: 30px; /* Додаємо відстань у 20px між елементами */
 `;
 
-
 export const LabelBook = styled.label`
-
-
   font-family: "Montserrat";
   font-size: 14px;
   font-weight: 500;
   line-height: 38px;
-
-
   color: #898F9F;
+  display: block; /* Забезпечуємо блоковий контекст для розміщення лейбла над інпутом */
+  margin-bottom: 10px; /* Додаємо відступ між лейблом та наступним елементом */
 `;
 
 
 
-export const BooksContainer = styled.tbody`
-  width: 1200px; /* Ширина таблиці */
-height: 20px;
+
+
+export const ContainerMapBook = styled.div`
+
+  width: 1402px;
+  height: 62px;
+  background-color: #ffffff;
+  box-shadow: 0px 2px 3px 0px #091E3F1A;
+  justify-content: center;
+  margin-left: 60px;
+  margin-top: 10px;
 
 `
 
+export const TDBooksIMG = styled.td`
+  display: flex;
+`
 
+export const TDBooksText = styled.td`
+  display: flex;
+`
 
+export const TDBooksTextYears = styled.td`
+  display: flex;
+`
 
+export const TDBooksTextAuthor = styled.td`
+  display: flex;
+  top: 20px;
+`
+
+export const TDBooksTextTitle = styled.td`
+  display: flex;
+`

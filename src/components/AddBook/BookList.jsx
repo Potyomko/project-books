@@ -3,7 +3,7 @@ import React from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import logoDelete from '../Training/icons/delete.svg'
 import { deleteBook } from '../../redux/library/operation';
-import {BookFirst,  BookFirst2,  BooksContainer,  ContainerFirs, ContainerFirst, ContainerH2, ContainerH2Second, ContainerTextSecond, ContainerTitle, ItemH2, ItemTextLi, ListText, VectorBook,} from './Styled/StyledList.styled';
+import {BookFirst,  BookFirst2,  BooksContainer,  ContainerFirs, ContainerFirst, ContainerH2, ContainerH2Second, ContainerMapBook, ContainerTextSecond, ContainerTitle, ItemH2, ItemTextLi, ListText, TDBooksIMG, TDBooksText, TDBooksTextAuthor, TDBooksTextTitle, TDBooksTextYears, VectorBook,} from './Styled/StyledList.styled';
 import BookListIcon from '../Header/Icon/icon library.svg'
 
 import Vector from './Icons/Vector (4).svg'
@@ -83,15 +83,18 @@ export const BookList = () => {
           
           </tr>
         </thead>
-        <BooksContainer>
+
           {planningBooks.map(book => (
-            <tr key={book.id}>
-              <td>{book.title}</td>
-              <td>{book.author}</td>
-              <td>{book.year}</td>
-              <td>{book.pages}</td>
-              <td><img onClick={() => handleDeleteBook(book.id)} src={logoDelete} alt="Видалити" /></td>
+            <ContainerMapBook>
+    <tr key={book.id}>
+              <TDBooksTextTitle TDBooksTextTitle>{book.title}</TDBooksTextTitle>
+              <TDBooksTextAuthor>{book.author}</TDBooksTextAuthor>
+              <TDBooksTextYears>{book.year}</TDBooksTextYears>
+              <TDBooksText>{book.pages}</TDBooksText>
+              <TDBooksIMG><img onClick={() => handleDeleteBook(book.id)} src={logoDelete} alt="Видалити" /></TDBooksIMG>
             </tr>
+              </ContainerMapBook>
+        
           ))}
           {readingBooks.map(book => (
             <tr key={book.id}>
@@ -111,7 +114,7 @@ export const BookList = () => {
               <td><img onClick={() => handleDeleteBook(book.id)} src={logoDelete} alt="Видалити" /></td>
             </tr>
           ))}
-        </BooksContainer>
+    
       </table>
     </div>
   );
