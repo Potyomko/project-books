@@ -1,7 +1,7 @@
 import moment from "moment";
 import { selectSelectedBooks, selectIsStarted, selectFinishDate, selectStartDate  } from "../../../redux/training/selectors";
 import {useSelector } from "react-redux";
-import { GoalList, GoalP, GoalText, GoalTextDiv, GoalTextP, GoalTextPDiv, MyGoalColor, MyGoalContainer } from "../styles/Trainingstyle.styled";
+import { GoalList,GoalItem, GoalP, GoalText, GoalTextDiv, GoalTextP, GoalTextPDiv, MyGoalColor, MyGoalContainer } from "../../Statistics/style/myGoal.styled";
 
    export const GoalTraining = () => {
     const isStarted = useSelector(selectIsStarted)
@@ -21,24 +21,24 @@ import { GoalList, GoalP, GoalText, GoalTextDiv, GoalTextP, GoalTextPDiv, MyGoal
     }
 
        return <MyGoalContainer>
-           <GoalTextDiv>
-              <GoalText>Моя мета прочитати</GoalText> 
-           </GoalTextDiv>
-           <MyGoalColor>
-        <GoalList>
-               <li>
-                   <GoalTextPDiv>
-                       <GoalP>{selectedBooks.length}</GoalP>
+       <GoalTextDiv>
+          <GoalText>Моя мета прочитати</GoalText> 
+       </GoalTextDiv>
+       <MyGoalColor>
+    <GoalList>
+           <GoalItem>
+              <GoalTextPDiv>
+                   <GoalP>{selectedBooks.length}</GoalP>
                    </GoalTextPDiv>
-                <GoalTextP>Кількість книжок</GoalTextP>
-            </li>
-               <li>
-                   <GoalTextPDiv>
-                       <GoalP>{daysLeft}</GoalP>
+            <GoalTextP>Кількість книжок</GoalTextP>
+        </GoalItem>
+           <GoalItem>
+               <GoalTextPDiv>
+                   <GoalP>{daysLeft}</GoalP>
                    </GoalTextPDiv>
-                <GoalTextP>Кількість днів</GoalTextP>
-            </li>
-               </GoalList>
-               </MyGoalColor>
-    </MyGoalContainer>
+            <GoalTextP>Кількість днів</GoalTextP>
+        </GoalItem>
+           </GoalList>
+           </MyGoalColor>
+</MyGoalContainer>
 }

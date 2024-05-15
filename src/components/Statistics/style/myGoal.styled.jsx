@@ -1,4 +1,5 @@
 import styled from "styled-components";
+import { NavLink } from "react-router-dom"
 
 export const ContainerMyGoal = styled.div`
     width: 275px;
@@ -10,8 +11,9 @@ export const ContainerMyGoal = styled.div`
 export const MyGoalContainer = styled.div`
     display: flex;
     flex-direction: column;
-    min-height: 320px;
-    gap: 72px;
+    align-items: center;
+    width: 100%;
+    justify-content: center;
     
 `;
 export const GoalList = styled.ul`
@@ -20,7 +22,7 @@ export const GoalList = styled.ul`
     gap: 15px;
     align-items: center;
 justify-content: center;
-margin: 0px;
+margin: 120px 0px;
 padding: 0px;
 
 `;
@@ -35,16 +37,20 @@ justify-content: center;
 `;
 export const GoalTextDiv = styled.div`
     background: #B1B5C2;
+    width: 100%
+    
 `;
 export const GoalText = styled.h3`
     font-family: Montserrat;
     font-size: 20px;
     font-weight: 600;
     line-height: 38px;
-    text-align: justify;
+    text-align: center;
     color: #FFFFFF;
     text-align: center;
     white-space: nowrap;
+    width: 100%
+
 `;
 export const GoalP = styled.p`
 color: #091E3F;
@@ -74,4 +80,21 @@ export const GoalTextP = styled.p`
 `;
 export const MyGoalColor = styled.div`
     background: white;
+    align-items: center;
 `;
+
+export const ExitBtn = styled(NavLink)`
+background-color: #B1B5C2;
+color: #FFF;
+text-align: center;
+font-family: Montserrat;
+font-size: 16px;
+font-style: normal;
+font-weight: 600;
+border: 0px;
+width: 230px;
+height: 50px;
+text-decoration: none;
+margin-bottom: 20px;
+padding-top: 10px;
+`
