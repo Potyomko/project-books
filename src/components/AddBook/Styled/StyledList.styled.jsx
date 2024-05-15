@@ -147,6 +147,7 @@ export const InputBookThirth2= styled.input`
   border: 1px solid #a6abb9;
   margin-bottom: 30px; /* Додали відстань між рядками */
   margin-right: 30px;
+  
 `;
 
 export const BookButton = styled.button`
@@ -172,13 +173,26 @@ margin-top: 30px;
 `;
 
 
-export const LabelBook = styled.Label`
-font-family: "Montserrat";
-font-size: 14px;
-font-weight: 500;
-line-height: 38px;
-text-align: left;
-background: #898F9F;
+export const LabelBook = styled.label`
 
+
+  font-family: "Montserrat";
+  font-size: 14px;
+  font-weight: 500;
+  line-height: 38px;
+
+
+  color: #898F9F;
+`;
+
+
+
+export const BooksContainer = styled.tbody`
+  width: 1200px; /* Ширина таблиці */
+height: 20px;
 
 `
+
+
+
+

@@ -3,7 +3,7 @@ import React from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import logoDelete from '../Training/icons/delete.svg'
 import { deleteBook } from '../../redux/library/operation';
-import {BookFirst,  BookFirst2,  ContainerFirs, ContainerFirst, ContainerH2, ContainerH2Second, ContainerTextSecond, ContainerTitle, ItemH2, ItemTextLi, ListText, VectorBook,} from './Styled/StyledList.styled';
+import {BookFirst,  BookFirst2,  BooksContainer,  ContainerFirs, ContainerFirst, ContainerH2, ContainerH2Second, ContainerTextSecond, ContainerTitle, ItemH2, ItemTextLi, ListText, VectorBook,} from './Styled/StyledList.styled';
 import BookListIcon from '../Header/Icon/icon library.svg'
 
 import Vector from './Icons/Vector (4).svg'
@@ -83,7 +83,7 @@ export const BookList = () => {
           
           </tr>
         </thead>
-        <tbody>
+        <BooksContainer>
           {planningBooks.map(book => (
             <tr key={book.id}>
               <td>{book.title}</td>
@@ -111,7 +111,7 @@ export const BookList = () => {
               <td><img onClick={() => handleDeleteBook(book.id)} src={logoDelete} alt="Видалити" /></td>
             </tr>
           ))}
-        </tbody>
+        </BooksContainer>
       </table>
     </div>
   );
