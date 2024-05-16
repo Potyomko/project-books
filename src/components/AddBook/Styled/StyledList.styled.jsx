@@ -196,34 +196,57 @@ export const LabelBook = styled.label`
 
 
 export const ContainerMapBook = styled.div`
-
+  display: flex;
   width: 1402px;
   height: 62px;
   background-color: #ffffff;
   box-shadow: 0px 2px 3px 0px #091E3F1A;
-  justify-content: center;
-  margin-left: 60px;
-  margin-top: 10px;
 
-`
+  align-items: center;
+  position: relative;
+  margin: 10px 60px;
 
-export const TDBooksIMG = styled.td`
+ 
+`;
+
+export const ContainerH3 = styled.div`
   display: flex;
+
+
+ 
+`;
+export const TDBooksIMG = styled.img`
+margin-left: 1100px;
 `
 
 export const TDBooksText = styled.td`
-  display: flex;
+
 `
 
-export const TDBooksTextYears = styled.td`
-  display: flex;
+export const TDBooksTextYears = styled.p`
+
+
+`
+export const H3BooksTextYears = styled.h3`
+
+
+`
+export const H3BooksTextPages = styled.h3`
+
+
 `
 
 export const TDBooksTextAuthor = styled.td`
-  display: flex;
-  top: 20px;
+
 `
 
 export const TDBooksTextTitle = styled.td`
-  display: flex;
+
+`
+
+export const ListH3 = styled.ul`
+
+display: flex;
+list-style: none;
+justify-content: space-between;
 `
