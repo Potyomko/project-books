@@ -1,54 +1,84 @@
 import { TimeTofinish } from "./components/finishOfTreaningTimer";
 import { NewYearTimer } from "./components/timerToNewYear";
 import {Chart} from "./components/chart"
-
+import React from "react"
 import { AddPages } from "./components/addPages"
 import { ViewStatistic } from "./components/viewStatistic"
 import { MyGoal } from "./components/myGoal";
 import { BooksList } from "./components/booksList";
 import { useDispatch, useSelector } from "react-redux";
 import { BigContainer, SmallContainer, TimersContainer, MegaContainer, MediumContainer, GoalContainer } from "./style/statistic.styled";
-import { useEffect } from "react";
-import { getTreaningData } from "../../redux/training/operation";
-import { selectIsLoading } from "../../redux/training/selectors";
+import { useEffect, useState } from "react";
+import { getTreaningData, checkWindowSize, andOfTraining } from "../../redux/training/operation";
+import { selectIsLoading, selectSize, selectTrainingId } from "../../redux/training/selectors";
+import { ExitBtn } from "./style/myGoal.styled";
+import { MobileBooksList } from "./components/mobileBooksList";
+import { AreYouSureModal } from "./components/areYouSureModal";
+
+
 
 export const Statistics = ()=>{
-    // const userId = useSelector(selectUserId)
+    
     const isLoading = useSelector(selectIsLoading)
+    const size = useSelector(selectSize)
+    const trId = useSelector(selectTrainingId);
     const dispatch = useDispatch()
+    const[ modalTreaker, setModalTreaker] = useState(false)
+    const delince = () => {
+        setModalTreaker(false)
+    }
+
+    
 
     useEffect(()=> {
+        const resizeing = () => {
+            if(window.innerWidth !== size)
+            dispatch(checkWindowSize(window.innerWidth))
+        }
         dispatch(getTreaningData())
-    }, [dispatch])
+        dispatch(checkWindowSize(window.innerWidth))
+        setInterval(resizeing, 1000)
+    }, [dispatch, size])
+
+    const handlerOnClick = () => {
+        dispatch(andOfTraining(trId))
+    }
 
     return(
         <MegaContainer>
-        {isLoading && <p>Loading...</p>}
-        {!isLoading && <>
-        <BigContainer>
-         <MediumContainer>
-        <TimersContainer>
-        <TimeTofinish/>
-        <NewYearTimer/>
-        </TimersContainer> 
-        <BooksList/>
-        </MediumContainer>
-        <GoalContainer>
-        <MyGoal/>
-        </GoalContainer>
-        </BigContainer>
+             {isLoading && <p>Loading...</p>}
+            {!isLoading && <>
+                <BigContainer>
+                     <MediumContainer>
+                        <TimersContainer>
+                            <NewYearTimer/>
+                            <TimeTofinish/>
+                         </TimersContainer> 
+                         {size <= 770 &&<><GoalContainer>
+                    <MyGoal/>
+                    </GoalContainer>
+                     <ExitBtn  onClick={()=>setModalTreaker(true)}>Завчасно закінчити тренування</ExitBtn>
+                     </> }
+                     {size > 320 && <BooksList/>}
+                     {size <= 320 && <MobileBooksList/>}
+                         
+                     </MediumContainer>
+                    
+                    {size > 770 && <GoalContainer>
+                    <MyGoal/>
+                    </GoalContainer>}
+                    {modalTreaker && <AreYouSureModal delince={delince}/>}
+                   
+                </BigContainer>
       
-        <BigContainer>
-        <Chart/>
-        <SmallContainer>
-        <AddPages/>
-        <ViewStatistic/>
-        </SmallContainer>
-        </BigContainer>
-        
-        
+                <BigContainer>
+                     <Chart/>
+                    <SmallContainer>
+                         <AddPages/>
+                         <ViewStatistic/>
+                    </SmallContainer>
+                </BigContainer>
         </>}
-        
         </MegaContainer>
     )
 }

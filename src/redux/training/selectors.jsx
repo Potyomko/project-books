@@ -9,4 +9,6 @@ export const selectChekout = state => state.training.checkout;
 export const selectIsStarted = state => state.training.isStarted;
 export const selectPrevChekout = state => state.training.prevChekout;
 export const selectIsLoading = state => state.training.isLoading;
-export const selectTrainingId = state => state.training.id
+export const selectTrainingId = state => state.training.id;
+export const selectSize = state => state.training.size;
+

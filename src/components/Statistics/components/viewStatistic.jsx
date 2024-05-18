@@ -7,14 +7,9 @@ export const ViewStatistic = () => {
     const arrayForSort = [...checkout]
 
     arrayForSort.sort(function(a, b) {
-        // Преобразуем в число для сравнения
         return Number.parseInt(b.unix) - Number.parseInt(a.unix);
       });
 
-      console.log(arrayForSort)
-
-    //   overflow: scroll;
-    // overflow-x: hidden;
     return <StatBox>
     <Title>Статистика</Title>
     <StatisticList>

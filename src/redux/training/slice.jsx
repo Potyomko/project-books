@@ -1,8 +1,6 @@
 import { createSlice } from "@reduxjs/toolkit";
-import { addNewChekout, updateFinishDate, updateStartDate, addBook, deleteBook, fetchBooksSelected, StartingTraining, fetchTrainingOBJ, markAsCompleted, getTreaningData, andOfTraining } from "./operation";
+import { addNewChekout, updateFinishDate, updateStartDate, checkWindowSize, deleteBook, fetchBooksSelected, StartingTraining, fetchTrainingOBJ, markAsCompleted, getTreaningData, andOfTraining } from "./operation";
 import { fetchBooks } from "./operation";
-import { useSelector } from "react-redux";
-
 
 const trainingSlice = createSlice({
   name: "training",
@@ -10,6 +8,7 @@ const trainingSlice = createSlice({
     id: null,
     startDate:  1714587761, 
     finishDate: 1717093361,
+    size: null,
     books: [
      
     ],
@@ -17,7 +16,7 @@ const trainingSlice = createSlice({
 
     ],
     checkout: [
-      // поки не продумала наповнення
+     
     ],
     prevChekout: [],
     isStarted: true,
@@ -31,7 +30,6 @@ const trainingSlice = createSlice({
       state.isLoading = true
       })
       .addCase(getTreaningData.fulfilled, (state, action)=> {
-        console.log(action.payload)
       state.id = action.payload.id;
       state.startDate = action.payload.startDate;
       state.finishDate = action.payload.finishDate;
@@ -111,6 +109,9 @@ const trainingSlice = createSlice({
         state.checkout = [];
         state.isStarted = false
         // prevChekout: checkout, checkout: [], isStarted: false
+      })
+      .addCase(checkWindowSize.fulfilled, (state, action)=> {
+        state.size = action.payload
       });
     }})
   

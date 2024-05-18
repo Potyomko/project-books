@@ -101,6 +101,13 @@ flex-wrap: wrap;
 justify-content: center;
 align-items: center;
 gap: 20px;
+
+@media only screen and (max-width: 770px) {
+    width: 100%;
+
+    align-items: flex-end;
+    
+ }
 `
 export const StatBtn = styled.button`
 background-color: #FF6B08;
@@ -112,5 +119,11 @@ font-style: normal;
 font-weight: 600;
 line-height: 38px; 
 border: 0px;
-width: 90%
+width: 90%;
+@media only screen and (max-width: 770px) {
+    width: 30%;
+ }
+ @media only screen and (max-width: 320px) {
+    width: 90%;
+ }
 `
