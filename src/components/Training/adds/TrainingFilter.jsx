@@ -5,7 +5,7 @@ import { selectBooks, selectSelectedBooks } from "../../../redux/training/select
 import { ToastContainer, toast } from "react-toastify";
 import logoDelete from '../icons/delete.svg';
 import bookTraining from '../icons/openBook.svg';
-import { AddButton, Img, InputFinishDate, InputStartDate, MdMenuBooks, OptionBook, SelectBook, SelectDiv, Table, Td, Th, Thead, Tr } from '../styles/Trainingstyle.styled';
+import { AddButton, Img, InputFinishDate, InputStartDate, MdMenuBooks, OptionBook, SelectBook, SelectDiv, Table, Td, Th, Thead, Tr, Tbody, Container, DateDiv } from '../styles/Trainingstyle.styled';
 import { MdMenuBook } from "react-icons/md";
 
 export const TrainingFilter = () => {
@@ -64,7 +64,7 @@ export const TrainingFilter = () => {
 
   return (
     <div>
-      <div>
+      <DateDiv>
         <InputStartDate
           type="date"
           placeholder="Початок"
@@ -75,7 +75,7 @@ export const TrainingFilter = () => {
           placeholder="Закінчення"
           onChange={handleFinishDateChange}
         />
-      </div>
+      </DateDiv>
       <SelectDiv>
         <SelectBook onChange={handleBookSelect} value={selectedBookId}>
           <option value="">Виберіть книгу</option>
@@ -87,7 +87,7 @@ export const TrainingFilter = () => {
         </SelectBook>
         <AddButton onClick={handleAddBook}>Додати</AddButton>
       </SelectDiv>
-      <div>
+      <Container>
         <Table>
           <Thead>
             <tr>
@@ -98,7 +98,8 @@ export const TrainingFilter = () => {
               <Th></Th>
             </tr>
           </Thead>
-          <tbody>
+          <Tbody>
+          <div height="20px"></div>
             {selectedBooks.map((book) => (
               <Tr key={book.id}> 
                 <td><Img src={bookTraining} alt=""/> {book.title}</td>
@@ -114,9 +115,9 @@ export const TrainingFilter = () => {
               <Tr>
                 <td colSpan="3"><Img src={bookTraining} alt=""/>...</td>
               </Tr>
-          </tbody>
+          </Tbody>
         </Table>
-      </div>
+      </Container>
       <ToastContainer
         position="top-right"
         autoClose={5000}
