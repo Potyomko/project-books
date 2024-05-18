@@ -1,7 +1,7 @@
 import moment from "moment";
 import { selectSelectedBooks, selectIsStarted, selectFinishDate, selectStartDate  } from "../../../redux/training/selectors";
 import {useSelector } from "react-redux";
-import { GoalList,GoalItem, GoalP, GoalText, GoalTextDiv, GoalTextP, GoalTextPDiv, MyGoalColor, MyGoalContainer } from "../../Statistics/style/myGoal.styled";
+import { GoalList,GoalItem, GoalP, GoalText, GoalTextDiv, GoalTextP, GoalTextPDiv, MyGoalColor, MyGoalContainer } from "../styles/Trainingstyle.styled";
 
    export const GoalTraining = () => {
     const isStarted = useSelector(selectIsStarted)

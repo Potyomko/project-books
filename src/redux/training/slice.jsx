@@ -19,7 +19,7 @@ const trainingSlice = createSlice({
      
     ],
     prevChekout: [],
-    isStarted: true,
+    isStarted: false,
     isLoading: false,
     userId: null,
     trainingBD: []

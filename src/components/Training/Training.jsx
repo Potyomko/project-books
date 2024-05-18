@@ -1,24 +1,37 @@
 import { Container } from "components/GlobalStyle"
 import { TrainingFilter } from "./adds/TrainingFilter"
 import { useDispatch, useSelector } from "react-redux";
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import { fetchBooks } from "../../redux/library/operation";
-import { StartingTraining, fetchBooksSelected, fetchTrainingOBJ } from "../../redux/training/operation";
+import { StartingTraining, fetchBooksSelected, checkWindowSize } from "../../redux/training/operation";
 // import { Chart } from "chart.js";
-import { BtnTrain, BigContainer, DivTrainingDivs, DivWhatToRead,MegaContainer, GoalContainer, MediumContainer, MyTrainingDiv, MyTrainingText, MainCountainer } from "./styles/Trainingstyle.styled";
+import { BtnTrain, BigContainer, DivTrainingDivs, DivWhatToRead,MegaContainer, GoalContainer, MediumContainer, MyTrainingDiv, MyTrainingText, MainCountainer, ModallAddBtn } from "./styles/Trainingstyle.styled";
 import { GoalTraining } from "./adds/myGoalTraining";
 import { Chart } from "../Statistics/components/chart";
-
+import { selectSize, selectSelectedBooks} from "../../redux/training/selectors";
+import { MobileBooksList } from "./adds/mobileBooksList";
+import { ModalAddBook } from "./adds/modalAddBook";
 
 export const Training = ()=>{
     const dispatch = useDispatch();
-    
+    const size = useSelector(selectSize)
+    const[ modalTreaker, setModalTreaker] = useState(false)
+    const selectedBooks = useSelector(selectSelectedBooks);
+    const delince = () => {
+        setModalTreaker(false)
+    }
   
     useEffect(() => {
+      const resizeing = () => {
+        if(window.innerWidth !== size)
+        dispatch(checkWindowSize(window.innerWidth))
+    }
       dispatch(fetchBooks());
     dispatch(fetchBooksSelected())
+    dispatch(checkWindowSize(window.innerWidth))
+    setInterval(resizeing, 1000)
 
-    }, [dispatch]);
+    }, [dispatch, size]);
     
     
     const handleStartingTraining = () => {
@@ -29,9 +42,13 @@ export const Training = ()=>{
     
     return (
  <MegaContainer>
-  
+  {modalTreaker && <ModalAddBook delince={delince}/>}
+  {!modalTreaker && <>
+       {size <= 770 && <GoalContainer>
+                <GoalTraining/>
+                </GoalContainer>}
         <MainCountainer>
-          <MyTrainingDiv>
+          { size > 320 && <> <MyTrainingDiv>
             <MyTrainingText>Моє Тренування</MyTrainingText>
           </MyTrainingDiv>
         {isLoadings ? (
@@ -40,20 +57,30 @@ export const Training = ()=>{
           ) : (
             <>
                <TrainingFilter />
-            </>
-          )}
+            </>      
+          )}</>}
+
+          {size <= 320 && <>
+            {isLoadings ? (
+            
+            <p>Loading...</p>
+          ) : (
+            <>
+               <MobileBooksList />
+            </>      
+          )}</>}
                
-                <BtnTrain onClick={handleStartingTraining}>Почати тренування</BtnTrain>
+               {selectedBooks.length > 0 && <BtnTrain onClick={handleStartingTraining}>Почати тренування</BtnTrain>}
         </MainCountainer>
           
-              <GoalContainer>
+               {size > 770 &&<GoalContainer>
                 <GoalTraining/>
-                </GoalContainer>
-       
-        
+                </GoalContainer>}
         <BigContainer>
           <Chart/>
         </BigContainer>
+
+        {size <= 320 && <ModallAddBtn onClick={()=>setModalTreaker(true)}>+</ModallAddBtn>} </>}
         
         </MegaContainer>
        

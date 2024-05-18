@@ -9,7 +9,7 @@ import { BooksList } from "./components/booksList";
 import { useDispatch, useSelector } from "react-redux";
 import { BigContainer, SmallContainer, TimersContainer, MegaContainer, MediumContainer, GoalContainer } from "./style/statistic.styled";
 import { useEffect, useState } from "react";
-import { getTreaningData, checkWindowSize, andOfTraining } from "../../redux/training/operation";
+import { getTreaningData, checkWindowSize} from "../../redux/training/operation";
 import { selectIsLoading, selectSize, selectTrainingId } from "../../redux/training/selectors";
 import { ExitBtn } from "./style/myGoal.styled";
 import { MobileBooksList } from "./components/mobileBooksList";
@@ -21,7 +21,6 @@ export const Statistics = ()=>{
     
     const isLoading = useSelector(selectIsLoading)
     const size = useSelector(selectSize)
-    const trId = useSelector(selectTrainingId);
     const dispatch = useDispatch()
     const[ modalTreaker, setModalTreaker] = useState(false)
     const delince = () => {
@@ -39,10 +38,6 @@ export const Statistics = ()=>{
         dispatch(checkWindowSize(window.innerWidth))
         setInterval(resizeing, 1000)
     }, [dispatch, size])
-
-    const handlerOnClick = () => {
-        dispatch(andOfTraining(trId))
-    }
 
     return(
         <MegaContainer>

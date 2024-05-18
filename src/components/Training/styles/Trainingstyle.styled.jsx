@@ -4,7 +4,16 @@ export const MyTrainingDiv = styled.div`
     width: 886px;
     height: 60px;
     background: #B1B5C2;
-    margin: 50px 41px 25px 39px;
+    margin: 0px 41px 25px 39px;
+    text-align: center;
+
+    @media only screen and (max-width: 770px) {
+        width: 100%
+      }
+
+      @media only screen and (max-width: 320px) {
+        margin: 0;
+      }
 `;
 export const MyTrainingText = styled.h1`
     width: 176px;
@@ -13,12 +22,18 @@ export const MyTrainingText = styled.h1`
     font-size: 20px;
     font-weight: 600;
     line-height: 38px;
-    text-align: justify;
+    text-align: center;
     color: #FFFFFF;
     display: flex;
     justify-content: center;
-    padding: 11px 355px 0px 355px;
+    padding: 0px 355px 0px 355px;
     white-space: nowrap;
+    @media only screen and (max-width: 770px) {
+        padding: 0 251px;
+      }
+      @media only screen and (max-width: 320px) {
+        padding: 0 47px;
+      }
 `;
 export const InputStartDate = styled.input`
     width: 250px;
@@ -32,7 +47,26 @@ export const InputStartDate = styled.input`
     padding: 0px 10px 0px 10px;
     margin: 25px 46px 25px 170px;
     text-color: #A6ABB9;
+    @media only screen and (max-width: 770px) {
+        margin: 0;
+      }
 `;
+
+export const DateDiv = styled.div`
+@media only screen and (max-width: 770px) {
+    display: flex;
+justify-content: center;
+align-items: center;
+gap: 45px;
+  }
+
+  @media only screen and (max-width: 320px) {
+    flex-direction: column;
+justify-content: center;
+align-items: center;
+gap: 20px;
+  }
+`
 export const InputFinishDate = styled.input`
     width: 250px;
     height: 42px;
@@ -57,6 +91,14 @@ export const SelectBook = styled.select`
     text-align: left;
     padding: 10px 10px 10px 10px;
     margin: 25px 46px 25px 39px;
+
+    @media only screen and (max-width: 770px) {
+        width: 482px;
+        margin: 0;
+      }
+       @media only screen and (max-width: 320px) {
+        width: 100%;
+      }
 `;
 export const AddButton = styled.button`
 display: flex;
@@ -76,10 +118,44 @@ display: flex;
     justify-content: center;
     align-items: center;
 `;
+
+export const ModallAddBtn = styled.button`
+position: absolute;
+bottom: -2%;
+left: 43%;
+display: flex;
+    width: 52px;
+    height: 52px;
+    background: #FF6B08;
+    border: none;
+    border-radius: 50%;
+    font-family: Montserrat;
+    font-size: 14px;
+    font-weight: 500;
+    line-height: 38px;
+    text-align: center;
+    color: #FFF;
+    justify-content: center;
+    align-items: center;
+`;
 export const SelectDiv = styled.div`
     display: flex;
     align-items: center;
     width: 886px;
+    
+    @media only screen and (max-width: 770px) {
+        width: 100%;
+        justify-content: center;
+        gap: 25px;
+        padding-top: 25px;
+        padding-bottom: 40px;
+      }
+      @media only screen and (max-width: 320px) {
+        flex-direction: column;
+        gap: 35px;
+        padding-top: 0px;
+        padding-bottom: 0;
+      }
 `;
 export const OptionBook = styled.option`
     font-family: Montserrat;
@@ -89,6 +165,16 @@ export const OptionBook = styled.option`
     text-align: left;
     padding: 10px 0px 10px 10px;
 `;
+
+export const Container = styled.div`
+display: flex;
+align-items: center;
+justify-content: center;
+max-height: 250px;
+overflow: auto;
+@media only screen and (max-width: 770px) {
+   width: 100%
+ }` 
 export const Table = styled.table`
     border: 1px solid #E0E5EB;
     border-left: none;
@@ -104,21 +190,42 @@ export const Table = styled.table`
     text-align: left;
     padding: 0px 10px 10px 10px;
     margin: 25px 0px 40px 5px;
+
+    @media only screen and (max-width: 770px) {
+        width: 100%;
+        padding: 0px;
+        margin: 0px;
+      }
 `;
 export const Thead = styled.thead`
-    color: #898F9F;
+position: sticky;
+top: 0;
+color: #898F9F;
+background-color: #F6F7FB;
+z-index: 1;
 `;
+
+export const Tbody = styled.tbody`
+// display: block;
+width: 100%;
+max-height: 200px;
+overflow-y: auto;
+overflow-x: hidden;
+`
 export const Tr = styled.tr`
-    font-family: Montserrat;
-    font-size: 14px;
-    font-weight: 500;
-    line-height: 38px;
-    text-align: left;
-    color: #242A37;
+position: sticky;
+top: 0;
+font-family: Montserrat;
+font-size: 14px;
+font-weight: 500;
+line-height: 38px;
+text-align: left;
+color: #242A37;
 `;
 export const Th = styled.th`
-    border-bottom: 1px solid #E0E5EB;
-`;
+position: sticky;
+top: 0;
+border-bottom: 1px solid #E0E5EB;`;
 export const Img = styled.img`
     padding-right: 10px;
     width: 22px;
@@ -138,7 +245,6 @@ export const BtnTrain = styled.button`
     font-weight: 600;
     line-height: 38px;
     text-align: center;
-    margin: 0px 698px 40px 382px;
     color: white;
     border: 1px solid #FF6B08;
 `;
@@ -157,9 +263,12 @@ height: 100%;
 display: flex;
 background-color: #FFF;
 box-shadow: 0px 2px 3px 0px rgba(9, 30, 63, 0.25);
-align-items: center;
+align-items: start;
 flex-direction: column;
-
+@media only screen and (max-width: 770px) {
+    width: 100%;
+    height: auto;
+ }
 
 `
 
@@ -171,15 +280,23 @@ align-items: center;
 justify-content: center;`
 
 export const MegaContainer = styled.div`
+position: relative;
 max-width: 100%;
 max-height: 100%;
 display: flex;
 flex-wrap: wrap;
 gap: 40px;
-align-items: center;
+align-items: start;
 justify-content: center;
 margin: 0px 40px;
-margin-bottom: 40px;`
+margin-bottom: 40px;
+margin-top: 50px;
+
+@media only screen and (max-width: 320px) {
+    margin: 0px 25px;
+margin-bottom: 40px;
+margin-top: 30px;
+ }`
 
 export const MediumContainer = styled.div`
 width: 70%;
@@ -200,54 +317,125 @@ flex-direction: column;
 align-items: center;
     justify-content: center;
     width: 70%;
+    @media only screen and (max-width: 770px) {
+   width: 100%
+ }
 `
 
 //myGoal
 
+export const ContainerMyGoal = styled.div`
+    width: 275px;
+    height: 318px;
+    top: 110px;
+    left: 966px;
+`;
+
 export const MyGoalContainer = styled.div`
     display: flex;
     flex-direction: column;
-    width: 275px;
-    height: 318px;
+    align-items: center;
+    width: 100%;
+    justify-content: center;
+
+    @media only screen and (max-width: 770px) {
+        flex-direction: row;
+        padding: 23px 0px;
+        gap: 70px;
+        
+     }
+
+     @media only screen and (max-width: 320px) {
+        flex-direction: column;
+        padding: 0;
+        gap: 0;
+      }
+    
 `;
 export const GoalList = styled.ul`
     list-style: none;
     display: flex;
-    flex-direction: row;
+    gap: 20px;
     align-items: center;
+justify-content: center;
+margin: 55px 0px;
+padding: 0px;
+@media only screen and (max-width: 770px) {
+    flex-direction: row;
+    margin: 0px;
+    gap: 35px;
+    align-items: flex-end;
+ }
+
+ @media only screen and (max-width: 320px) {
+    width: 100%;
+    margin: 55px 0px;
+    align-items: center;
+    gap: 20px;
+ }
+
+`;
+
+export const GoalItem = styled.li`
+    
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+justify-content: center;
+
 `;
 export const GoalTextDiv = styled.div`
-    width: 275px;
-    height: 60px;
     background: #B1B5C2;
-    margin: 50px 39px 0px 41px;
+    width: 100%;
+    @media only screen and (max-width: 770px) {
+        width: 40%;
+        padding: 0px;
+     }
+    
+     @media only screen and (max-width: 320px) {
+        width: 100%;
+        padding: 0;
+     }
 `;
 export const GoalText = styled.h3`
     font-family: Montserrat;
     font-size: 20px;
     font-weight: 600;
     line-height: 38px;
-    text-align: justify;
+    text-align: center;
     color: #FFFFFF;
-    display: flex;
-    justify-content: center;
     white-space: nowrap;
-    margin: 11px 27px 11px 28px;
+    width: 100%;
+
 `;
 export const GoalP = styled.p`
-    font-family: Open Sans;
-    font-size: 45px;
-    font-weight: 700;
-    line-height: 38px;
-    text-align: center;
-    color: #091E3F;
-    padding: 31px;
+color: #091E3F;
+text-align: center;
+font-family: "Open Sans";
+font-size: 36px;
+font-style: normal;
+font-weight: 700;
+line-height: 38px;
+
+
 `;
 export const GoalTextPDiv = styled.div`
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: #F5F7FA;
+box-shadow: 4px 4px 8px 0px rgba(36, 42, 55, 0.15);
+width: 100px;
+height: 100px;
+@media only screen and (max-width: 770px) {
     width: 100px;
-    height: 100px;
-    background: #F5F7FA;
-    margin: 55px 20px 14px 28px;
+height: 60px;
+ }
+
+ @media only screen and (max-width: 320px) {
+    width: 100px;
+height: 100px;
+ }
 `;
 export const GoalTextP = styled.p`
     font-family: Montserrat;
@@ -256,8 +444,106 @@ export const GoalTextP = styled.p`
     line-height: 17.07px;
     text-align: center;
     color: #898F9F;
-    padding: 14px 37px 55px 45px;
+
+    @media only screen and (max-width: 770px) {
+    margin-bottom: 0px
+ }
+
+   @media only screen and (max-width: 320px) {
+    font-size: 11px;
+    line-height: normal;
+    max-width: 63px;
+ }
+
+`;
+
+export const SpshGoalP = styled.p`
+text-align: center;
+font-family: "Open Sans";
+font-size: 36px;
+font-style: normal;
+font-weight: 700;
+line-height: 38px; 
+    color: #FF6B08;
 `;
 export const MyGoalColor = styled.div`
     background: white;
+    align-items: center;
 `;
+
+export const ExitBtn = styled.button`
+background-color: #B1B5C2;
+color: #FFF;
+text-align: center;
+font-family: Montserrat;
+font-size: 16px;
+font-style: normal;
+font-weight: 600;
+border: 0px;
+width: 230px;
+height: auto;
+text-decoration: none;
+margin-bottom: 20px;
+padding-top: 10px;
+padding-bottom: 10px;
+
+@media only screen and (max-width: 770px) {
+    padding-bottom: 10px;
+ }`
+
+//  mobile books list 
+
+export const BooksList = styled.ul`
+list-style: none;
+display: flex;
+flex-direction: column;
+padding: 0px;
+margin: 0px;
+width: 100%;
+align-items: center;
+color: #242A37;
+font-family: Montserrat;
+font-size: 12px;
+font-style: normal;
+font-weight: 500;
+line-height: normal;`
+
+export const TitleBox = styled.div`
+display: flex;
+align-items: center;
+gap: 20px;
+`
+
+export const BooksItem = styled.li`
+display: flex;
+flex-direction: column;
+width: 100%;
+gap: 5px;
+border-top: 1px solid #E0E5EB;
+border-bottom: 1px solid #E0E5EB;
+padding-top: 25px;
+padding-bottom: 25px;
+padding-left: 5px;`
+
+export const SubList = styled.ul`
+list-style: none;
+display: flex;
+flex-direction: column;
+padding: 0px;
+margin: 0px;
+margin-left: 35px;`
+
+export const SubItem = styled.li`
+display: flex;
+align-items: center;
+`
+
+export const SubTitle = styled.p`
+color: #898F9F;
+font-family: Montserrat;
+font-size: 12px;
+font-style: normal;
+font-weight: 500;
+line-height: 38px; 
+width: 70px;
+text-align: start;`
