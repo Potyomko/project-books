@@ -2,28 +2,30 @@ import moment from "moment";
 import { selectSelectedBooks, selectIsStarted, selectFinishDate, selectStartDate  } from "../../../redux/training/selectors";
 import {useSelector, useDispatch } from "react-redux";
 import { ContainerMyGoal, ExitBtn } from "../style/myGoal.styled";
-import { GoalList,GoalItem, GoalP, GoalText, GoalTextDiv, GoalTextP, GoalTextPDiv, MyGoalColor, MyGoalContainer } from "../style/myGoal.styled";
+import { GoalList,GoalItem, GoalP, GoalText, GoalTextDiv, GoalTextP, GoalTextPDiv, SpshGoalP, MyGoalContainer } from "../style/myGoal.styled";
 import { andOfTraining } from "../../../redux/training/operation"
-import { selectTrainingId } from "../../../redux/training/selectors"
+import { selectTrainingId, selectSize } from "../../../redux/training/selectors"
+import { useState } from 'react';
+import { AreYouSureModal } from "./areYouSureModal";
 
    export const MyGoal = () => {
     const isStarted = useSelector(selectIsStarted)
     const selectedBooks = useSelector(selectSelectedBooks);
     const timeOfTheFinish = useSelector(selectFinishDate)
     const timeOfTheStart = useSelector(selectStartDate)
+    const size = useSelector(selectSize)
+    const[ modalTreaker, setModalTreaker] = useState(false)
 
-    const dispatch = useDispatch()
-    const trId = useSelector(selectTrainingId);
-
-    const handlerOnClick = () => {
-        dispatch(andOfTraining(trId))
-    }
 
     let daysLeft = 0
 
     const booksLeft = selectedBooks.filter((book)=> {
         return book.status === "reading"
     })
+
+    const delince = () => {
+        setModalTreaker(false)
+    }
 
     if (timeOfTheFinish && timeOfTheStart && isStarted){
         const now = new Date();
@@ -54,13 +56,14 @@ import { selectTrainingId } from "../../../redux/training/selectors"
             </GoalItem>
             <GoalItem>
             <GoalTextPDiv>
-                <GoalP>{booksLeft.length}</GoalP>
+                <SpshGoalP>{booksLeft.length}</SpshGoalP>
                 </GoalTextPDiv>
                 <GoalTextP>Залишилось книжок</GoalTextP>
             </GoalItem>
                </GoalList>
-
-               <ExitBtn  to='/training' onClick={handlerOnClick}>Завчасно закінчити тренування</ExitBtn>
+ 
+            {size > 770 && <ExitBtn onClick={()=>setModalTreaker(true) }>Завчасно закінчити тренування</ExitBtn>}
+            {modalTreaker && <AreYouSureModal delince={delince}/>}
               
     </MyGoalContainer>
 }

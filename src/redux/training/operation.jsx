@@ -181,11 +181,23 @@ export const getTreaningData = createAsyncThunk(
       const response = await axios.get("/training");
       const current = localStorage.getItem('id');
       let neededData = ''
-      response.data.forEach(train => { console.log(train);if(train.userId ===  current){
+      response.data.forEach(train => {if(train.userId ===  current){
         neededData = train
       }});
-      console.log(response.data)
+      
       return neededData
+
+    } catch (error) {
+      return error.response.data;
+    }
+  }
+);
+
+export const checkWindowSize = createAsyncThunk(
+  "training/checkWindowSize",
+  async (size) => {
+    try { 
+      return size
 
     } catch (error) {
       return error.response.data;

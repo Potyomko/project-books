@@ -16,7 +16,7 @@ export const ModalWindow = styled.div`
 
     export const ModalBox = styled.div`
     width: 390px;
-    height: 290px;
+    height: 206px;
     background: #FFF;
 box-shadow: 10px 10px 20px 0px rgba(9, 30, 63, 0.20);
 display: flex;
@@ -28,23 +28,49 @@ text-align: center;
 
 @media only screen and (max-width: 320px) {
     width: 100%;
-    height: 296px;
- }`
+    height: 223px;
+ `
 
-export const Btn = styled(NavLink)`
+export const YesBtn = styled(NavLink)`
 background-color: #FF6B08;
 color: #FFF;
 text-align: center;
 font-family: Montserrat;
-font-size: 16px;
+font-size: 14px;
 font-style: normal;
-font-weight: 600;
-line-height: 38px; 
+font-weight: 500;
+line-height: 38px;
 border: 0px;
-width: 230px;
+width: 130px;
 height: 40px;
 text-decoration: none;
 @media only screen and (max-width: 320px) {
     width: 97px;
- }
-`
+ `
+
+export const NoBtn = styled.button`
+background-color: #FFF;
+color: #242A37;
+text-align: center;
+font-family: Montserrat;
+font-size: 14px;
+font-style: normal;
+font-weight: 500;
+line-height: 38px;
+border: 1px solid #242A37;
+width: 130px;
+height: 40px;
+text-decoration: none;
+@media only screen and (max-width: 320px) {
+    width: 97px;
+ }`
+
+export const BtnDiv = styled.div`
+display: flex;
+align-items: center;
+justify-content: center;
+gap: 30px;
+
+@media only screen and (max-width: 320px) {
+    gap: 15px;
+ }`

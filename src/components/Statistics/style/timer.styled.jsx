@@ -14,7 +14,12 @@ font-family: Montserrat;
 font-size: 14px;
 font-style: normal;
 font-weight: 500;
-line-height: 38px;`
+line-height: 38px;
+@media only screen and (max-width: 320px) {
+    text-align: center;
+  }
+
+`
 
 export const TimerBox = styled.div`
 display: flex;
@@ -23,7 +28,10 @@ justify-content: center;
 background: #FFF;
 box-shadow: 4px 4px 8px 0px rgba(36, 42, 55, 0.15);
 width: 290px;
-`
+
+@media only screen and (max-width: 320px) {
+    width: 100%
+  }`
 
 export const Numbers = styled.span`
 color: #091E3F;

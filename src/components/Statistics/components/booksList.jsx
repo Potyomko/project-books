@@ -23,6 +23,7 @@ export const BooksList = () => {
             </tr>
           </Thead>
       <Tbody>
+        <div></div>
         {selectedBooks.map((book) => (
           <Tr key={book.id}> 
             <td><input type="checkbox" name={book.title} id={book.id} checked={book.status === 'completed'} onChange={()=>handleChekboxChange(book.id)}/> {book.title}</td>
