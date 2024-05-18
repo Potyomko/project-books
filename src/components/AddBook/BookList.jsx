@@ -1,37 +1,20 @@
-import React, { useState } from 'react';
+import React from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import logoDelete from '../Training/icons/delete.svg';
 import { deleteBook } from '../../redux/library/operation';
-import { BookFirst, BookFirst2, ContainerFirst, ContainerH2, ContainerH2Second, ContainerH3, ContainerTextSecond, ContainerTitle, ListText, VectorBook, ContainerMapBook,  Tr, Img, Th, Thead, TableBook, PlaningReadingItem } from './Styled/StyledList.styled';
+import { BookFirst, BookFirst2, ContainerFirst, ContainerH2, ContainerH2Second, ContainerH3, ContainerTextSecond, ContainerTitle, ListText, VectorBook, ContainerMapBook, TDBooksIMG, TDBooksTextYears, H3BooksTextYears, H3BooksTextPages, TDBooksText } from './Styled/StyledList.styled';
 import BookListIcon from '../Header/Icon/icon library.svg';
 import Vector from './Icons/Vector (4).svg';
 import Flag from './Icons/flag.svg';
 
-import Flat from './Icons/Flat.svg'
-import bookTraining from '../Training/icons/openBook.svg';
-import { Table } from 'components/Statistics/style/booksList.styled';
-import { Modal } from './modalbooks';
 export const BookList = () => {
   const books = useSelector(state => state.books.booksBD);
   const dispatch = useDispatch();
-  const[ modalTreaker, setModalTreaker] = useState(false)
+
   const handleDeleteBook = bookId => {
     console.log("Deleting book with ID:", bookId);
     dispatch(deleteBook(bookId));
   };
-const HandleOnOpenResume = ()=>{
-setModalTreaker(true)
-
-}
-
-const HandleCloseESCResume = ()=>{
-  setModalTreaker(false)
-  
-  }
-  const HandleCloseSaveResume = ()=>{
-    setModalTreaker(false)
-    
-    }
 
   const planningBooks = [];
   const readingBooks = [];
@@ -67,92 +50,45 @@ const HandleCloseESCResume = ()=>{
   }
 
   return (
-    
     <div>
-           {modalTreaker && <Modal/>}
-     <TableBook>
+      <ContainerH3>
+       
+         <h3>Назва</h3>
+       <h3>Автор</h3>
+     <H3BooksTextYears>Рік</H3BooksTextYears>
+        <H3BooksTextPages>Сторінки</H3BooksTextPages>
+        
+
+       
       
-          <Thead>
-          <PlaningReadingItem>Маю намір прочитати</PlaningReadingItem>
-            <tr>
-              <Th>Назва книги</Th>
-              <Th>Автор</Th>
-              <Th>Рік</Th>
-              <Th>Стор.</Th>
-              <Th></Th>
-            </tr>
-          </Thead>
-          <tbody>
 
-            {planningBooks.map((book) => (
-
-              <Tr key={book.id}> 
-                <td><Img src={bookTraining} alt=""/> {book.title}</td>
-                <td>{book.author}</td>
-                <td>{book.year}</td>
-                <td>{book.pages}</td>
-                <td> 
-                  <img onClick={() => handleDeleteBook(book.id)} src={logoDelete} alt="" />
-                </td>
-              </Tr>
-              
-            ))}
-          <div></div>
-          </tbody>
-        </TableBook>
+      </ContainerH3>
+      {planningBooks.map(book => (
+        <ContainerMapBook key={book.id}>
+          <p>{book.title}</p>
+          <p>{book.author}</p>
+          <TDBooksTextYears>{book.year}</TDBooksTextYears>
+          < TDBooksText>{book.pages}</ TDBooksText>
+         <TDBooksIMG onClick={() => handleDeleteBook(book.id)} src={logoDelete} alt="Видалити" />
+        </ContainerMapBook>
+      ))}
       {readingBooks.map(book => (
-      <div> 
-        <TableBook>
-        <Thead>
-      <PlaningReadingItem>Читаю</PlaningReadingItem>
-        <tr>
-          <Th>Назва книги</Th>
-          <Th>Автор</Th>
-          <Th>Рік</Th>
-          <Th>Стор.</Th>
-          <Th></Th>
-        </tr>
-      </Thead>
-    <Tr key={book.id}> 
-    <td><Img src={Flat} alt=""/> {book.title}</td>
-    <td>{book.author}</td>
-    <td>{book.year}</td>
-    <td>{book.pages}</td>
-    <td> 
-      <img onClick={() => handleDeleteBook(book.id)} src={logoDelete} alt="" />
-    </td>
-  </Tr>   <div></div>
-        </TableBook>
-      </div>
-         
+        <ContainerMapBook key={book.id}>
+          <p>{book.title}</p>
+          <p>{book.author}</p>
+          <p>{book.year}</p>
+          <p>{book.pages}</p>
+          <p><img onClick={() => handleDeleteBook(book.id)} src={logoDelete} alt="Видалити" /></p>
+        </ContainerMapBook>
       ))}
       {completedBooks.map(book => (
-           <div> 
-           <TableBook>
-           <Thead>
-         <PlaningReadingItem>Прочитано</PlaningReadingItem>
-           <tr>
-             <Th>Назва книги</Th>
-             <Th>Автор</Th>
-             <Th>Рік</Th>
-             <Th>Стор.</Th>
-             <Th></Th>
-           </tr>
-         </Thead>
-       <Tr key={book.id}> 
-       <td><Img src={bookTraining} alt=""/> {book.title}</td>
-       <td>{book.author}</td>
-       <td>{book.year}</td>
-       <td>{book.pages}</td>
-
-       <button onClick={HandleOnOpenResume}>Резюме</button>
-       <td> 
-         <img onClick={() => handleDeleteBook(book.id)} src={logoDelete} alt="" />
-
-       </td>
-     </Tr>   <div></div>
-           </TableBook>
-         </div>
+        <ContainerMapBook key={book.id}>
+          <p>{book.title}</p>
+          <p>{book.author}</p>
+          <p>{book.year}</p>
+          <p>{book.pages}</p>
+          <p><img onClick={() => handleDeleteBook(book.id)} src={logoDelete} alt="Видалити" /></p>
+        </ContainerMapBook>
       ))}
     </div>
   );
