@@ -1,38 +1,88 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import logoDelete from '../Training/icons/delete.svg';
-import { deleteBook } from '../../redux/library/operation';
-import { BookFirst, BookFirst2, ContainerFirst, ContainerH2, ContainerH2Second, ContainerH3, ContainerTextSecond, ContainerTitle, ListText, VectorBook, ContainerMapBook,  Tr, Img, Th, Thead, TableBook, PlaningReadingItem } from './Styled/StyledList.styled';
+import { addResum, deleteBook } from '../../redux/library/operation';
+import {
+  BookFirst, BookFirst2, ContainerFirst, ContainerH2,
+  ContainerH2Second, ContainerH3, ContainerTextSecond,
+  ContainerTitle, ListText, VectorBook, ContainerMapBook,
+  Tr, Img, Th, Thead, TableBook, PlaningReadingItem, ListStar,
+  ResumeBTN
+} from './Styled/StyledList.styled';
 import BookListIcon from '../Header/Icon/icon library.svg';
 import Vector from './Icons/Vector (4).svg';
 import Flag from './Icons/flag.svg';
-
-import Flat from './Icons/Flat.svg'
+import Flat from './Icons/Flat.svg';
 import bookTraining from '../Training/icons/openBook.svg';
 import { Table } from 'components/Statistics/style/booksList.styled';
 import { Modal } from './modalbooks';
+import { ModalResum } from './modalResum';
+
 export const BookList = () => {
   const books = useSelector(state => state.books.booksBD);
   const dispatch = useDispatch();
-  const[ modalTreaker, setModalTreaker] = useState(false)
+  const [modalTreaker, setModalTreaker] = useState(false);
+  const [currentBookId, setCurrentBookId] = useState(null);
+  const [resumes, setResumes] = useState({});
+  const [modalTreakerResums, setModalTreakerResums] = useState(false);
+  const [bookRatings, setBookRatings] = useState({});
+
+  useEffect(() => {
+    const calculateRatings = () => {
+      const ratings = {};
+      books.forEach(book => {
+        if (book.resum && book.resum.rating) {
+          ratings[book.id] = book.resum.rating;
+        }
+      });
+      setBookRatings(ratings);
+    };
+
+    calculateRatings();
+  }, [books]);
+
   const handleDeleteBook = bookId => {
     console.log("Deleting book with ID:", bookId);
     dispatch(deleteBook(bookId));
   };
-const HandleOnOpenResume = ()=>{
-setModalTreaker(true)
 
-}
+  const handleOpenResume = (bookId) => {
+    setCurrentBookId(bookId);
+    setModalTreaker(true);
+  };
 
-const HandleCloseESCResume = ()=>{
-  setModalTreaker(false)
+  const handleCloseESCResume = () => {
+    setModalTreaker(false);
+    setCurrentBookId(null);
+  };
+
+  const handleOpenResumeAdd = (bookId) => {
+    setCurrentBookId(bookId);
+    setModalTreakerResums(true);
+  };
+
+  const handleCloseResume = () => {
+    setModalTreakerResums(false);
+    setCurrentBookId(null);
+  };
+
+  const handleCloseSaveResume = (rating, resume) => {
+    console.log("Saving with rating:", rating, "and resume:", resume);
+    dispatch(addResum({
+      bookId: currentBookId,
+      rating,
+      resume
+    }));
+    setResumes(prev => ({ ...prev, [currentBookId]: resume }));
+    setModalTreaker(false);
+    setCurrentBookId(null);
   
-  }
-  const HandleCloseSaveResume = ()=>{
-    setModalTreaker(false)
-    
-    }
-
+    // Оновлюємо рейтинг для книги, якщо він був доданий
+    setBookRatings(prevRatings => ({
+      ...prevRatings,
+      [currentBookId]: rating
+    }));
+  };
   const planningBooks = [];
   const readingBooks = [];
   const completedBooks = [];
@@ -46,6 +96,7 @@ const HandleCloseESCResume = ()=>{
       completedBooks.push(book);
     }
   });
+  console.log(books);
 
   if (!books || books.length === 0) {
     return (
@@ -66,14 +117,16 @@ const HandleCloseESCResume = ()=>{
     );
   }
 
+
   return (
-    
     <div>
-           {modalTreaker && <Modal/>}
-     <TableBook>
+      {modalTreaker && <Modal bookId={currentBookId} onClose={handleCloseESCResume} onSave={handleCloseSaveResume} />}
+      {modalTreakerResums && <ModalResum bookId={currentBookId} onClose={handleCloseResume} />}
       
+      {planningBooks.length > 0 && (
+        <TableBook>
           <Thead>
-          <PlaningReadingItem>Маю намір прочитати</PlaningReadingItem>
+            <PlaningReadingItem>Маю намір прочитати</PlaningReadingItem>
             <tr>
               <Th>Назва книги</Th>
               <Th>Автор</Th>
@@ -83,77 +136,94 @@ const HandleCloseESCResume = ()=>{
             </tr>
           </Thead>
           <tbody>
-
             {planningBooks.map((book) => (
-
-              <Tr key={book.id}> 
-                <td><Img src={bookTraining} alt=""/> {book.title}</td>
+              <Tr key={book.id}>
+                <td><Img src={bookTraining} alt="" /> {book.title}</td>
                 <td>{book.author}</td>
                 <td>{book.year}</td>
                 <td>{book.pages}</td>
-                <td> 
+                <td>
                   <img onClick={() => handleDeleteBook(book.id)} src={logoDelete} alt="" />
                 </td>
               </Tr>
-              
             ))}
-          <div></div>
           </tbody>
         </TableBook>
-      {readingBooks.map(book => (
-      <div> 
+      )}
+
+      {readingBooks.length > 0 && (
         <TableBook>
-        <Thead>
-      <PlaningReadingItem>Читаю</PlaningReadingItem>
-        <tr>
-          <Th>Назва книги</Th>
-          <Th>Автор</Th>
-          <Th>Рік</Th>
-          <Th>Стор.</Th>
-          <Th></Th>
-        </tr>
-      </Thead>
-    <Tr key={book.id}> 
-    <td><Img src={Flat} alt=""/> {book.title}</td>
-    <td>{book.author}</td>
-    <td>{book.year}</td>
-    <td>{book.pages}</td>
-    <td> 
-      <img onClick={() => handleDeleteBook(book.id)} src={logoDelete} alt="" />
-    </td>
-  </Tr>   <div></div>
+          <Thead>
+            <PlaningReadingItem>Читаю</PlaningReadingItem>
+            <tr>
+              <Th>Назва книги</Th>
+              <Th>Автор</Th>
+              <Th>Рік</Th>
+              <Th>Стор.</Th>
+              <Th></Th>
+            </tr>
+          </Thead>
+          <tbody>
+            {readingBooks.map((book) => (
+              <Tr key={book.id}>
+                <td><Img src={Flat} alt="" /> {book.title}</td>
+                <td>{book.author}</td>
+                <td>{book.year}</td>
+                <td>{book.pages}</td>
+                <td>
+                  <img onClick={() => handleDeleteBook(book.id)} src={logoDelete} alt="" />
+                </td>
+              </Tr>
+            ))}
+          </tbody>
         </TableBook>
-      </div>
-         
-      ))}
-      {completedBooks.map(book => (
-           <div> 
-           <TableBook>
-           <Thead>
-         <PlaningReadingItem>Прочитано</PlaningReadingItem>
-           <tr>
-             <Th>Назва книги</Th>
-             <Th>Автор</Th>
-             <Th>Рік</Th>
-             <Th>Стор.</Th>
-             <Th></Th>
-           </tr>
-         </Thead>
-       <Tr key={book.id}> 
-       <td><Img src={bookTraining} alt=""/> {book.title}</td>
-       <td>{book.author}</td>
-       <td>{book.year}</td>
-       <td>{book.pages}</td>
+      )}
 
-       <button onClick={HandleOnOpenResume}>Резюме</button>
-       <td> 
-         <img onClick={() => handleDeleteBook(book.id)} src={logoDelete} alt="" />
-
-       </td>
-     </Tr>   <div></div>
-           </TableBook>
-         </div>
-      ))}
+      {completedBooks.length > 0 && (
+        <TableBook>
+          <Thead>
+            <PlaningReadingItem>Прочитано</PlaningReadingItem>
+            <tr>
+              <Th>Назва книги</Th>
+              <Th>Автор</Th>
+              <Th>Рік</Th>
+              <Th>Стор.</Th>
+              <Th>Рейтинг книги</Th>
+            </tr>
+          </Thead>
+          <tbody>
+            {completedBooks.map((book) => (
+              <Tr key={book.id}>
+                <td><Img src={bookTraining} alt="" /> {book.title}</td>
+                <td>{book.author}</td>
+                <td>{book.year}</td>
+                <td>{book.pages}</td>
+                <td>
+                <ListStar>
+  {Array(5).fill(false).map((_, index) => (
+    <li key={index}>
+      <svg width="17" height="16" viewBox="0 0 17 16" fill={index < bookRatings[book.id] ? '#FF6B08' : 'none'} xmlns="http://www.w3.org/2000/svg">
+        <path d="M8.5 1.61804L9.93284 6.02786L10.0451 6.37336H10.4084L15.0451 6.37336L11.2939 9.09878L11 9.31231L11.1123 9.6578L12.5451 14.0676L8.79389 11.3422L8.5 11.1287L8.20611 11.3422L4.45488 14.0676L5.88772 9.6578L5.99998 9.31231L5.70609 9.09878L1.95486 6.37336L6.59163 6.37336H6.9549L7.06716 6.02786L8.5 1.61804Z" stroke='#FF6B08'  />
+      </svg>
+    </li>
+  ))}
+</ListStar>
+                </td>
+                <td>
+                  {resumes[book.id] || book.resum ? (
+                    <ResumeBTN onClick={() => handleOpenResumeAdd(book.id)}>See Resume</ResumeBTN>
+                  ) : (
+                    <ResumeBTN onClick={() => handleOpenResume(book.id)}>Add Resume</ResumeBTN>
+                  )}
+                </td>
+                <td>
+                  <img onClick={() => handleDeleteBook(book.id)} src={logoDelete} alt="" />
+                </td>
+              </Tr>
+            ))}
+          </tbody>
+        </TableBook>
+      )}
     </div>
   );
 };

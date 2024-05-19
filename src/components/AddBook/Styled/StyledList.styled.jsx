@@ -3,7 +3,7 @@ import styled from "styled-components";
 export const ContainerFirst = styled.div`
   width: 570px;
   height: 270px;
-  background-color: #F6F7FB;
+  background-color: #ffffff;
   box-shadow: 0px 2px 3px 0px #091E3F1A;
 
   flex-direction: column;
@@ -268,6 +268,7 @@ height: 62px;
 box-shadow: 0px 2px 3px 0px #091E3F1A;
 
 
+
 `;
 export const Th = styled.th`
 
@@ -313,6 +314,42 @@ font-weight: 600;
 line-height: 38px;
 text-align: left;
 color: #242A37;
+
+
+`
+
+
+
+
+export const ListStar = styled.ul`
+list-style: none;
+display: flex;
+gap: 5px;
+
+
+`
+
+
+export const ItemStar = styled.li`
+  
+
+
+`
+
+
+export const ResumeBTN = styled.button`
+
+width: 130px;
+height: 40px;
+background: #6D7A8D;
+box-shadow: 0px 2px 4px 0px #00000040;
+font-family: "Montserrat";
+font-size: 14px;
+font-weight: 500;
+line-height: 38px;
+text-align: left;
+color: #FFFFFF;
+text-align: center;
 
 
 `
