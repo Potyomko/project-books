@@ -53,3 +53,30 @@ export const addBook = createAsyncThunk('book/addBook', async (bookData, thunkAp
       }
   });
 
+
+  export const addResum = createAsyncThunk('book/addResum', async ({ bookId, rating, resume }, thunkApi) => {
+    try {
+      // Отримуємо ідентифікатор користувача з локального сховища
+      const userId = localStorage.getItem('id');
+      
+      // Отримуємо існуючі книги користувача
+      const { data: userData } = await axios.get(`/users/${userId}`);
+      
+      // Знаходимо книгу за ID
+      const bookIndex = userData.Books.findIndex(book => book.id === bookId);
+      if (bookIndex === -1) {
+        throw new Error('Book not found');
+      }
+      
+      // Оновлюємо книгу з новим об'єктом resum
+      userData.Books[bookIndex].resum = { rating, resume };
+      
+      // Оновлюємо дані користувача у базі даних з новим масивом книг
+      await axios.put(`/users/${userId}`, userData);
+      
+      // Повертаємо оновлену книгу
+      return userData.Books[bookIndex];
+    } catch (error) {
+      return thunkApi.rejectWithValue(error.message);
+    }
+  });
