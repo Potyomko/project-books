@@ -2,13 +2,13 @@ import React, { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { NavLink } from "react-router-dom";
 import { Container } from "components/GlobalStyle";
-import { AuthContainer, BackroundAuth, ContainerText, FormUl, LabelForm, RegisterButton, RegisterForm, RegisterH1, RegisterH2, RegisterIMG, RegisterInput, RegisterLi, RegisterP, RegisterUL } from "./StyledAuth/Register.styled";
+import { AuthContainer,   FormUl, LabelForm, RegisterButton, RegisterForm, RegisterInput } from "./StyledAuth/Register.styled";
 import Logologin from './img/“.svg';
 import LineLogin from './img/Line 1.svg';
-import { LineLoginIMG, LoginAuthor, LoginContainer, LoginIMG, LoginText } from "./StyledAuth/Login.styled";
+import { BackroundAuth, ContainerText, LineLoginIMG, LoginAuthor, LoginContainer, LoginIMG, LoginText } from "./StyledAuth/Login.styled";
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
-import { fetchUsers, login, register } from "../../redux/auth/operation";
+import { fetchUsers, login } from "../../redux/auth/operation";
 
 export const Login = () => {
    const dispatch = useDispatch();
@@ -23,24 +23,19 @@ export const Login = () => {
       const email = form.email.value;
       const password = form.password.value;
       
-      // Перевірка, чи існує користувач з введеним email
       const user = users.find(user => user.email === email);
       console.log(user);
    
       if (!user) {
-         // Якщо користувача з введеним email не знайдено, вивести повідомлення про помилку
          toast.error("Користувача з введеним email не знайдено!");
          return;
       }
    
-      // Перевірка співпадіння паролів
       if (user.password !== password) {
-         // Якщо пароль не співпадає, вивести повідомлення про помилку
          toast.error("Неправильний пароль!");
          return;
       }
    
-      // Якщо користувач і пароль існують, диспачимо вхід
       dispatch(login({
          id: user.id,
          name: user.name,
@@ -49,11 +44,9 @@ export const Login = () => {
       }))
          .then(() => {
             console.log("Успішний вхід!");
-            // Опціонально: виконати будь-які додаткові дії після успішного входу
          })
          .catch((error) => {
             console.error("Помилка при вході:", error);
-            // Опціонально: обробити помилку
          });
    };
 
