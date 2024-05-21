@@ -84,6 +84,7 @@ const userName = body.name
        // Видалити ідентифікатор користувача з локального сховища
        localStorage.removeItem('id');
        localStorage.removeItem('userName');
+       localStorage.removeItem('idTraining');
    
  
      // Очистити токен з заголовка
