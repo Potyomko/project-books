@@ -26,6 +26,11 @@ display: flex;
 flex-direction: column;
 
 padding: 0px 47px;
+@media only screen and (max-width: 320px) {
+  width: 95%;
+height:auto;
+padding-bottom: 30px;
+}
 
 
 `
@@ -138,6 +143,11 @@ text-decoration: none;
 position: relative;
 left: 100px;
 top: 40px;
+
+@media only screen and (max-width: 320px) {
+  position: static;
+  
+ }
 `
 
 

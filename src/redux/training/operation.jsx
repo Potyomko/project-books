@@ -73,9 +73,26 @@ export const addBook = createAsyncThunk("training/addBook", async (body, thunkAp
     const { data: trainingData } = await axios.get(`/training/${idTraining}`);
     
     // Оновлення лише масиву selectedBooks
-    trainingData.selectedBooks.push(body);
+    
+
+    // console.log()
+    trainingData.selectedBooks.push({...body, status: "reading"});
     
     const res = await axios.put(`/training/${idTraining}`, { selectedBooks: trainingData.selectedBooks });
+    const userId = localStorage.getItem('id');
+    
+    // Отримуємо існуючі книги користувача
+    const { data: userData } = await axios.get(`/users/${userId}`);
+    
+    // Додаємо нову книгу до масиву книг користувача
+    userData.Books.forEach(book => {
+      if (book.id  === body.id){
+        book.status = "reading"
+      } 
+    })
+    
+    // Оновлюємо дані користувача у базі даних з новим масивом книг
+    await axios.put(`/users/${userId}`, userData);
     return res.id;
   } catch (error) {
     return error.response.data;
@@ -88,6 +105,21 @@ export const deleteBook = createAsyncThunk("training/deleteBook", async (body, t
     const books = thunkApi.getState().training.selectedBooks;
     const deletingBooks = books.filter(book => book.id !== body);
     await axios.put(`/training/${idTraining}`, { selectedBooks: deletingBooks });
+
+    const userId = localStorage.getItem('id');
+    
+    // Отримуємо існуючі книги користувача
+    const { data: userData } = await axios.get(`/users/${userId}`);
+    
+    // Додаємо нову книгу до масиву книг користувача
+    userData.Books.forEach(book => {
+      if (book.id  === body){
+        book.status = "planning"
+      } 
+    })
+    
+    // Оновлюємо дані користувача у базі даних з новим масивом книг
+    await axios.put(`/users/${userId}`, userData);
   } catch (error) {
     return error.response.data;
   }

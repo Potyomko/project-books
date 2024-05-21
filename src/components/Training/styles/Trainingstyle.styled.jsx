@@ -121,7 +121,7 @@ display: flex;
 
 export const ModallAddBtn = styled.button`
 position: absolute;
-bottom: -2%;
+bottom: -1.25%;
 left: 43%;
 display: flex;
     width: 52px;
@@ -294,7 +294,7 @@ margin-top: 50px;
 
 @media only screen and (max-width: 320px) {
     margin: 0px 25px;
-margin-bottom: 40px;
+margin-bottom: 65px;
 margin-top: 30px;
  }`
 
@@ -515,6 +515,7 @@ gap: 20px;
 `
 
 export const BooksItem = styled.li`
+position: relative;
 display: flex;
 flex-direction: column;
 width: 100%;

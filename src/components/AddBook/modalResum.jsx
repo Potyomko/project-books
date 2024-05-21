@@ -5,7 +5,7 @@ import { useSelector } from 'react-redux';
 export const ModalResum = ({ bookId, onClose }) => {
     const books = useSelector(state => state.books.booksBD);
     const book = books.find(book => book.id === bookId);
-    const stars = Array(5).fill(false).map((_, index) => index < book?.resum?.rating);
+    const stars = Array(5).fill(false).map((_, index) => index < book?.resum?.rating)
   
     return (
       <ModalWindow>

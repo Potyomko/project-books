@@ -44,10 +44,10 @@ export const MobileBooksList = ()=>{
            <BooksItem key={book.id}>
             <TitleBox>
             <Img src={bookTraining} alt=""/> 
-                <p>
+            <p style={{maxWidth: "50%",  overflowWeap: "break-word"}}>
                 {book.title} 
                  </p>
-                 <img onClick={() => handleDeleteBook(book.id)} src={logoDelete} alt="" />
+                 <img style={{position: "absolute", top: "8.7%", right: "8.7%"}} onClick={() => handleDeleteBook(book.id)} src={logoDelete} alt="" />
                  </TitleBox>
                  <SubList>
                     <SubItem>
