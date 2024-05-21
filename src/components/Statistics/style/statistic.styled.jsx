@@ -4,7 +4,7 @@ export const BigContainer = styled.div`
 width: 100%;
 display: flex;
 gap: 40px;
-align-items: center;
+align-items: flex-start;
 justify-content: center;
 @media only screen and (max-width: 770px) {
     width: 100%;

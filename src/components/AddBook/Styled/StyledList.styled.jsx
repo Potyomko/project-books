@@ -10,11 +10,6 @@ export const ContainerFirst = styled.div`
   justify-content: center;
   align-items: center;
   margin: auto; /* Додано */
-  position: absolute; /* Додано */
-  top: 0; /* Додано */
-  bottom: 0; /* Додано */
-  left: 0; /* Додано */
-  right: 0; /* Додано */
 `;
 
 
@@ -125,6 +120,10 @@ export const InputBook = styled.input`
   box-shadow: 0px 1px 2px 0px #1d1d1b26 inset;
   margin-top: 8px; /* Додаємо відступ між лейблом та інпутом */
   display: block; /* Забезпечуємо блоковий контекст для розміщення лейбла над інпутом */
+  @media only screen and (max-width: 770px) {
+    width: 100%;
+    
+ }
 `;
 
 export const InputBookSecond = styled.input`
@@ -134,6 +133,9 @@ export const InputBookSecond = styled.input`
   border: 1px solid #a6abb9;
   margin-top: 8px; /* Додаємо відступ між лейблом та інпутом */
   display: block; /* Забезпечуємо блоковий контекст для розміщення лейбла над інпутом */
+  @media only screen and (max-width: 320px) {
+    width: 100%;
+ }
 `;
 
 export const InputBookThirth = styled.input`
@@ -143,7 +145,9 @@ export const InputBookThirth = styled.input`
   border: 1px solid #a6abb9;
   margin-top: 8px; /* Додаємо відступ між лейблом та інпутом */
   display: block; /* Забезпечуємо блоковий контекст для розміщення лейбла над інпутом */
-  margin-bottom: 30px; /* Додали відстань між рядками */
+  @media only screen and (max-width: 320px) {
+    width: 100%;
+ }
 `;
 
 export const InputBookThirth2 = styled.input`
@@ -153,8 +157,9 @@ export const InputBookThirth2 = styled.input`
   border: 1px solid #a6abb9;
   margin-top: 8px; /* Додаємо відступ між лейблом та інпутом */
   display: block; /* Забезпечуємо блоковий контекст для розміщення лейбла над інпутом */
-  margin-bottom: 30px; /* Додали відстань між рядками */
-  margin-right: 30px;
+  @media only screen and (max-width: 320px) {
+    width: 100%;
+ }
 `;
 
 export const BookButton = styled.button`
@@ -171,14 +176,29 @@ export const BookButton = styled.button`
   text-align: center;
   margin-top: 50px; /* Додаємо відступ зверху для кнопки */
   margin-left: 40px;
+  @media only screen and (max-width: 770px) {
+    margin: 0;
+ }
 `;
 
 export const FormContainer2 = styled.form`
-  margin-left: 160px;
-  margin-top: 30px;
   display: flex;
+  width: 100%;
+  align-items: flex-end;
+  justify-content: center;
 
-  gap: 30px; /* Додаємо відстань у 20px між елементами */
+  gap: 20px; /* Додаємо відстань у 20px між елементами */
+  margin-bottom: 30px;
+
+  @media only screen and (max-width: 770px) {
+    flex-wrap: wrap;
+    align-items: center;
+ }
+
+ @media only screen and (max-width: 320px) {
+  flex-direction: column;
+  gap: 10px;
+}
 `;
 
 export const LabelBook = styled.label`
@@ -188,11 +208,43 @@ export const LabelBook = styled.label`
   line-height: 38px;
   color: #898F9F;
   display: block; /* Забезпечуємо блоковий контекст для розміщення лейбла над інпутом */
-  margin-bottom: 10px; /* Додаємо відступ між лейблом та наступним елементом */
+
+  @media only screen and (max-width: 320px) {
+    width: 100%;
+ }
+  
+`;
+
+export const TitleLabelBook = styled.label`
+  font-family: "Montserrat";
+  font-size: 14px;
+  font-weight: 500;
+  line-height: 38px;
+  color: #898F9F;
+  display: block; /* Забезпечуємо блоковий контекст для розміщення лейбла над інпутом */
+
+  @media only screen and (max-width: 770px) {
+    width: 100%;
+ }
+  
 `;
 
 
+export const MegaContainer = styled.div`
 
+max-width: 100%;
+max-height: 100%;
+margin: 30px 40px;
+
+@media only screen and (max-width: 770px) {
+    margin: 20px 45px;
+ }
+ 
+ @media only screen and (max-width: 320px) {
+  position: relative;
+  margin: 20px 25px;
+  margin-bottom: 65px;
+}`
 
 
 export const ContainerMapBook = styled.div`
@@ -282,7 +334,7 @@ export const Img = styled.img`
 `;
 
 export const TableBook = styled.table`
-
+    
     width: 100%;
     height: 233px;
     top: 329px;
@@ -292,8 +344,6 @@ export const TableBook = styled.table`
     font-weight: 500;
     line-height: 38px;
     text-align: left;
-    padding: 0px 10px 10px 10px;
-    margin: 25px 0px 40px 5px;
 `;
 export const Thead = styled.thead`
     color: #898F9F;
@@ -325,6 +375,10 @@ export const ListStar = styled.ul`
 list-style: none;
 display: flex;
 gap: 5px;
+@media only screen and (max-width: 320px) {
+ margin: 0;
+ padding:0;
+}
 
 
 `
@@ -344,12 +398,94 @@ height: 40px;
 background: #6D7A8D;
 box-shadow: 0px 2px 4px 0px #00000040;
 font-family: "Montserrat";
-font-size: 14px;
+font-size: 1opx;
 font-weight: 500;
-line-height: 38px;
-text-align: left;
+line-height: 24px;
 color: #FFFFFF;
 text-align: center;
+border: none;
 
 
 `
+
+export const BooksList = styled.ul`
+list-style: none;
+display: flex;
+flex-direction: column;
+gap: 15px;
+padding: 0px;
+margin: 0px;
+width: 100%;
+align-items: center;
+color: #242A37;
+font-family: Montserrat;
+font-size: 12px;
+font-style: normal;
+font-weight: 500;
+line-height: normal;`
+
+export const TitleBox = styled.div`
+display: flex;
+align-items: center;
+gap: 20px;
+`
+
+export const BooksItem = styled.li`
+position: relative;
+display: flex;
+flex-direction: column;
+width: 100%;
+gap: 5px;
+background: #FFF;
+box-shadow: 0px 2px 3px 0px rgba(9, 30, 63, 0.10);
+padding-top: 25px;
+padding-bottom: 25px;
+padding-left: 5px;`
+
+export const SubList = styled.ul`
+list-style: none;
+display: flex;
+flex-direction: column;
+padding: 0px;
+margin: 0px;
+margin-left: 35px;`
+
+export const SubItem = styled.li`
+display: flex;
+align-items: center;
+`
+
+export const SubTitle = styled.p`
+color: #898F9F;
+font-family: Montserrat;
+font-size: 12px;
+font-style: normal;
+font-weight: 500;
+line-height: 38px; 
+width: 70px;
+text-align: start;`
+
+export const MobileResumeBox = styled.div`
+display: flex;
+flex-direction: column;
+`
+
+export const ModallAddBtn = styled.button`
+position: absolute;
+bottom: -1.25%;
+left: 40%;
+display: flex;
+    width: 52px;
+    height: 52px;
+    background: #FF6B08;
+    border: none;
+    border-radius: 50%;
+    font-family: Montserrat;
+    font-size: 14px;
+    font-weight: 500;
+    line-height: 38px;
+    text-align: center;
+    color: #FFF;
+    justify-content: center;
+    align-items: center;
+`;

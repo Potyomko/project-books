@@ -1,16 +1,18 @@
-import React, { useState } from 'react';
-import { useDispatch } from 'react-redux';
-
-import { addBook } from '../../redux/library/operation';
 import { BookButton, TitleLabelBook, FormContainer2, InputBook, InputBookSecond, InputBookThirth, InputBookThirth2, LabelBook } from './Styled/StyledList.styled';
+import { useDispatch, useSelector } from "react-redux";
+import { useState } from 'react';
+import { toast } from "react-toastify";
+import {GoArrowLeft} from "react-icons/go"
+import { addBook } from '../../redux/library/operation';
 
-export const BookForm = () => {
-  const [title, setTitle] = useState('');
+export const MobileBookForm = ({delince}) => {
+    const dispatch = useDispatch();
+
+    const [title, setTitle] = useState('');
   const [author, setAuthor] = useState('');
   const [year, setYear] = useState('');
   const [pages, setPages] = useState('');
 
-  const dispatch = useDispatch();
 
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -28,8 +30,14 @@ export const BookForm = () => {
     setYear('');
     setPages('');
   };
-
-  return (
+   
+    
+     
+      
+    return <>
+    <div style={{display: "flex", alignItems: "start", width: "100%"}} >
+    <GoArrowLeft color="#FF6B08" size="24px" onClick={delince}/>
+    </div>
     <FormContainer2 onSubmit={handleSubmit}>
       <TitleLabelBook>
         Назва книги:
@@ -49,5 +57,5 @@ export const BookForm = () => {
       </LabelBook>
       <BookButton type="submit">Додати книгу</BookButton>
     </FormContainer2>
-  );
-};
+     </>
+}
