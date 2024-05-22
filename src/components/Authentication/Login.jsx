@@ -1,11 +1,11 @@
 import React, { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { NavLink } from "react-router-dom";
-import { Container } from "components/GlobalStyle";
+// import { Container } from "components/GlobalStyle";
 import { AuthContainer,   FormUl, LabelForm, RegisterButton, RegisterForm, RegisterInput } from "./StyledAuth/Register.styled";
 import Logologin from './img/“.svg';
 import LineLogin from './img/Line 1.svg';
-import { BackroundAuth, ContainerText, LineLoginIMG, LoginAuthor, LoginContainer, LoginIMG, LoginText } from "./StyledAuth/Login.styled";
+import { BackroundAuth, ContainerText, LineLoginIMG, LoginAuthor, LoginContainer, LoginIMG, LoginText, Container } from "./StyledAuth/Login.styled";
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import { fetchUsers, login } from "../../redux/auth/operation";
@@ -77,7 +77,7 @@ export const Login = () => {
                      <RegisterButton type="submit">Увійти</RegisterButton>
                   </RegisterForm>
                   <FormUl>
-                     <li><NavLink to='/'>Зареєструватися</NavLink></li>
+                     <li><NavLink to='/'  style={{color: "#FF6B08"}}>Зареєструватися</NavLink></li>
                   </FormUl>
                </LoginContainer>
             </BackroundAuth>

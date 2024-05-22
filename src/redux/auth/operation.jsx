@@ -36,6 +36,23 @@ const setAuthHeader = token => {
  export const register = createAsyncThunk('auth/signup', async (body, thunkApi)=>{
    try{
       const res = await axios.post('/users', body);
+      const trs = await axios.post('/training', {
+        startDate:  null, 
+        finishDate: null,
+        size: null,
+        books: [
+         
+        ],
+        selectedBooks: [
+    
+        ],
+        checkout: [
+         
+        ],
+        prevChekout: [],
+        isStarted: false,
+        userId: res.data.id,
+        trainingBD: []});
       setAuthHeader(res.data.token);
       
       // Отримати idBooks з відповіді сервера
@@ -44,6 +61,7 @@ const setAuthHeader = token => {
       // Записати idBooks в локальне сховище
       localStorage.setItem('id', id);
       localStorage.setItem('userName', userName);
+      localStorage.setItem('idTraining',  trs.data.id);
       return res.data;
    } catch(error){
       thunkApi.rejectWithValue(error.messages);
@@ -55,7 +73,16 @@ export const login = createAsyncThunk('auth/login', async (body, thunkApi)=>{
        
       // Отримати idBooks з відповіді сервера
       const id = body.id;
-const userName = body.name
+const userName = body.name;
+
+const treanings =  await axios.get(`/training`);
+
+treanings.forEach(train => {
+  if(train.userId === id) {
+    localStorage.setItem('idTraining',  id);
+  }
+}) 
+
       // Записати idBooks в локальне сховище
       localStorage.setItem('id', id); 
       localStorage.setItem('userName', userName); 

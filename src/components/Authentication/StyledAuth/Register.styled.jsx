@@ -2,6 +2,18 @@ import styled from "styled-components";
 import AuthBackround from '../img/pic.jpg';
 import { NavLink } from "react-router-dom";
 
+export const Container = styled.div`
+display: flex;
+width: 100%;
+height: 100%;
+@media only screen and (max-width: 770px) {
+  flex-direction: column;
+  align-item: center;
+
+
+
+}`
+
 export const BackroundAuth = styled.div`
   width: 565px;
   height: 650px; 
@@ -18,8 +30,7 @@ export const BackroundAuth = styled.div`
   display: flex;
   justify-content: center;
   align-items: center;
-  position: absolute;
-  left: 1px;
+  
   @media only screen and (max-width: 1200px) {
     position: relative;
     display: flex;
@@ -30,6 +41,11 @@ export const BackroundAuth = styled.div`
 
 
   }
+
+   @media only screen and (max-width: 770px) {
+    width: 100%;
+    margin:0;
+  }
   
 `;
 
@@ -37,14 +53,21 @@ export const AuthContainer = styled.div`
   width: 430px;
   height: 560px;
   background: white;
-  position: relative;
-  padding-bottom: 20px;
+  padding-top: 30px;
+  
 
 
 
-  @media only screen and (max-width: 720px) {
+  @media only screen and (max-width: 770px) {
     height: auto;
-  }
+    padding: 0;
+  };
+
+  @media only screen and (max-width: 320px) {
+    background: none;
+    width: 100%;
+    margin: 20px 25px
+   }
 `;
 
 export const RegisterInput = styled.input`
@@ -54,8 +77,14 @@ export const RegisterInput = styled.input`
   box-shadow: 0px 1px 2px 0px #1D1D1B26 inset;
   background: #F5F7FA;
   display: block;
-  margin: 10px auto;
-  padding-left: 15px;
+
+  @media only screen and (max-width: 320px) {
+  
+    text-align: center;
+ 
+    width: 100%;
+  
+  }
 `;
 
 export const RegisterButton = styled.button`
@@ -64,9 +93,13 @@ export const RegisterButton = styled.button`
   color: #FFFFFF;
   background: #FF6B08;
   display: block;
-  margin: 10px auto;
   border: 0px;
   margin-top: 20px;
+
+  @media only screen and (max-width: 320px) {
+    width: 100%;
+  
+  }
 `;
 
 export const LoginLink = styled(NavLink)`
@@ -75,10 +108,13 @@ export const LoginLink = styled(NavLink)`
 `;
 
 export const ContainerText = styled.div`
-  position: absolute;
-  right: 280px;
-  top: 50%;
-  transform: translateY(-50%);
+ 
+display: flex;
+flex-direction: column; 
+align-items: center;
+justify-content: center;
+padding-left: 90px;
+  
 
   @media only screen and (max-width: 1200px) {
     position: static;
@@ -87,9 +123,14 @@ export const ContainerText = styled.div`
     text-align: center;
   }
 
-  @media only screen and (max-width: 720px) {
-  
+  @media only screen and (max-width: 770px) {
+   padding: 0;
   }
+  
+  @media only screen and (max-width: 320px) {
+    display: none;
+   }
+
 `;
 
 export const FormUl = styled.ul`
@@ -97,20 +138,37 @@ export const FormUl = styled.ul`
   justify-content: center;
   align-items: center;
   list-style: none;
-  & > li:not(:last-child) {
-    margin-right: 5px;
-  }
+ gap: 5px;
+
+ padding: 0;
 `;
 
 export const RegisterForm = styled.form`
   margin-top: 80px;
-
+  display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 10px;
+    width: 100%
+  // @media only screen and (max-width: 320px) {
+  //   display: flex;
+  //   flex-direction: column;
+  //   justify-content: center;
+  //   align-items: center;
+  //   gap: 10px;
+  // }
 
 `;
 
 export const LabelForm = styled.label`
-  margin-left: 50px;
+  
   color: #898F9F;
+  @media only screen and (max-width: 320px) {
+    width: 100%;
+    display: block;
+    margin: 0;
+  }
 `;
 
 export const RegisterH1 = styled.h1`
@@ -122,8 +180,7 @@ export const RegisterH1 = styled.h1`
   color: #242A37;
   justify-content: center;
   align-items: center;
-  margin-left: 150px;
-  margin-bottom: 100px;
+  
 
   @media only screen and (max-width: 1200px) {
     margin-left: 0;
@@ -151,6 +208,11 @@ export const RegisterUL = styled.ul`
   @media only screen and (max-width: 1200px) {
     margin-top: 20px;
     padding: 0;
+  }
+  @media only screen and (max-width: 770px) {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
   }
 `;
 

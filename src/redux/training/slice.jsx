@@ -6,8 +6,8 @@ const trainingSlice = createSlice({
   name: "training",
   initialState: {
     id: null,
-    startDate:  1714587761, 
-    finishDate: 1717093361,
+    startDate:  null, 
+    finishDate: null,
     size: null,
     books: [
      
@@ -47,7 +47,7 @@ const trainingSlice = createSlice({
         state.startDate = action.payload;
       })
       .addCase(updateFinishDate.fulfilled, (state, action) => {
-        state.finishDate = action.payload;
+        state.finishDate = action.payload.finishDate;
         console.log(state.isLoading)
       })
       .addCase(addNewChekout.fulfilled, (state, action) => {
@@ -105,8 +105,11 @@ const trainingSlice = createSlice({
         });
       })
       .addCase(andOfTraining.fulfilled, (state, action)=> {
+        state.startDate = null;
+      state.finishDate = null;
+      state.selectedBooks = [];
+      state.checkout =[];
         state.prevChekout = action.payload;
-        state.checkout = [];
         state.isStarted = false
         // prevChekout: checkout, checkout: [], isStarted: false
       })

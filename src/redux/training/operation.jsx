@@ -72,11 +72,10 @@ export const addBook = createAsyncThunk("training/addBook", async (body, thunkAp
     const idTraining = localStorage.getItem('idTraining');
     const { data: trainingData } = await axios.get(`/training/${idTraining}`);
     
-    // Оновлення лише масиву selectedBooks
-    
-
+   
     // console.log()
-    trainingData.selectedBooks.push({...body, status: "reading"});
+    if(body.status === "planning"){
+    trainingData.selectedBooks.push({...body, status: "reading"});}
     
     const res = await axios.put(`/training/${idTraining}`, { selectedBooks: trainingData.selectedBooks });
     const userId = localStorage.getItem('id');
@@ -86,7 +85,7 @@ export const addBook = createAsyncThunk("training/addBook", async (body, thunkAp
     
     // Додаємо нову книгу до масиву книг користувача
     userData.Books.forEach(book => {
-      if (book.id  === body.id){
+      if (book.id  === body.id && book.status === "planning"){
         book.status = "reading"
       } 
     })
@@ -245,7 +244,19 @@ export const andOfTraining = createAsyncThunk(
       const getting = await axios.get(`/training/${trId}`);
       const checkout = getting.data.checkout
   
-        await axios.put(`/training/${trId}`, {prevChekout: checkout, checkout: [], isStarted: false});
+        await axios.put(`/training/${trId}`, {prevChekout: checkout, checkout: [], isStarted: false, startDate: null, finishDate: null, selectedBooks: [] });
+
+        const userId = localStorage.getItem('id');
+
+        const { data: userData } = await axios.get(`/users/${userId}`);
+        
+        userData.Books.forEach(book => {
+            if (book.status === "reading"){
+              book.status = "planning"
+            } 
+          });
+    
+          await axios.put(`/users/${userId}`, userData);
       return checkout;
     } catch (error) {
       return error.response.data;

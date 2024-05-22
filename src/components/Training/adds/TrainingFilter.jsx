@@ -50,6 +50,7 @@ export const TrainingFilter = () => {
     if (selectedBook) {
       dispatch(addBook(selectedBook)).then(() => {
         dispatch(fetchBooksSelected()); // Оновлення списку вибраних книг після успішного додавання
+        setSelectedBookId("")
       });
     } else {
       toast.error("Книгу не знайдено!");

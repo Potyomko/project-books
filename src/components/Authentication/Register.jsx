@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { nanoid } from "nanoid";
 import { NavLink } from "react-router-dom";
-import { Container } from "components/GlobalStyle";
+// import { Container } from "components/GlobalStyle";
 import {
   AuthContainer,
   BackroundAuth,
@@ -17,7 +17,8 @@ import {
   RegisterInput,
   RegisterLi,
   RegisterP,
-  RegisterUL
+  RegisterUL, 
+  Container
 } from "./StyledAuth/Register.styled";
 import { register } from "../../redux/auth/operation";
 import LogoRegister from './img/Vector.svg';
@@ -59,7 +60,6 @@ export const Register = () => {
       return;
     }
 
-    const id = nanoid();
     const generatedToken = nanoid();
 
     dispatch(register({
@@ -119,8 +119,8 @@ export const Register = () => {
               <RegisterButton type="submit">Зареєструватися</RegisterButton>
             </RegisterForm>
             <FormUl>
-              <li> <p>Вже з нами?</p> </li>
-              <li> <NavLink to='/login'>Увійти</NavLink></li>
+              <li> <p style={{color: "#898F9F"}}>Вже з нами?</p> </li>
+              <li> <NavLink to='/login' style={{color: "#FF6B08"}}>Увійти</NavLink></li>
             </FormUl>
           </AuthContainer>
         </BackroundAuth>
