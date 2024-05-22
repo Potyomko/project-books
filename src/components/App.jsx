@@ -23,7 +23,7 @@ export const App = ()=> {
 
   return (
     <>
-       {userId ? ( <Header/>) : null}
+       <Header/>
 
       <Outlet/> 
            
