@@ -14,6 +14,8 @@ import { selectIsLoading, selectSize, selectTrainingId } from "../../redux/train
 import { ExitBtn } from "./style/myGoal.styled";
 import { MobileBooksList } from "./components/mobileBooksList";
 import { AreYouSureModal } from "./components/areYouSureModal";
+import BeatLoader from "react-spinners/BeatLoader";
+import { SpinerContainer } from "components/AddBook/Styled/StyledList.styled";
 
 
 
@@ -41,7 +43,18 @@ export const Statistics = ()=>{
 
     return(
         <MegaContainer>
-             {isLoading && <p>Loading...</p>}
+             {isLoading &&  <SpinerContainer>
+            <BeatLoader
+            color="#FF6B08"
+            cssOverride={{
+              display: "block",
+              margin: "0 auto",
+              borderColor: "red",
+              color: "#FF6B08"
+            }}
+            size="50px"
+          />
+          </SpinerContainer>}
             {!isLoading && <>
                 <BigContainer>
                      <MediumContainer>

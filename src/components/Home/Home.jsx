@@ -1,15 +1,22 @@
 import { BookForm } from "components/AddBook/BookForm"
 import { Header } from "../Header/Header"
 import { BookList } from "components/AddBook/BookList"
-import { useEffect, useState } from "react"
+import { useEffect, useState, CSSProperties } from "react"
 import { fetchBooks } from "../../redux/library/operation"
 import { useDispatch, useSelector } from "react-redux"
-import { MegaContainer } from "components/AddBook/Styled/StyledList.styled"
+import { MegaContainer, SpinerContainer } from "components/AddBook/Styled/StyledList.styled"
 import { checkWindowSize } from "../../redux/training/operation";
 import { selectSize} from "../../redux/training/selectors";
 import { MobileBooksList } from "components/AddBook/mobileBookList";
 import { ModallAddBtn } from "components/AddBook/Styled/StyledList.styled"
 import { MobileBookForm } from "components/AddBook/mobileBookForm"
+import BeatLoader from "react-spinners/BeatLoader";
+
+// const override: CSSProperties = {
+//   display: "block",
+//   margin: "0 auto",
+//   borderColor: "red",
+// };
 
 
 export const Home = () => {
@@ -39,10 +46,21 @@ export const Home = () => {
  
       {!modalTreaker && <>
         {isLoadings ? (
-            
-          <p>Loading...</p>
+            <SpinerContainer>
+            <BeatLoader
+            color="#FF6B08"
+            cssOverride={{
+              display: "block",
+              margin: "0 auto",
+              borderColor: "red",
+              color: "#FF6B08"
+            }}
+            size="50px"
+          />
+          </SpinerContainer>
         ) : (
           <>
+          
           {size <= 320 && <>
           <MobileBooksList/>
           <ModallAddBtn onClick={()=>setModalTreaker(true)}>+</ModallAddBtn></>}

@@ -11,6 +11,8 @@ import { Chart } from "../Statistics/components/chart";
 import { selectSize, selectSelectedBooks} from "../../redux/training/selectors";
 import { MobileBooksList } from "./adds/mobileBooksList";
 import { ModalAddBook } from "./adds/modalAddBook";
+import BeatLoader from "react-spinners/BeatLoader";
+import { SpinerContainer } from "components/AddBook/Styled/StyledList.styled";
 
 export const Training = ()=>{
     const dispatch = useDispatch();
@@ -53,7 +55,18 @@ export const Training = ()=>{
           </MyTrainingDiv>
         {isLoadings ? (
             
-            <p>Loading...</p>
+            <SpinerContainer>
+            <BeatLoader
+            color="#FF6B08"
+            cssOverride={{
+              display: "block",
+              margin: "0 auto",
+              borderColor: "red",
+              color: "#FF6B08"
+            }}
+            size="25px"
+          />
+          </SpinerContainer>
           ) : (
             <>
                <TrainingFilter />
