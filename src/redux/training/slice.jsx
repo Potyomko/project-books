@@ -62,7 +62,7 @@ const trainingSlice = createSlice({
 
                state.isLoading = false
                state.books = action.payload;
-               console.log(state.books);
+             
            })
 
       .addCase(fetchBooksSelected.fulfilled, (state, action) => {

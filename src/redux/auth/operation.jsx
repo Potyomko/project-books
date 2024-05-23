@@ -75,14 +75,7 @@ export const login = createAsyncThunk('auth/login', async (body, thunkApi)=>{
       const id = body.id;
 const userName = body.name;
 
-const treanings =  await axios.get(`/training`);
-
-treanings.forEach(train => {
-  if(train.userId === id) {
-    localStorage.setItem('idTraining',  id);
-  }
-}) 
-
+console.log(id);
       // Записати idBooks в локальне сховище
       localStorage.setItem('id', id); 
       localStorage.setItem('userName', userName); 
