@@ -1,26 +1,26 @@
 {
   "files": {
-    "main.css": "/static/css/main.3c6925c1.css",
-    "main.js": "/static/js/main.20935663.js",
-    "static/media/pic.jpg": "/static/media/pic.0ed39e956a97d11f7c67.jpg",
-    "static/media/BR.svg": "/static/media/BR.68b7ef409b15b3c337c4acb16e0cae36.svg",
-    "static/media/Vector (4).svg": "/static/media/Vector (4).467c84b07b3267df92d0a11bc39fceb1.svg",
-    "index.html": "/index.html",
-    "static/media/icon library.svg": "/static/media/icon library.23f7a42fdbceaafd67b2fe335aa84dd6.svg",
-    "static/media/Flat.svg": "/static/media/Flat.88af49a8c3650156853d8f4ad153cb33.svg",
-    "static/media/openBook.svg": "/static/media/openBook.f8b078362c41adf663e6586e8f0dec97.svg",
-    "static/media/“.svg": "/static/media/“.cb00fd15a9c33bd82a6370d3e7f678cc.svg",
-    "static/media/Vector.svg": "/static/media/Vector.d8e7a9a0f08c75160e4bd84887ac7c2b.svg",
-    "static/media/delete.svg": "/static/media/delete.c028471843e0be2d2f1bba58f922130b.svg",
-    "static/media/icon home.svg": "/static/media/icon home.b3cc0a6a4d8a1f2461a5a0058dafff68.svg",
-    "static/media/flag.svg": "/static/media/flag.630776428b2941a7e4a8d9c083ae3780.svg",
-    "static/media/Line 1.svg": "/static/media/Line 1.67b413987e8df21bb6ff367bce4537d6.svg",
-    "static/media/Line 4.svg": "/static/media/Line 4.0b447d5c5db6f1cb96771cd843fa3733.svg",
-    "main.3c6925c1.css.map": "/static/css/main.3c6925c1.css.map",
-    "main.20935663.js.map": "/static/js/main.20935663.js.map"
+    "main.css": "/potyomko.github.io/project-books/static/css/main.3c6925c1.css",
+    "main.js": "/potyomko.github.io/project-books/static/js/main.da15ea13.js",
+    "static/media/pic.jpg": "/potyomko.github.io/project-books/static/media/pic.0ed39e956a97d11f7c67.jpg",
+    "static/media/BR.svg": "/potyomko.github.io/project-books/static/media/BR.68b7ef409b15b3c337c4acb16e0cae36.svg",
+    "index.html": "/potyomko.github.io/project-books/index.html",
+    "static/media/Vector (4).svg": "/potyomko.github.io/project-books/static/media/Vector (4).467c84b07b3267df92d0a11bc39fceb1.svg",
+    "static/media/icon library.svg": "/potyomko.github.io/project-books/static/media/icon library.23f7a42fdbceaafd67b2fe335aa84dd6.svg",
+    "static/media/Flat.svg": "/potyomko.github.io/project-books/static/media/Flat.88af49a8c3650156853d8f4ad153cb33.svg",
+    "static/media/openBook.svg": "/potyomko.github.io/project-books/static/media/openBook.f8b078362c41adf663e6586e8f0dec97.svg",
+    "static/media/“.svg": "/potyomko.github.io/project-books/static/media/“.cb00fd15a9c33bd82a6370d3e7f678cc.svg",
+    "static/media/Vector.svg": "/potyomko.github.io/project-books/static/media/Vector.d8e7a9a0f08c75160e4bd84887ac7c2b.svg",
+    "static/media/delete.svg": "/potyomko.github.io/project-books/static/media/delete.c028471843e0be2d2f1bba58f922130b.svg",
+    "static/media/icon home.svg": "/potyomko.github.io/project-books/static/media/icon home.b3cc0a6a4d8a1f2461a5a0058dafff68.svg",
+    "static/media/flag.svg": "/potyomko.github.io/project-books/static/media/flag.630776428b2941a7e4a8d9c083ae3780.svg",
+    "static/media/Line 1.svg": "/potyomko.github.io/project-books/static/media/Line 1.67b413987e8df21bb6ff367bce4537d6.svg",
+    "static/media/Line 4.svg": "/potyomko.github.io/project-books/static/media/Line 4.0b447d5c5db6f1cb96771cd843fa3733.svg",
+    "main.3c6925c1.css.map": "/potyomko.github.io/project-books/static/css/main.3c6925c1.css.map",
+    "main.da15ea13.js.map": "/potyomko.github.io/project-books/static/js/main.da15ea13.js.map"
   },
   "entrypoints": [
     "static/css/main.3c6925c1.css",
-    "static/js/main.20935663.js"
+    "static/js/main.da15ea13.js"
   ]
 }
