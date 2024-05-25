@@ -2,7 +2,7 @@
     "name": "project-books",
     "version": "0.1.0",
     "private": true,
-    "homepage": "https://Potyomko.github.io/",
+    "homepage": "potyomko.github.io/project-books/",
     "dependencies": {
         "@reduxjs/toolkit": "^2.2.3",
         "@testing-library/jest-dom": "^5.16.3",
