@@ -21,7 +21,7 @@ export const ModalResum = ({ bookId, onClose }) => {
             ))}
           </ListStar>
           <h2>Резюме</h2>
-          <p>{book?.resum?.resume || 'Резюме відсутнє'}</p>
+          <p style={{maxWidth: "70%",  overflowWeap: "break-word"}}>{book?.resum?.resume || 'Резюме відсутнє'}</p>
           <ContainerBTN>
             <BtnCloseResum onClick={onClose}>Назад</BtnCloseResum>
           </ContainerBTN>
