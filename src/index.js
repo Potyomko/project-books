@@ -14,7 +14,7 @@ ReactDOM.createRoot(document.getElementById('root')).render( <
     < Provider store = { store } >
     <RouterProvider router = { router } >
     <ThemeProvider theme = { Theme } >
-    <BrowserRouter basename="/project-books">
+    <BrowserRouter>
         <App />
     </BrowserRouter>
     </ThemeProvider>
