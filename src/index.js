@@ -12,9 +12,9 @@ import { Theme } from './components/Theme';
 ReactDOM.createRoot(document.getElementById('root')).render( <
     React.StrictMode >
     < Provider store = { store } >
-    <RouterProvider router = { router } >
+    <RouterProvider router = { router } basename="/project-books">
     <ThemeProvider theme = { Theme } >
-    <BrowserRouter>
+    <BrowserRouter  basename="/project-books">
         <App />
     </BrowserRouter>
     </ThemeProvider>
