@@ -1,7 +1,7 @@
 {
   "files": {
     "main.css": "/potyomko.github.io/project-books/static/css/main.3c6925c1.css",
-    "main.js": "/potyomko.github.io/project-books/static/js/main.df8c480e.js",
+    "main.js": "/potyomko.github.io/project-books/static/js/main.fc7acc0f.js",
     "static/media/pic.jpg": "/potyomko.github.io/project-books/static/media/pic.0ed39e956a97d11f7c67.jpg",
     "static/media/BR.svg": "/potyomko.github.io/project-books/static/media/BR.68b7ef409b15b3c337c4acb16e0cae36.svg",
     "index.html": "/potyomko.github.io/project-books/index.html",
@@ -17,10 +17,10 @@
     "static/media/Line 1.svg": "/potyomko.github.io/project-books/static/media/Line 1.67b413987e8df21bb6ff367bce4537d6.svg",
     "static/media/Line 4.svg": "/potyomko.github.io/project-books/static/media/Line 4.0b447d5c5db6f1cb96771cd843fa3733.svg",
     "main.3c6925c1.css.map": "/potyomko.github.io/project-books/static/css/main.3c6925c1.css.map",
-    "main.df8c480e.js.map": "/potyomko.github.io/project-books/static/js/main.df8c480e.js.map"
+    "main.fc7acc0f.js.map": "/potyomko.github.io/project-books/static/js/main.fc7acc0f.js.map"
   },
   "entrypoints": [
     "static/css/main.3c6925c1.css",
-    "static/js/main.df8c480e.js"
+    "static/js/main.fc7acc0f.js"
   ]
 }
